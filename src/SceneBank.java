@@ -16,7 +16,7 @@ public class SceneBank {
 	
 	public SceneBank() {
 		_scenes = new Scene[SIZE];
-		_currentScene = new SceneGame();
+		_currentScene = new SceneMenu();
 		_position = -1;
 		
 		setScene(_currentScene);

@@ -14,6 +14,12 @@ public class Player {
 	private int _dy;
 	private int _speed;
 	
+	// DIRECTION.
+	private enum Direction { 
+		LEFT, RIGHT, UP, DOWN 
+	};
+	private Direction _dir;
+	
 	// STATUS.
 	private int _hp;
 	private int _maxhp;
@@ -29,12 +35,11 @@ public class Player {
 		
 		_maxsp = 15;
 		_sp = _maxsp;
+		
+		_dir = Direction.UP;
 	}
 	
 	public void move() {
-		_dx = _speed;
-		_dy = _speed;
-		
 		_x += _dx;
 		_y += _dy;
 	}
@@ -57,6 +62,7 @@ public class Player {
 	
 	public void update() {
 		// keyboard output here
+		move();
 	}
 	
 	public void draw(Graphics g) {
