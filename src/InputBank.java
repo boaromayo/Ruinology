@@ -32,6 +32,40 @@ public class InputBank {
 		return newKey;
 	}
 	
+	public static void setKey(int key, boolean set) {
+		switch(key) {
+		case _W:
+			_keyNow[0] = set;
+			break;
+		case _A:
+			_keyNow[1] = set;
+			break;
+		case _S:
+			_keyNow[2] = set;
+			break;
+		case _D:
+			_keyNow[3] = set;
+			break;
+		case _UP:
+			_keyNow[4] = set;
+			break;
+		case _LEFT:
+			_keyNow[5] = set;
+			break;
+		case _RIGHT:
+			_keyNow[6] = set;
+			break;
+		case _DOWN:
+			_keyNow[7] = set;
+			break;
+		case _ESC:
+			_keyNow[8] = set;
+			break;
+		default:
+			break;
+		}
+	}
+	
 	public static void update() {
 		for (int i = 0; i < _keys.length; i++) {
 			_keyBefore[i] = _keyNow[i];

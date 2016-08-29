@@ -37,11 +37,8 @@ public class Player {
 		_sp = _maxsp;
 		
 		_dir = Direction.UP;
-	}
-	
-	public void move() {
-		_x += _dx;
-		_y += _dy;
+		
+		_speed = 2;
 	}
 	
 	public void hit(int dmg) {
@@ -62,13 +59,48 @@ public class Player {
 	
 	public void update() {
 		// keyboard output here
+		if (InputBank.keyDown(InputBank._W) || 
+				InputBank.keyDown(InputBank._UP)) {
+			setdy(-_speed);
+			setDirection(Direction.UP);
+		} else if (InputBank.keyDown(InputBank._A) ||
+				InputBank.keyDown(InputBank._LEFT)) {
+			setdx(-_speed);
+			setDirection(Direction.LEFT);
+		} else if (InputBank.keyDown(InputBank._D) ||
+				InputBank.keyDown(InputBank._RIGHT)) {
+			setdx(_speed);
+			setDirection(Direction.RIGHT);
+		} else if (InputBank.keyDown(InputBank._S) ||
+				InputBank.keyDown(InputBank._DOWN)) {
+			setdy(_speed);
+			setDirection(Direction.DOWN);
+		}
+		
 		move();
+	}
+	
+	private void move() {
+		_x += _dx;
+		_y += _dy;
 	}
 	
 	public void draw(Graphics g) {
 		// placeholder tri
-		int[] xp = {(int)_x, (int)_x-2, (int)_x+2};
-		int[] yp = {(int)_y, (int)_y+2, (int)_y+2};
+		int[] xp = {(int)_x, (int)_x-5, (int)_x+5};
+		int[] yp = {(int)_y, (int)_y+5, (int)_y+5};
 		g.drawPolygon(xp, yp, 3);
+	}
+	
+	public void setdx(int x) {
+		_dx = x;
+	}
+	
+	public void setdy(int y) {
+		_dy = y;
+	}
+	
+	public void setDirection(Direction d) {
+		_dir = d;
 	}
 }

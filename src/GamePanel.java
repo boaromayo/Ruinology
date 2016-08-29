@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -19,7 +20,22 @@ public class GamePanel extends JPanel implements Runnable {
 		setFocusable(true);
 		requestFocus();
 		
-		//addKeyListener();
+		addKeyListener(new KeyListener() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				int key = e.getKeyCode();
+				InputBank.setKey(key, true);
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				int key = e.getKeyCode();
+				InputBank.setKey(key, false);
+			}
+			
+			@Override
+			public void keyTyped(KeyEvent e) {}
+		});
 	}
 	
 	public void run() {
@@ -74,6 +90,7 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	
 	public void update() {
+		InputBank.update();
 		_sb.update();
 	}
 	
