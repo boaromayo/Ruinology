@@ -27,6 +27,9 @@ public class Player {
 	private int _sp;
 	private int _maxsp;
 	
+	// SCORE.
+	private int _score;
+	
 	public Player() {
 		//_pImg = new BufferedImage[4]; 
 		
@@ -39,22 +42,8 @@ public class Player {
 		_dir = Direction.UP;
 		
 		_speed = 2;
-	}
-	
-	public void hit(int dmg) {
-		_hp -= dmg;
-	}
-	
-	public void heal(int rec) {
-		_hp += rec;
-	}
-	
-	public void hit() {
-		hit(1);
-	}
-	
-	public void heal() {
-		heal(1);
+		
+		_score = 0;
 	}
 	
 	public void update() {
@@ -92,6 +81,37 @@ public class Player {
 		g.drawPolygon(xp, yp, 3);
 	}
 	
+	// EFFECTS.
+	public void hit(int dmg) {
+		_hp -= dmg;
+	}
+	
+	public void heal(int rec) {
+		_hp += rec;
+	}
+	
+	public void hit() {
+		hit(1);
+	}
+	
+	public void heal() {
+		heal(1);
+	}
+	
+	// SCORE VALUE.
+	public void add(int val) {
+		_score += val;
+	}
+	
+	public void add() {
+		add(1);
+	}
+	
+	public void setLocation(int x, int y) {
+		_x = x;
+		_y = y;
+	}
+	
 	public void setdx(int x) {
 		_dx = x;
 	}
@@ -102,5 +122,25 @@ public class Player {
 	
 	public void setDirection(Direction d) {
 		_dir = d;
+	}
+	
+	public int getHealth() {
+		return _hp;
+	}
+	
+	public int getMaxHealth() {
+		return _maxhp;
+	}
+	
+	public int getStamina() {
+		return _sp;
+	}
+	
+	public int getMaxStamina() {
+		return _maxsp;
+	}
+	
+	public int getScore() {
+		return _score;
 	}
 }
