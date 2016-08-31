@@ -3,7 +3,7 @@ import java.awt.event.*;
 public class InputBank {
 
 	// CURRENT KEYS.
-	private static final int _TOTALKEYS = 9;
+	private static final int _TOTALKEYS = 10;
 	
 	public static final int _W = KeyEvent.VK_W;
 	public static final int _A = KeyEvent.VK_A;
@@ -13,10 +13,11 @@ public class InputBank {
 	public static final int _LEFT = KeyEvent.VK_LEFT;
 	public static final int _RIGHT = KeyEvent.VK_RIGHT;
 	public static final int _DOWN = KeyEvent.VK_DOWN;
+	public static final int _ENTER = KeyEvent.VK_ENTER;
 	public static final int _ESC = KeyEvent.VK_ESCAPE;
 	
 	// INPUT KEYS.
-	private static final int [] _keys = { _W, _A, _S, _D, _UP, _LEFT, _RIGHT, _DOWN, _ESC };
+	private static final int [] _keys = { _W, _A, _S, _D, _UP, _LEFT, _RIGHT, _DOWN, _ENTER, _ESC };
 	
 	// KEY PRESS MEMORY STORAGE.
 	private static boolean [] _keyBefore = new boolean[_TOTALKEYS];
@@ -58,8 +59,11 @@ public class InputBank {
 		case _DOWN:
 			_keyNow[7] = set;
 			break;
-		case _ESC:
+		case _ENTER:
 			_keyNow[8] = set;
+			break;
+		case _ESC:
+			_keyNow[9] = set;
 			break;
 		default:
 			break;

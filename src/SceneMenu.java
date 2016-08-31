@@ -44,6 +44,8 @@ public class SceneMenu extends Scene {
 				_cursorPos++;
 			else
 				_cursorPos = 0;
+		} else if (InputBank.keyDown(InputBank._ENTER)) {
+			branchChoices(_cursorPos);
 		}
 	}
 
@@ -71,6 +73,16 @@ public class SceneMenu extends Scene {
 		
 		for (int i = 0; i < _choices.length; i++) {
 			g.drawString(_choices[i], 140, (40 * i) + 120 - offset);
+		}
+	}
+	
+	private void branchChoices(int choice) {
+		if (choice == _START) {
+			// Load game
+		} else if (choice == _MAP) {
+			// Go to map menu scene
+		} else if (choice == _QUIT) {
+			System.exit(0); // shutdown
 		}
 	}
 

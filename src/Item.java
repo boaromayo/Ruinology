@@ -8,6 +8,12 @@ public abstract class Item {
 	private int _x;
 	private int _y;
 	
+	// BOUNDING BOX.
+	private int _boxX;
+	private int _boxY;
+	private int _boxW;
+	private int _boxH;
+	
 	// VISIBILITY.
 	private boolean _visible;
 	
@@ -18,6 +24,8 @@ public abstract class Item {
 	public void setLocation(int x, int y) {
 		_x = x;
 		_y = y;
+		_boxX = x;
+		_boxY = y;
 	}
 	
 	public boolean isVisible() {

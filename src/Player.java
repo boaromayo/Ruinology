@@ -72,6 +72,8 @@ public class Player {
 	private void move() {
 		_x += _dx;
 		_y += _dy;
+		
+		// change direction if possible
 	}
 	
 	public void draw(Graphics g) {
