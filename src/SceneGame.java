@@ -2,12 +2,14 @@ import java.awt.*;
 import java.util.*;
 
 public class SceneGame extends Scene {
-
+	
 	// PLAYER.
 	private Player _player;
 	
 	// TIMER.
-	Timer _timer;
+	private Timer _timer;
+	
+	// MAP.
 	
 	// SET OF ITEMS.
 	ArrayList<Item> _items;
@@ -26,13 +28,29 @@ public class SceneGame extends Scene {
 	public void update() {
 		// TODO Auto-generated method stub
 		_player.update();
-		_timer.update();
+		
+		if (SceneBank.getCurrentScene().equals(this)) {
+			_timer.update();
+		}
 		
 		for (Item item : _items) {
 			// Check if items are visible, then update them.
 			if (item.isVisible()) {
 				item.update();
 			}
+		}
+		
+		// Check inputs.
+		updateInput();
+	}
+	
+	private void updateInput() {
+		// Pause timer and go to pause screen if 'ESC' pressed.
+		if (InputBank.keyDown(InputBank._ESC)) {
+			_timer.setTimer(false);
+			
+			SceneBank.saveScene();
+			SceneBank.setScene(new ScenePause());
 		}
 	}
 
@@ -49,4 +67,11 @@ public class SceneGame extends Scene {
 		}
 	}
 
+	public Timer callTimer() {
+		return _timer;
+	}
+	
+	public void loadMap() {
+		
+	}
 }

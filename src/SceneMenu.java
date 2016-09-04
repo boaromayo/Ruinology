@@ -3,29 +3,30 @@ import java.awt.image.*;
 
 public class SceneMenu extends Scene {
 
+	// TITLE SCREEN.
+	private BufferedImage _titleImg;
+	
+	// TITLE PATH.
+	private String _titleImgPath = "../img/title.png";
+	
 	// CHOICES.
 	private final int _START = 0;
 	private final int _MAP = 1;
 	private final int _QUIT = 2;
 	
-	// CURSOR POSITION.
-	private int _cursorX;
-	private int _cursorY;
-	
-	// CURSOR IMAGE.
-	private BufferedImage _cursorImg;
+	// CURSOR.
+	private Cursor _cursor;
 	
 	// MENU ARRAY.
-	private int _cursorPos;
 	private String [] _choices = { "START", "MAP SIZE", "QUIT" };
 	
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		_cursorX = 100;
-		_cursorY = 120;
+		// Initialize title screen, bg, and cursor.
+		_titleImg = ImageBank.loadImage(_titleImgPath);
 		
-		_cursorPos = 0;
+		_cursor = new Cursor(100, 120);
 	}
 
 	@Override
@@ -34,38 +35,43 @@ public class SceneMenu extends Scene {
 		// keyboard output here
 		if (InputBank.keyDown(InputBank._W) || 
 				InputBank.keyDown(InputBank._UP)) {
-			if (_cursorPos > 0)
-				_cursorPos--;
+			if (_cursor.position() > 0)
+				_cursor.decrement();
 			else
-				_cursorPos = _choices.length - 1;
+				_cursor.setPosition(_choices.length - 1);
 		} else if (InputBank.keyDown(InputBank._S) || 
 				InputBank.keyDown(InputBank._DOWN)) {
-			if (_cursorPos < _choices.length) 
-				_cursorPos++;
+			if (_cursor.position() < _choices.length) 
+				_cursor.increment();
 			else
-				_cursorPos = 0;
+				_cursor.setPosition(0);
 		} else if (InputBank.keyDown(InputBank._ENTER)) {
-			branchChoices(_cursorPos);
+			branchChoices(_cursor.position());
 		}
 	}
 
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
-		drawIcon(g);	
+		drawTitle(g);
+		drawCursor(g);	
 		drawChoices(g);
 	}
 	
-	private void drawIcon(Graphics g) {
-		if (_cursorPos == _START) {
-			moveCursor(100,120);
-		} else if (_cursorPos == _MAP) {
-			moveCursor(100,160);
-		} else if (_cursorPos == _QUIT) {
-			moveCursor(100,200);
+	private void drawTitle(Graphics g) {
+		g.drawImage(_titleImg, 30, 50, _titleImg.getWidth(), _titleImg.getHeight(), null);
+	}
+	
+	private void drawCursor(Graphics g) {
+		if (_cursor.position() == _START) {
+			_cursor.move(100,120);
+		} else if (_cursor.position() == _MAP) {
+			_cursor.move(100,160);
+		} else if (_cursor.position() == _QUIT) {
+			_cursor.move(100,200);
 		}
 		
-		g.drawImage(_cursorImg, _cursorX, _cursorY, _cursorImg.getWidth(), _cursorImg.getHeight(), null);
+		_cursor.draw(g);
 	}
 	
 	private void drawChoices(Graphics g) {
@@ -78,16 +84,12 @@ public class SceneMenu extends Scene {
 	
 	private void branchChoices(int choice) {
 		if (choice == _START) {
-			// Load game
+			// Start game
+			SceneBank.setScene(new SceneGame());
 		} else if (choice == _MAP) {
 			// Go to map menu scene
 		} else if (choice == _QUIT) {
 			System.exit(0); // shutdown
 		}
-	}
-
-	private void moveCursor(int x, int y) {
-		_cursorX = x;
-		_cursorY = y;
 	}
 }

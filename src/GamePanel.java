@@ -2,11 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class GamePanel extends JPanel implements Runnable {
-	
-	// SCENE BANK.
-	private SceneBank _sb;
-		
+public class GamePanel extends JPanel implements Runnable {	
 	// MAIN THREAD.
 	private Thread _thread;
 	
@@ -15,11 +11,11 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	
 	public void init() {
-		_sb = new SceneBank();
-			
+		// Initialize panel and settings.
 		setFocusable(true);
-		requestFocus();
+		requestFocus(); // make this game panel the focus.
 		
+		// input key listener.
 		addKeyListener(new KeyListener() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -91,7 +87,7 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	public void update() {
 		InputBank.update();
-		_sb.update();
+		SceneBank.update();
 	}
 	
 	@Override
@@ -103,6 +99,6 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	
 	public void draw(Graphics g) {
-		_sb.draw(g);
+		SceneBank.draw(g);
 	}
 }

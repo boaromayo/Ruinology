@@ -3,56 +3,57 @@ import java.awt.*;
 public class SceneBank {
 	
 	// SCENE BANK SIZE.
-	private final int SIZE = 4;
+	private static final int SIZE = 4;
 	
 	// STACK FOR SCENES.
-	private Scene[] _scenes;
+	private static Scene[] _scenes = new Scene[SIZE];
 	
 	// CURRENT SCENE.
-	private Scene _currentScene;
+	private static Scene _currentScene = new SceneMenu();
 	
 	// SCENE STACK POSITION.
-	private int _position;
+	private static int _position = -1;
 	
-	public SceneBank() {
+	/*public SceneBank() {
 		_scenes = new Scene[SIZE];
 		_currentScene = new SceneMenu();
 		_position = -1;
 		
 		setScene(_currentScene);
-	}
+	}*/
 	
-	public void setScene(Scene newScene) {
+	public static void setScene(Scene newScene) {
 		_currentScene = newScene;
 	}
 	
-	public Scene getCurrentScene() {
+	public static Scene getCurrentScene() {
 		if (_currentScene != null)
 			return _currentScene;
 		
 		return null;
 	}
 	
-	public void saveScene() {
+	public static void saveScene() {
 		_scenes[++_position] = _currentScene;
 	}
 	
-	public void removeScene() {
+	public static void removeScene() {
+		_currentScene = _scenes[_position];
 		_scenes[_position--] = null;
 	}
 	
-	public void clear() {
+	public static void clear() {
 		while (_scenes != null) {
 			removeScene();
 		}
 	}
 	
-	public void update() {
+	public static void update() {
 		if (_currentScene != null)
 			_currentScene.update();
 	}
 	
-	public void draw(Graphics g) {
+	public static void draw(Graphics g) {
 		if (_currentScene != null)
 			_currentScene.draw(g);
 	}
