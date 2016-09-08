@@ -2,20 +2,21 @@ import java.awt.*;
 
 public abstract class Item {
 	// SPRITE.
-	//private BufferedImage[] img;
+	//protected BufferedImage[] _img;
+	
+	//SPRITE PATH.
+	//protected String _imgPath;
 	
 	// COORDINATES.
-	private int _x;
-	private int _y;
+	protected int _x;
+	protected int _y;
 	
-	// BOUNDING BOX.
-	private int _boxX;
-	private int _boxY;
-	private int _boxW;
-	private int _boxH;
+	// SIZE.
+	protected int _width;
+	protected int _height;
 	
 	// VISIBILITY.
-	private boolean _visible;
+	protected boolean _visible;
 	
 	public abstract void update();
 	
@@ -24,8 +25,14 @@ public abstract class Item {
 	public void setLocation(int x, int y) {
 		_x = x;
 		_y = y;
-		_boxX = x;
-		_boxY = y;
+	}
+	
+	public void setVisible(boolean v) {
+		_visible = v;
+	}
+	
+	public Rectangle getBoundingBox() {
+		return new Rectangle(_x, _y, _width, _height);
 	}
 	
 	public boolean isVisible() {

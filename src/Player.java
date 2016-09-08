@@ -4,10 +4,19 @@ public class Player {
 	
 	// SPRITE.
 	//private BufferedImage[] _pImg;
+	//private int _frames = 4;
+	
+	// SPRITE PATH.
+	//private String _pImgPath = "../img/player.png";
 	
 	// COORDINATES.
 	private float _x;
 	private float _y;
+	
+	// SIZE.
+	private final int SIZE = 24;
+	private int _width;
+	private int _height;
 	
 	// SPEED.
 	private int _dx;
@@ -27,11 +36,21 @@ public class Player {
 	private int _sp;
 	private int _maxsp;
 	
+	// POTION STOCK.
+	//private Item[] _stock;
+	
 	// SCORE.
 	private int _score;
 	
 	public Player() {
-		//_pImg = new BufferedImage[4]; 
+		_width = SIZE;
+		_height = SIZE;
+		
+		//_pImg = ImageBank.loadImages(_pImgPath, 0, 0, _width, _height, _frames); 
+		
+		_dir = Direction.UP;
+		
+		_speed = 2;
 		
 		_maxhp = 10;
 		_hp = _maxhp;
@@ -39,9 +58,7 @@ public class Player {
 		_maxsp = 15;
 		_sp = _maxsp;
 		
-		_dir = Direction.UP;
-		
-		_speed = 2;
+		//_stock = new Item[3];
 		
 		_score = 0;
 	}
@@ -67,13 +84,16 @@ public class Player {
 		}
 		
 		move();
+		
 	}
 	
 	private void move() {
 		_x += _dx;
 		_y += _dy;
-		
-		// change direction if possible
+	}
+	
+	private void checkCollision(Rectangle r) {
+
 	}
 	
 	public void draw(Graphics g) {
@@ -81,6 +101,8 @@ public class Player {
 		int[] xp = {(int)_x, (int)_x-5, (int)_x+5};
 		int[] yp = {(int)_y, (int)_y+5, (int)_y+5};
 		g.drawPolygon(xp, yp, 3);
+		
+		// draw image based on direction
 	}
 	
 	// EFFECTS.
@@ -124,6 +146,10 @@ public class Player {
 	
 	public void setDirection(Direction d) {
 		_dir = d;
+	}
+	
+	public Rectangle getBoundingBox() {
+		return new Rectangle((int)_x, (int)_y, _width, _height);
 	}
 	
 	public int getHealth() {

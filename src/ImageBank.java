@@ -33,4 +33,21 @@ public class ImageBank {
 		}
 		return null;
 	}
+	
+	public static BufferedImage[] loadImages(String path, int x, int y, int w, int h, int frames) {
+		try {
+			BufferedImage img = loadImage(path);
+			BufferedImage[] newImg = new BufferedImage[frames];
+			for (int i = 0; i < frames; i++) {
+				newImg[i] = img.getSubimage(x*i, y*i, w, h);
+			}
+			return newImg;
+		} catch (Exception e) {
+			System.err.println("ERROR: Failed to partition images.");
+			System.err.println("REASON: " + e.getMessage());
+			e.printStackTrace();
+			System.exit(1);
+		}
+		return null;
+	}
 }
