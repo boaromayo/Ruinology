@@ -10,6 +10,8 @@ Mechanics
 ---------
 + Programming: Java
 
+Details
+-------
 - Rooms are randomly generated.
 - Items are also randomly scattered in each room.
 - Start in a random place on the maze.
