@@ -8,6 +8,10 @@ Mechanics
 ---------
 + Programming: Java
 
+Platform
+--------
+Runs on PC.
+
 Details
 -------
 - Rooms are randomly generated, ranging from an 8x8 to 12x12 set of rooms.
