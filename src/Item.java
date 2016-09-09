@@ -1,11 +1,12 @@
 import java.awt.*;
+import java.awt.image.*;
 
 public abstract class Item {
 	// SPRITE.
-	//protected BufferedImage[] _img;
+	protected BufferedImage _img;
 	
 	//SPRITE PATH.
-	//protected String _imgPath;
+	protected String _imgPath;
 	
 	// COORDINATES.
 	protected int _x;

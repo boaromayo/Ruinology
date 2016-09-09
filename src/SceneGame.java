@@ -22,6 +22,13 @@ public class SceneGame extends Scene {
 		_timer = new Timer(360); // six minutes is default for 8x8 map
 		
 		_items = new ArrayList<Item>(); // make items into list
+		
+		for (Item item : _items) {
+			// add items into list if visible on map
+			if (item.isVisible()) {
+				_items.add(item);
+			}
+		}
 	}
 	
 	@Override
@@ -34,9 +41,12 @@ public class SceneGame extends Scene {
 		}
 		
 		for (Item item : _items) {
-			// Check if items are visible, then update them.
+			// Check if items are visible, then update them, and see if they've collided.
 			if (item.isVisible()) {
 				item.update();
+				checkCollision(item);
+			} else if (!item.isVisible()) {
+				_items.remove(item);
 			}
 		}
 		
@@ -51,6 +61,15 @@ public class SceneGame extends Scene {
 			
 			SceneBank.saveScene();
 			SceneBank.setScene(new ScenePause());
+		}
+	}
+	
+	public void checkCollision(Item item) {
+		Rectangle pbox = _player.getBoundingBox();
+		Rectangle ibox = item.getBoundingBox();
+		
+		if (pbox.intersects(ibox)) {
+			item.setVisible(false);
 		}
 	}
 

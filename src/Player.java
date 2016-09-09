@@ -36,8 +36,10 @@ public class Player {
 	private int _sp;
 	private int _maxsp;
 	
-	// POTION STOCK.
-	//private Item[] _stock;
+	// ITEM BAG.
+	private UsableItem[] _bag;
+	private int _bagSize;
+	private int _position;
 	
 	// SCORE.
 	private int _score;
@@ -58,7 +60,9 @@ public class Player {
 		_maxsp = 15;
 		_sp = _maxsp;
 		
-		//_stock = new Item[3];
+		_bag = new UsableItem[3];
+		_bagSize = 0;
+		_position = 0;
 		
 		_score = 0;
 	}
@@ -92,10 +96,6 @@ public class Player {
 		_y += _dy;
 	}
 	
-	private void checkCollision(Rectangle r) {
-
-	}
-	
 	public void draw(Graphics g) {
 		// placeholder tri
 		int[] xp = {(int)_x, (int)_x-5, (int)_x+5};
@@ -103,6 +103,20 @@ public class Player {
 		g.drawPolygon(xp, yp, 3);
 		
 		// draw image based on direction
+	}
+	
+	// ITEMS.
+	public void addItem(UsableItem item) {
+		if (_bagSize < _bag.length - 1)
+			_bag[_bagSize++] = item;
+	}
+	
+	public void useItem() {
+		if (_bag[_position] != null) {
+			_bag[_position].effect();
+			_bag[_position] = null;
+			_bagSize--;
+		}
 	}
 	
 	// EFFECTS.
@@ -131,6 +145,7 @@ public class Player {
 		add(1);
 	}
 	
+	// OTHER METHODS.
 	public void setLocation(int x, int y) {
 		_x = x;
 		_y = y;
