@@ -10,7 +10,7 @@ Mechanics
 
 Details
 -------
-- Rooms are randomly generated.
+- Rooms are randomly generated, ranging from an 8x8 to 12x12 set of rooms.
 - Items are also randomly scattered in each room.
 - Start in a random place on the maze.
 
