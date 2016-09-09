@@ -10,7 +10,11 @@ Mechanics
 
 Platform
 --------
-Runs on PC.
+Compatible with Windows, or Mac OS X.
+
+Requirements
+-------
+Java version of 6.5 or higher.
 
 Details
 -------
