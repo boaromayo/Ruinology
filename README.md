@@ -7,9 +7,9 @@ This will be an unofficial attempt for LD 36.
 
 I may or may not finish within the 72-hour jam and might continue to finish it on my own.
 
-# Mechanics
+## Mechanics
 The programming is done in Java.
 
-The rooms are randomly generated, and you start in a random place on the maze.
+Rooms are randomly generated, and you start in a random place on the maze.
 
 You have no weapons, get as much treasure as you can, and find the exit before the maze destroys you.
