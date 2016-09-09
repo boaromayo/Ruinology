@@ -1,6 +1,6 @@
 Ruinology
 ==========
-This is a prototype attempt for Ludum Dare 36. Lost in an ancient maze, get out before it collapses!
+This is a prototype attempt for [Ld36]Ludum Dare 36[]. Lost in an ancient maze, get out before it collapses!
 
 I may not finish within the 72-hour jam and will continue to finish it on my own.
 
@@ -25,3 +25,5 @@ Details
 - No weapons.
 - Get a lot of treasure for a higher score.
 - Find the exit before the maze destroys you.
+
+[ld36][] - http://www.ludumdare.com/compo
