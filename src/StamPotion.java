@@ -4,9 +4,7 @@ public class StamPotion extends Potion {
 
 	public StamPotion() {
 		// TODO Auto-generated constructor stub
-		_imgPath = "../img/potion_green.gif";
-		
-		_img = Game._imageBank.loadImage(_imgPath);
+		_img = Constants._greenPotion;
 		
 		_width = _img.getWidth();
 		_height = _img.getHeight();

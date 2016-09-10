@@ -6,9 +6,6 @@ public class Timer {
 	// TIMER SPRITE.
 	private BufferedImage _timerImg;
 	
-	// TIMER PATH.
-	private String _timerImgPath = "../img/timer.png";
-	
 	// DELAY CONSTANT.
 	private final int DELAY = 60;
 	
@@ -20,7 +17,7 @@ public class Timer {
 	private boolean _timerOn;
 	
 	public Timer(int sec) {
-		_timerImg = Game._imageBank.loadImage(_timerImgPath);
+		_timerImg = Constants._timer;
 		
 		_framecount = 0;
 		
@@ -43,8 +40,8 @@ public class Timer {
 		int second = (int) (_timercount % DELAY);
 		
 		// Draw the timer img and clock
-		g.drawImage(_timerImg, Game.WIDTH - 50, Game.HEIGHT - 10, _timerImg.getWidth(), _timerImg.getHeight(), null);
-		g.drawString(String.format("%02d:%02d", minute, second), Game.WIDTH - 40, Game.HEIGHT - 10);
+		g.drawImage(_timerImg, Constants.WIDTH - 50, Constants.HEIGHT - 10, _timerImg.getWidth(), _timerImg.getHeight(), null);
+		g.drawString(String.format("%02d:%02d", minute, second), Constants.WIDTH - 40, Constants.HEIGHT - 10);
 	}
 	
 	public void setTime(int s) {

@@ -8,7 +8,7 @@ public class Player {
 	private int _frames = 4;
 	
 	// SPRITE PATH.
-	private String _pImgPath = "../img/player.png";
+	private String _pImgPath = Constants._playerPath;
 	
 	// COORDINATES.
 	private float _x;
@@ -49,7 +49,7 @@ public class Player {
 		_width = SIZE;
 		_height = SIZE;
 		
-		_pImg = Game._imageBank.loadImages(_pImgPath, 0, 0, _width, _height, _frames); 
+		_pImg = ImageBank.loadImages(_pImgPath, 0, 0, _width, _height, _frames); 
 		
 		_dir = Direction.UP;
 		
@@ -127,52 +127,50 @@ public class Player {
 	
 	public void drawHealth(Graphics g) {
 		// draw hud for health
-		String heartImgPath = "../img/heart.gif";
 		//String barPath = "../img/health_bar.gif";
-		BufferedImage heartImg = Game._imageBank.loadImage(heartImgPath);
+		BufferedImage heartImg = Constants._heart;
 		//BufferedImage bar = ImageBank.loadImage(barPath);
 		
 		int heartWidth = heartImg.getWidth();
 		int heartHeight = heartImg.getHeight();
 		
-		g.drawImage(heartImg, 20, Game.HEIGHT - 30, heartWidth, heartHeight, null);
+		g.drawImage(heartImg, 20, Constants.HEIGHT - 30, heartWidth, heartHeight, null);
 		
 		//g.drawImage(bar, 50, Game.HEIGHT - 30, bar.getWidth(), bar.getHeight(), null);
 		
 		g.setColor(Color.RED);
-		g.fillRect(50, Game.HEIGHT - 30, (_hp / _maxhp) * 100, 8);
+		g.fillRect(50, Constants.HEIGHT - 30, (_hp / _maxhp) * 100, 8);
 	}
 	
 	public void drawStamina(Graphics g) {
 		// draw hud for stamina
-		String stamImgPath = "../img/stamina.gif";
 		//String barPath = "../img/stamina_bar.gif";
-		BufferedImage stamImg = Game._imageBank.loadImage(stamImgPath);
+		BufferedImage stamImg = Constants._stamina;
 		//BufferedImage bar = ImageBank.loadImage(barPath);
 		
 		int stamWidth = stamImg.getWidth();
 		int stamHeight = stamImg.getHeight();
 		
-		g.drawImage(stamImg, 20, Game.HEIGHT - 10, stamWidth, stamHeight, null);
+		g.drawImage(stamImg, 20, Constants.HEIGHT - 10, stamWidth, stamHeight, null);
 		
 		//g.drawImage(bar, 50, Game.HEIGHT - 10, bar.getWidth(), bar.getHeight(), null);
 		
 		g.setColor(Color.GREEN);
-		g.fillRect(50, Game.HEIGHT - 10, (_sp / _maxsp) * 50, 8);
+		g.fillRect(50, Constants.HEIGHT - 10, (_sp / _maxsp) * 50, 8);
 	}
 	
 	public void drawBag(Graphics g) {
 		// draw hud part for bag
 		g.setColor(Color.WHITE);
 		for (int i = 0; i < _bagSize; i++) {
-			g.drawRect(180 + (36 * i), Game.HEIGHT - 24, 32, 32);
+			g.drawRect(180 + (36 * i), Constants.HEIGHT - 24, 32, 32);
 		}
 		
 		// draw bag cursor
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(2));
 		
-		g2.drawRect(180 + (36 * _position), Game.HEIGHT - 24, 32, 32);
+		g2.drawRect(180 + (36 * _position), Constants.HEIGHT - 24, 32, 32);
 	}
 	
 	// ITEMS.

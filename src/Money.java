@@ -1,7 +1,7 @@
 import java.awt.*;
 
 public class Money extends Item {
-	
+	// MONEY VALUE.
 	protected int _value;
 	
 	@Override

@@ -6,9 +6,6 @@ public class SceneMenu extends Scene {
 	// TITLE SCREEN.
 	private BufferedImage _titleImg;
 	
-	// TITLE PATH.
-	private String _titleImgPath = "../img/title.png";
-	
 	// CHOICES.
 	private final int _START = 0;
 	private final int _MAP = 1;
@@ -24,7 +21,7 @@ public class SceneMenu extends Scene {
 	public void init() {
 		// TODO Auto-generated method stub
 		// Initialize title screen, bg, and cursor.
-		_titleImg = Game._imageBank.loadImage(_titleImgPath);
+		_titleImg = Constants._title;
 		
 		_cursor = new Cursor(100, 120);
 	}

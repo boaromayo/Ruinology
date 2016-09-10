@@ -5,9 +5,6 @@ public abstract class Item {
 	// SPRITE.
 	protected BufferedImage _img;
 	
-	//SPRITE PATH.
-	protected String _imgPath;
-	
 	// COORDINATES.
 	protected int _x;
 	protected int _y;

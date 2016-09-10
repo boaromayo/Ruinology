@@ -2,14 +2,6 @@ import java.awt.Dialog.*;
 import javax.swing.*;
 
 public class Game {
-	
-	// CONSTANTS.
-	public static final int WIDTH = 480;
-	public static final int HEIGHT = 320;
-	public static final int FPS = 60;
-	
-	public static ImageBank _imageBank = ImageBank.getInstance();
-	
 	// MAIN FRAME.
 	private JFrame _frame;
 	
@@ -22,7 +14,7 @@ public class Game {
 		
 		// Set up frame.
 		_frame.setTitle("Ruinology");
-		_frame.setSize(WIDTH, HEIGHT);
+		_frame.setSize(Constants.WIDTH, Constants.HEIGHT);
 
 		_frame.add(_panel);
 		

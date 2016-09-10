@@ -6,9 +6,6 @@ public class Cursor {
 	// SPRITE.
 	private BufferedImage _cursorImg;
 	
-	// IMAGE PATH.
-	private String _cursorPath = "../img/cursor.png";
-	
 	// COORDINATES.
 	private int _x;
 	private int _y;
@@ -24,7 +21,7 @@ public class Cursor {
 		_x = 100;
 		_y = 100;
 		
-		_cursorImg = Game._imageBank.loadImage(_cursorPath);
+		_cursorImg = Constants._cursor;
 		
 		_width = _cursorImg.getWidth();
 		_height = _cursorImg.getHeight();
@@ -36,7 +33,7 @@ public class Cursor {
 		_x = x;
 		_y = y;
 		
-		_cursorImg = Game._imageBank.loadImage(_cursorPath);
+		_cursorImg = Constants._cursor;
 		
 		_width = _cursorImg.getWidth();
 		_height = _cursorImg.getHeight();

@@ -10,9 +10,7 @@ public class Hourglass extends Item {
 		// set time value based on difficulty and map size
 		_time = 30;
 		
-		_imgPath = "../img/hourglass.png";
-		
-		_img = Game._imageBank.loadImage(_imgPath);
+		_img = Constants._hrglass;
 		
 		_width = _img.getWidth();
 		_height = _img.getHeight();

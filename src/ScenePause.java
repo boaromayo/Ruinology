@@ -6,14 +6,10 @@ public class ScenePause extends Scene {
 	// PAUSE TITLE.
 	private BufferedImage _pauseImg;
 	
-	// PAUSE TITLE PATH.
-	private String _pauseImgPath = "../img/pausetitle.png";
-	
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		_pauseImg = Game._imageBank.loadImage(_pauseImgPath);
-		
+		_pauseImg = Constants._pauseTitle;
 		
 	}
 

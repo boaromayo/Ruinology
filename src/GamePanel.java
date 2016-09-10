@@ -39,12 +39,12 @@ public class GamePanel extends JPanel implements Runnable {
 		
 		long waitTime;
 		
-		long targetTime = 1000/(Game.FPS);
+		long targetTime = 1000/(Constants.FPS);
 		
 		//long timeElapsed = 0;
 		
 		int framecount = 0;
-		int maxframecount = Game.FPS;
+		int maxframecount = Constants.FPS;
 		
 		try {
 			while (true) {
@@ -91,11 +91,11 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	
 	@Override
-	protected void paintComponent(Graphics g) {
-		Image img = createImage(Game.WIDTH, Game.HEIGHT);
+	public void paint(Graphics g) {
+		Image img = createImage(Constants.WIDTH, Constants.HEIGHT);
 		Graphics2D g2 = (Graphics2D) img.getGraphics();
 		draw(g2);
-		g.drawImage(img, 0, 0, Game.WIDTH, Game.HEIGHT, null);
+		g.drawImage(img, 0, 0, Constants.WIDTH, Constants.HEIGHT, null);
 	}
 	
 	public void draw(Graphics g) {

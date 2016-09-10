@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class SceneBank {
+public final class SceneBank {
 	
 	// SCENE BANK SIZE.
 	private static final int SIZE = 4;
