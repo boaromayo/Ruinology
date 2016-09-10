@@ -10,7 +10,7 @@ public class SceneGame extends Scene {
 	private Timer _timer;
 	
 	// MAP.
-	
+
 	// SET OF ITEMS.
 	ArrayList<Item> _items;
 	
@@ -76,6 +76,11 @@ public class SceneGame extends Scene {
 	@Override
 	public void draw(Graphics g) {
 		_player.draw(g);
+		
+		_player.drawHealth(g);
+		_player.drawStamina(g);
+		_player.drawBag(g);
+		
 		_timer.draw(g);
 		
 		for (Item item : _items) {

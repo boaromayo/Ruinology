@@ -1,13 +1,14 @@
 import java.awt.*;
+import java.awt.image.*;
 
 public class Player {
 	
 	// SPRITE.
-	//private BufferedImage[] _pImg;
-	//private int _frames = 4;
+	private BufferedImage[] _pImg;
+	private int _frames = 4;
 	
 	// SPRITE PATH.
-	//private String _pImgPath = "../img/player.png";
+	private String _pImgPath = "../img/player.png";
 	
 	// COORDINATES.
 	private float _x;
@@ -48,7 +49,7 @@ public class Player {
 		_width = SIZE;
 		_height = SIZE;
 		
-		//_pImg = ImageBank.loadImages(_pImgPath, 0, 0, _width, _height, _frames); 
+		_pImg = ImageBank.loadImages(_pImgPath, 0, 0, _width, _height, _frames); 
 		
 		_dir = Direction.UP;
 		
@@ -68,6 +69,9 @@ public class Player {
 	}
 	
 	public void update() {
+		// if health is 0, kill him
+		
+		
 		// keyboard output here
 		if (InputBank.keyDown(InputBank._W) || 
 				InputBank.keyDown(InputBank._UP)) {
@@ -85,6 +89,9 @@ public class Player {
 				InputBank.keyDown(InputBank._DOWN)) {
 			setdy(_speed);
 			setDirection(Direction.DOWN);
+		} else {
+			setdx(0);
+			setdy(0);
 		}
 		
 		move();
@@ -97,12 +104,75 @@ public class Player {
 	}
 	
 	public void draw(Graphics g) {
+		// cast floats to int
+		int xi = (int) _x;
+		int yi = (int) _y;
+		
 		// placeholder tri
-		int[] xp = {(int)_x, (int)_x-5, (int)_x+5};
-		int[] yp = {(int)_y, (int)_y+5, (int)_y+5};
+		int[] xp = {xi, xi-5, xi+5};
+		int[] yp = {yi, yi+5, yi+5};
 		g.drawPolygon(xp, yp, 3);
 		
 		// draw image based on direction
+		/*if (_dir == Direction.UP) {
+			g.drawImage(_pImg[0], xi, yi, _width, _height, null);
+		} else if (_dir == Direction.LEFT) {
+			g.drawImage(_pImg[1], xi, yi, _width, _height, null);
+		} else if (_dir == Direction.RIGHT) {
+			g.drawImage(_pImg[2], xi, yi, _width, _height, null);
+		} else if (_dir == Direction.DOWN) {
+			g.drawImage(_pImg[3], xi, yi, _width, _height, null);
+		}*/
+	}
+	
+	public void drawHealth(Graphics g) {
+		// draw hud for health
+		String heartImgPath = "../img/heart.gif";
+		//String barPath = "../img/health_bar.gif";
+		BufferedImage heartImg = ImageBank.loadImage(heartImgPath);
+		//BufferedImage bar = ImageBank.loadImage(barPath);
+		
+		int heartWidth = heartImg.getWidth();
+		int heartHeight = heartImg.getHeight();
+		
+		g.drawImage(heartImg, 20, Game.HEIGHT - 30, heartWidth, heartHeight, null);
+		
+		//g.drawImage(bar, 50, Game.HEIGHT - 30, bar.getWidth(), bar.getHeight(), null);
+		
+		g.setColor(Color.RED);
+		g.fillRect(50, Game.HEIGHT - 30, (_hp / _maxhp) * 100, 8);
+	}
+	
+	public void drawStamina(Graphics g) {
+		// draw hud for stamina
+		String stamImgPath = "../img/stamina.gif";
+		//String barPath = "../img/stamina_bar.gif";
+		BufferedImage stamImg = ImageBank.loadImage(stamImgPath);
+		//BufferedImage bar = ImageBank.loadImage(barPath);
+		
+		int stamWidth = stamImg.getWidth();
+		int stamHeight = stamImg.getHeight();
+		
+		g.drawImage(stamImg, 20, Game.HEIGHT - 10, stamWidth, stamHeight, null);
+		
+		//g.drawImage(bar, 50, Game.HEIGHT - 10, bar.getWidth(), bar.getHeight(), null);
+		
+		g.setColor(Color.GREEN);
+		g.fillRect(50, Game.HEIGHT - 10, (_sp / _maxsp) * 50, 8);
+	}
+	
+	public void drawBag(Graphics g) {
+		// draw hud part for bag
+		g.setColor(Color.WHITE);
+		for (int i = 0; i < _bagSize; i++) {
+			g.drawRect(180 + (36 * i), Game.HEIGHT - 24, 32, 32);
+		}
+		
+		// draw bag cursor
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setStroke(new BasicStroke(2));
+		
+		g2.drawRect(180 + (36 * _position), Game.HEIGHT - 24, 32, 32);
 	}
 	
 	// ITEMS.
@@ -121,10 +191,18 @@ public class Player {
 	
 	// EFFECTS.
 	public void hit(int dmg) {
+		if (_hp < dmg) {
+			_hp = 0;
+		}
+		
 		_hp -= dmg;
 	}
 	
 	public void heal(int rec) {
+		if (_maxhp < rec) {
+			_hp = _maxhp;
+		}
+		
 		_hp += rec;
 	}
 	
