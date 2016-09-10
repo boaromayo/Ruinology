@@ -6,7 +6,7 @@ public class HealPotion extends Potion {
 		// TODO Auto-generated constructor stub
 		_imgPath = "../img/potion_blue.gif";
 		
-		_img = ImageBank.loadImage(_imgPath);
+		_img = Game._imageBank.loadImage(_imgPath);
 		
 		_width = _img.getWidth();
 		_height = _img.getHeight();

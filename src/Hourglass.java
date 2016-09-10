@@ -12,7 +12,7 @@ public class Hourglass extends Item {
 		
 		_imgPath = "../img/hourglass.png";
 		
-		_img = ImageBank.loadImage(_imgPath);
+		_img = Game._imageBank.loadImage(_imgPath);
 		
 		_width = _img.getWidth();
 		_height = _img.getHeight();

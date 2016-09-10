@@ -24,7 +24,7 @@ public class SceneMenu extends Scene {
 	public void init() {
 		// TODO Auto-generated method stub
 		// Initialize title screen, bg, and cursor.
-		_titleImg = ImageBank.loadImage(_titleImgPath);
+		_titleImg = Game._imageBank.loadImage(_titleImgPath);
 		
 		_cursor = new Cursor(100, 120);
 	}

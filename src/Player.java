@@ -49,7 +49,7 @@ public class Player {
 		_width = SIZE;
 		_height = SIZE;
 		
-		_pImg = ImageBank.loadImages(_pImgPath, 0, 0, _width, _height, _frames); 
+		_pImg = Game._imageBank.loadImages(_pImgPath, 0, 0, _width, _height, _frames); 
 		
 		_dir = Direction.UP;
 		
@@ -129,7 +129,7 @@ public class Player {
 		// draw hud for health
 		String heartImgPath = "../img/heart.gif";
 		//String barPath = "../img/health_bar.gif";
-		BufferedImage heartImg = ImageBank.loadImage(heartImgPath);
+		BufferedImage heartImg = Game._imageBank.loadImage(heartImgPath);
 		//BufferedImage bar = ImageBank.loadImage(barPath);
 		
 		int heartWidth = heartImg.getWidth();
@@ -147,7 +147,7 @@ public class Player {
 		// draw hud for stamina
 		String stamImgPath = "../img/stamina.gif";
 		//String barPath = "../img/stamina_bar.gif";
-		BufferedImage stamImg = ImageBank.loadImage(stamImgPath);
+		BufferedImage stamImg = Game._imageBank.loadImage(stamImgPath);
 		//BufferedImage bar = ImageBank.loadImage(barPath);
 		
 		int stamWidth = stamImg.getWidth();

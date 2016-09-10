@@ -8,6 +8,8 @@ public class Game {
 	public static final int HEIGHT = 320;
 	public static final int FPS = 60;
 	
+	public static ImageBank _imageBank = ImageBank.getInstance();
+	
 	// MAIN FRAME.
 	private JFrame _frame;
 	

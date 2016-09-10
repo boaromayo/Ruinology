@@ -5,7 +5,7 @@ public class SilverCoin extends Money {
 		// TODO Auto-generated constructor stub
 		_imgPath = "../img/coin_silver.gif";
 		
-		_img = ImageBank.loadImage(_imgPath);
+		_img = Game._imageBank.loadImage(_imgPath);
 		
 		_width = _img.getWidth();
 		_height = _img.getHeight();

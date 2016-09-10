@@ -12,7 +12,7 @@ public class ScenePause extends Scene {
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		_pauseImg = ImageBank.loadImage(_pauseImgPath);
+		_pauseImg = Game._imageBank.loadImage(_pauseImgPath);
 		
 		
 	}

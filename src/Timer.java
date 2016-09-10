@@ -20,7 +20,7 @@ public class Timer {
 	private boolean _timerOn;
 	
 	public Timer(int sec) {
-		_timerImg = ImageBank.loadImage(_timerImgPath);
+		_timerImg = Game._imageBank.loadImage(_timerImgPath);
 		
 		_framecount = 0;
 		

@@ -24,7 +24,7 @@ public class Cursor {
 		_x = 100;
 		_y = 100;
 		
-		_cursorImg = ImageBank.loadImage(_cursorPath);
+		_cursorImg = Game._imageBank.loadImage(_cursorPath);
 		
 		_width = _cursorImg.getWidth();
 		_height = _cursorImg.getHeight();
@@ -36,7 +36,7 @@ public class Cursor {
 		_x = x;
 		_y = y;
 		
-		_cursorImg = ImageBank.loadImage(_cursorPath);
+		_cursorImg = Game._imageBank.loadImage(_cursorPath);
 		
 		_width = _cursorImg.getWidth();
 		_height = _cursorImg.getHeight();
