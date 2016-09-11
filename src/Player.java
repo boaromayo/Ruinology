@@ -4,18 +4,13 @@ import java.awt.image.*;
 public class Player {
 	
 	// SPRITE.
-	private BufferedImage[] _pImg;
-	private int _frames = 4;
-	
-	// SPRITE PATH.
-	private String _pImgPath = Constants._playerPath;
+	private BufferedImage[][] _pImg;
 	
 	// COORDINATES.
 	private float _x;
 	private float _y;
 	
 	// SIZE.
-	private final int SIZE = 24;
 	private int _width;
 	private int _height;
 	
@@ -46,10 +41,10 @@ public class Player {
 	private int _score;
 	
 	public Player() {
-		_width = SIZE;
-		_height = SIZE;
+		_pImg = Constants._player;
 		
-		_pImg = ImageBank.loadImages(_pImgPath, 0, 0, _width, _height, _frames); 
+		_width = _pImg[0][0].getWidth();
+		_height = _pImg[0][0].getHeight();
 		
 		_dir = Direction.UP;
 		
@@ -127,9 +122,8 @@ public class Player {
 	
 	public void drawHealth(Graphics g) {
 		// draw hud for health
-		//String barPath = "../img/health_bar.gif";
 		BufferedImage heartImg = Constants._heart;
-		//BufferedImage bar = ImageBank.loadImage(barPath);
+		//BufferedImage bar = Constants._bar;
 		
 		int heartWidth = heartImg.getWidth();
 		int heartHeight = heartImg.getHeight();
@@ -144,9 +138,8 @@ public class Player {
 	
 	public void drawStamina(Graphics g) {
 		// draw hud for stamina
-		//String barPath = "../img/stamina_bar.gif";
 		BufferedImage stamImg = Constants._stamina;
-		//BufferedImage bar = ImageBank.loadImage(barPath);
+		//BufferedImage bar = Constants._bar;
 		
 		int stamWidth = stamImg.getWidth();
 		int stamHeight = stamImg.getHeight();
@@ -175,8 +168,10 @@ public class Player {
 	
 	// ITEMS.
 	public void addItem(UsableItem item) {
-		if (_bagSize < _bag.length - 1)
+		if (_bagSize < _bag.length - 1) {
+			item.setVisible(false);
 			_bag[_bagSize++] = item;
+		}
 	}
 	
 	public void useItem() {
@@ -213,12 +208,12 @@ public class Player {
 	}
 	
 	// SCORE VALUE.
-	public void add(int val) {
+	public void addValue(int val) {
 		_score += val;
 	}
 	
-	public void add() {
-		add(1);
+	public void addValue() {
+		addValue(1);
 	}
 	
 	// OTHER METHODS.

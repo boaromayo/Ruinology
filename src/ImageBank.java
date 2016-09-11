@@ -35,12 +35,20 @@ public final class ImageBank {
 		return null;
 	}
 	
-	public static BufferedImage[] loadImages(String path, int x, int y, int w, int h, int frames) {
+	public static BufferedImage[][] loadImages(String path, int x, int y, int w, int h) {
 		try {
 			BufferedImage img = loadImage(path);
-			BufferedImage[] newImg = new BufferedImage[frames];
-			for (int i = 0; i < frames; i++) {
-				newImg[i] = img.getSubimage(x*i, y*i, w, h);
+			// Get dimensions for each entry based on actual img size / needed size
+			int col = (int) (img.getWidth() / w);
+			int row = (int) (img.getHeight() / h);
+			// Put images in
+			BufferedImage[][] newImg = new BufferedImage[row][col];
+			for (int j = 0; j < row; j++) {
+				for (int i = 0; i < col; i++) {
+					newImg[j][i] = img.getSubimage(x, y, w, h);
+					x += w;
+				}
+				y += h;
 			}
 			return newImg;
 		} catch (Exception e) {

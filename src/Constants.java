@@ -6,6 +6,9 @@ public final class Constants {
 	public static final int HEIGHT = 320;
 	public static final int FPS = 60;
 	
+	// PLAYER CONSTANTS.
+	private static final int PLAYER_SIZE = 24;
+	
 	// FILE PATHS.
 	
 	// TITLE IMAGE.
@@ -51,6 +54,9 @@ public final class Constants {
 	
 	// CURSOR.
 	public static final BufferedImage _cursor = ImageBank.loadImage(_cursorPath);
+	
+	// PLAYER IMAGES.
+	public static final BufferedImage[][] _player = ImageBank.loadImages(_playerPath, 0, 0, PLAYER_SIZE, PLAYER_SIZE);
 	
 	// TIMER.
 	public static final BufferedImage _timer = ImageBank.loadImage(_timerPath);

@@ -72,6 +72,25 @@ public class SceneGame extends Scene {
 			item.setVisible(false);
 		}
 	}
+	
+	public void checkCollision(UsableItem item) {
+		Rectangle pbox = _player.getBoundingBox();
+		Rectangle ubox = item.getBoundingBox();
+		
+		if (pbox.intersects(ubox)) {
+			_player.addItem(item);
+		}
+	}
+	
+	public void checkCollision(Money money) {
+		Rectangle pbox = _player.getBoundingBox();
+		Rectangle mbox = money.getBoundingBox();
+		
+		if (pbox.intersects(mbox)) {
+			money.setVisible(false);
+			_player.addValue(money.value());
+		}
+	}
 
 	@Override
 	public void draw(Graphics g) {
