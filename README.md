@@ -18,7 +18,7 @@ Java version of 6.5 or higher.
 
 Details
 -------
-- Rooms are randomly generated, ranging from an 8x8 to a 12x12 set of rooms.
+- Rooms are randomly generated, ranging from an 6x6 to 10x10 set of rooms.
 - Items are also randomly scattered in each room.
 - Starts in a random place on the maze.
 
