@@ -7,7 +7,8 @@ public final class Constants {
 	public static final int FPS = 60;
 	
 	// PLAYER CONSTANTS.
-	private static final int PLAYER_SIZE = 24;
+	public static final int PLAYER_SIZE = 24;
+	public static final int DELAY_COUNT = 8;
 	
 	// FILE PATHS.
 	

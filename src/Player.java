@@ -4,7 +4,18 @@ import java.awt.image.*;
 public class Player {
 	
 	// SPRITE.
-	private BufferedImage[][] _pImg;
+	private BufferedImage[][] _pImg = Constants._player;
+	
+	private BufferedImage[] _pDownImg;
+	private BufferedImage[] _pLeftImg;
+	private BufferedImage[] _pRightImg;
+	private BufferedImage[] _pUpImg;
+	
+	private BufferedImage[] _pCurrentImg;
+	
+	// ANIMATION VARS.
+	private int _framecount;
+	private int _currentFrame;
 	
 	// COORDINATES.
 	private float _x;
@@ -21,7 +32,7 @@ public class Player {
 	
 	// DIRECTION.
 	private enum Direction { 
-		LEFT, RIGHT, UP, DOWN 
+		DOWN, LEFT, RIGHT, UP 
 	};
 	private Direction _dir;
 	
@@ -32,6 +43,8 @@ public class Player {
 	private int _sp;
 	private int _maxsp;
 	
+	private boolean _dead;
+	
 	// ITEM BAG.
 	private UsableItem[] _bag;
 	private int _bagSize;
@@ -41,12 +54,18 @@ public class Player {
 	private int _score;
 	
 	public Player() {
-		_pImg = Constants._player;
+		_pDownImg = _pImg[0];
+		_pLeftImg = _pImg[1];
+		_pRightImg = _pImg[2];
+		_pUpImg = _pImg[3];
 		
-		_width = _pImg[0][0].getWidth();
-		_height = _pImg[0][0].getHeight();
+		_width = Constants.PLAYER_SIZE;
+		_height = Constants.PLAYER_SIZE;
 		
-		_dir = Direction.UP;
+		_framecount = 0;
+		_currentFrame = 0;
+		
+		setDirection(Direction.DOWN); // Also sets the current image.
 		
 		_speed = 2;
 		
@@ -56,6 +75,8 @@ public class Player {
 		_maxsp = 15;
 		_sp = _maxsp;
 		
+		_dead = false;
+		
 		_bag = new UsableItem[3];
 		_bagSize = 0;
 		_position = 0;
@@ -64,14 +85,38 @@ public class Player {
 	}
 	
 	public void update() {
-		// if health is 0, kill him
+		// if health is 0, kill player.
+		if (getHealth() <= 0) {
+			kill();
+		}
 		
+		// animate sprite.
+		animate();
 		
+		updateInput();
+
+		move();
+	}
+	
+	private void animate() {
+		_framecount++;
+		
+		if (_framecount == Constants.DELAY_COUNT) {
+			_framecount = 0;
+			_currentFrame++;
+		}
+		
+		if (_currentFrame == _pCurrentImg.length) {
+			_currentFrame = 0;
+		}
+	}
+	
+	private void updateInput() {
 		// keyboard output here
-		if (InputBank.keyDown(InputBank._W) || 
-				InputBank.keyDown(InputBank._UP)) {
+		if (InputBank.keyDown(InputBank._S) || 
+				InputBank.keyDown(InputBank._DOWN)) {
 			setdy(-_speed);
-			setDirection(Direction.UP);
+			setDirection(Direction.DOWN);
 		} else if (InputBank.keyDown(InputBank._A) ||
 				InputBank.keyDown(InputBank._LEFT)) {
 			setdx(-_speed);
@@ -80,17 +125,15 @@ public class Player {
 				InputBank.keyDown(InputBank._RIGHT)) {
 			setdx(_speed);
 			setDirection(Direction.RIGHT);
-		} else if (InputBank.keyDown(InputBank._S) ||
-				InputBank.keyDown(InputBank._DOWN)) {
+		} else if (InputBank.keyDown(InputBank._W) ||
+				InputBank.keyDown(InputBank._UP)) {
 			setdy(_speed);
-			setDirection(Direction.DOWN);
+			setDirection(Direction.UP);
 		} else {
 			setdx(0);
 			setdy(0);
 		}
-		
-		move();
-		
+			
 	}
 	
 	private void move() {
@@ -104,20 +147,12 @@ public class Player {
 		int yi = (int) _y;
 		
 		// placeholder tri
-		int[] xp = {xi, xi-5, xi+5};
+		/*int[] xp = {xi, xi-5, xi+5};
 		int[] yp = {yi, yi+5, yi+5};
-		g.drawPolygon(xp, yp, 3);
+		g.drawPolygon(xp, yp, 3);*/
 		
 		// draw image based on direction
-		/*if (_dir == Direction.UP) {
-			g.drawImage(_pImg[0], xi, yi, _width, _height, null);
-		} else if (_dir == Direction.LEFT) {
-			g.drawImage(_pImg[1], xi, yi, _width, _height, null);
-		} else if (_dir == Direction.RIGHT) {
-			g.drawImage(_pImg[2], xi, yi, _width, _height, null);
-		} else if (_dir == Direction.DOWN) {
-			g.drawImage(_pImg[3], xi, yi, _width, _height, null);
-		}*/
+		g.drawImage(getCurrentImage(), xi, yi, _width, _height, null);
 	}
 	
 	public void drawHealth(Graphics g) {
@@ -207,6 +242,10 @@ public class Player {
 		heal(1);
 	}
 	
+	public void kill() {
+		_dead = true;
+	}
+	
 	// SCORE VALUE.
 	public void addValue(int val) {
 		_score += val;
@@ -216,7 +255,7 @@ public class Player {
 		addValue(1);
 	}
 	
-	// OTHER METHODS.
+	// MOVE/ANIMATION METHODS.
 	public void setLocation(int x, int y) {
 		_x = x;
 		_y = y;
@@ -232,12 +271,35 @@ public class Player {
 	
 	public void setDirection(Direction d) {
 		_dir = d;
+		
+		// Update the sprites as well.
+		if (_dir == Direction.DOWN)
+			_pCurrentImg = _pDownImg;
+		else if (_dir == Direction.LEFT)
+			_pCurrentImg = _pLeftImg;
+		else if (_dir == Direction.RIGHT)
+			_pCurrentImg = _pRightImg;
+		else if (_dir == Direction.UP)
+			_pCurrentImg = _pUpImg;
 	}
 	
+	public BufferedImage getCurrentImage() {
+		return _pCurrentImg[_currentFrame];
+	}
+	
+	// COLLISION METHODS.
 	public Rectangle getBoundingBox() {
 		return new Rectangle((int)_x, (int)_y, _width, _height);
 	}
 	
+	public boolean intersects(Item item) {
+		Rectangle rp = getBoundingBox();
+		Rectangle ri = item.getBoundingBox();
+		
+		return rp.intersects(ri);
+	}
+	
+	// STATUS METHODS.
 	public int getHealth() {
 		return _hp;
 	}
@@ -256,5 +318,9 @@ public class Player {
 	
 	public int getScore() {
 		return _score;
+	}
+	
+	public boolean isDead() {
+		return _dead;
 	}
 }

@@ -36,15 +36,19 @@ public class SceneGame extends Scene {
 		// TODO Auto-generated method stub
 		_player.update();
 		
+		// Set timer on if game scene.
 		if (SceneBank.getCurrentScene().equals(this)) {
 			_timer.update();
 		}
 		
+		// Check game over conditions.
+		/*if (_player.isDead() || _timer.getCount() == 0)
+			SceneBank.setScene(new SceneEnd(1));*/
+	
+		// Update items if they are visible.
 		for (Item item : _items) {
-			// Check if items are visible, then update them, and see if they've collided.
 			if (item.isVisible()) {
 				item.update();
-				checkCollision(item);
 			} else if (!item.isVisible()) {
 				_items.remove(item);
 			}
@@ -61,34 +65,6 @@ public class SceneGame extends Scene {
 			
 			SceneBank.saveScene();
 			SceneBank.setScene(new ScenePause());
-		}
-	}
-	
-	public void checkCollision(Item item) {
-		Rectangle pbox = _player.getBoundingBox();
-		Rectangle ibox = item.getBoundingBox();
-		
-		if (pbox.intersects(ibox)) {
-			item.setVisible(false);
-		}
-	}
-	
-	public void checkCollision(UsableItem item) {
-		Rectangle pbox = _player.getBoundingBox();
-		Rectangle ubox = item.getBoundingBox();
-		
-		if (pbox.intersects(ubox)) {
-			_player.addItem(item);
-		}
-	}
-	
-	public void checkCollision(Money money) {
-		Rectangle pbox = _player.getBoundingBox();
-		Rectangle mbox = money.getBoundingBox();
-		
-		if (pbox.intersects(mbox)) {
-			money.setVisible(false);
-			_player.addValue(money.value());
 		}
 	}
 

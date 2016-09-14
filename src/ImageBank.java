@@ -46,9 +46,9 @@ public final class ImageBank {
 			for (int j = 0; j < row; j++) {
 				for (int i = 0; i < col; i++) {
 					newImg[j][i] = img.getSubimage(x, y, w, h);
-					x += w;
+					x = i * w;
 				}
-				y += h;
+				y = j * h;
 			}
 			return newImg;
 		} catch (Exception e) {

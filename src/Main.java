@@ -6,8 +6,8 @@
 //----------------------------------
 // Object of game is to get out of a 
 // randomly-generated low-tech tomb 
-// (size of tomb can be 8x8, 10x10, or 12x12 dungeon
-//  with rooms of 15x10 size or 24x24 tiles) before
+// (size of tomb can be 6x6, 8x8, or 10x10 dungeon
+//  with rooms of 15x10 size in 24x24 tiles) before
 // a certain amt of time. You have no weapons.
 // You can collect treasures to boost score. 
 // Watch for traps and other dangers.
