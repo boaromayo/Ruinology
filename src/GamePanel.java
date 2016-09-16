@@ -32,6 +32,8 @@ public class GamePanel extends JPanel implements Runnable {
 			@Override
 			public void keyTyped(KeyEvent e) {}
 		});
+		
+		setBackground(Color.BLACK);
 	}
 	
 	public void run() {
