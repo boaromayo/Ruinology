@@ -46,7 +46,7 @@ public class SceneEnd extends Scene {
 		// TODO Auto-generated method stub
 		// Draw graphic depending on end conditions
 		if (_condition == 0) {
-			g.drawImage(_victoryTitle, 100, 100, _gameoverTitle.getWidth(), _gameoverTitle.getHeight(), null);
+			g.drawImage(_victoryTitle, 100, 100, _victoryTitle.getWidth(), _victoryTitle.getHeight(), null);
 		} else if (_condition == 1) {
 			g.drawImage(_gameoverTitle, 100, 100, _gameoverTitle.getWidth(), _gameoverTitle.getHeight(), null);
 		}
