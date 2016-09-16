@@ -13,37 +13,43 @@ public final class Constants {
 	// FILE PATHS.
 	
 	// TITLE IMAGE.
-	public static final String _titlePath = "../img/title.png";
+	private static final String _titlePath = "../img/title.png";
 	
 	// PAUSE IMAGE.
-	public static final String _pauseTitlePath = "../img/pausetitle.png";
+	private static final String _pauseTitlePath = "../img/pausetitle.png";
+	
+	// VICTORY TITLE IMAGE.
+	private static final String _victoryPath = "../img/victory_title.png";
+	
+	// GAMEOVER IMAGE.
+	private static final String _gameoverPath = "..//img/gameover_title.png";
 	
 	// CURSOR.
-	public static final String _cursorPath = "../img/cursor.png";
+	private static final String _cursorPath = "../img/cursor.png";
 	
 	// PLAYER FILE.
-	public static final String _playerPath = "../img/player.png";
+	private static final String _playerPath = "../img/player.png";
 	
 	// TIMER.
-	public static final String _timerPath = "../img/timer.png";
+	private static final String _timerPath = "../img/timer.png";
 	
 	// HEALTH.
-	public static final String _heartPath = "../img/heart.gif";
+	private static final String _heartPath = "../img/heart.gif";
 	
 	// STAMINA.
-	public static final String _staminaPath = "../img/stamina.gif";
+	private static final String _staminaPath = "../img/stamina.gif";
 	
 	// ITEMS.
-	public static final String _hrglassPath = "../img/hourglass.png";
+	private static final String _hrglassPath = "../img/hourglass.png";
 	
 	// ITEMS -> USABLE ITEMS.
-	public static final String _bluePotionPath = "../img/potion_blue.gif";
-	public static final String _greenPotionPath = "../img/potion_green.gif";
+	private static final String _bluePotionPath = "../img/potion_blue.gif";
+	private static final String _greenPotionPath = "../img/potion_green.gif";
 	
 	// ITEMS -> MONEY.
-	public static final String _bronzeCoinPath = "../img/coin_bronze.gif";
-	public static final String _silverCoinPath = "../img/coin_silver.gif";
-	public static final String _goldCoinPath = "../img/coin_gold.gif";
+	private static final String _bronzeCoinPath = "../img/coin_bronze.gif";
+	private static final String _silverCoinPath = "../img/coin_silver.gif";
+	private static final String _goldCoinPath = "../img/coin_gold.gif";
 	
 	// IMAGES.
 	
@@ -52,6 +58,12 @@ public final class Constants {
 	
 	// PAUSE IMAGE.
 	public static final BufferedImage _pauseTitle = ImageBank.loadImage(_pauseTitlePath);
+	
+	// VICTORY TITLE IMAGE.
+	public static final BufferedImage _victoryTitle = ImageBank.loadImage(_victoryPath);
+	
+	// GAMEOVER IMAGE.
+	public static final BufferedImage _gameoverTitle = ImageBank.loadImage(_gameoverPath);
 	
 	// CURSOR.
 	public static final BufferedImage _cursor = ImageBank.loadImage(_cursorPath);

@@ -42,8 +42,8 @@ public class SceneGame extends Scene {
 		}
 		
 		// Check game over conditions.
-		/*if (_player.isDead() || _timer.getCount() == 0)
-			SceneBank.setScene(new SceneEnd(1));*/
+		if (_player.isDead() || _timer.getCount() == 0)
+			SceneBank.setScene(new SceneEnd(1));
 	
 		// Update items if they are visible.
 		for (Item item : _items) {
