@@ -11,7 +11,10 @@ public class SceneGame extends Scene {
 	
 	// MAP.
 
-	// SET OF ITEMS.
+	// CAMERA.
+	private Camera _camera;
+
+	// SET OF ITEMS ON MAP.
 	ArrayList<Item> _items;
 	
 	@Override
@@ -20,6 +23,10 @@ public class SceneGame extends Scene {
 		_player = new Player();
 		
 		_timer = new Timer(360); // six minutes is default for 8x8 map
+		
+		//_map = new Map(rand(), rand()); // pick a random starting point for the player
+		
+		//_camera = new Camera(); // set camera to player's current room location
 		
 		_items = new ArrayList<Item>(); // make items into list
 		
