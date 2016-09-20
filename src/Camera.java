@@ -57,7 +57,7 @@ public class Camera {
 	}
 	
 	public void translate(int x, int y) {
-		int xmove = x;
+		int xmove = x; // add more to translate method
 		int ymove = y;
 		
 		_x += xmove;
