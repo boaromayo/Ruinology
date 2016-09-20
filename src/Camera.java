@@ -2,7 +2,7 @@
 public class Camera {
 	
 	// CONSTANTS.
-	private final int _OFFSET = 2;
+	private final int _OFFSET = 10;
 	
 	// COORDINATES.
 	private int _x;
@@ -16,9 +16,9 @@ public class Camera {
 	
 	public Camera() {
 		_xmin = 0;
-		_xmax = _OFFSET;
+		_xmax = (Constants.WIDTH - _OFFSET) / Constants.TILE_SIZE;
 		_ymin = 0;
-		_ymax = _OFFSET;
+		_ymax = (Constants.HEIGHT - _OFFSET) / Constants.TILE_SIZE;
 	}
 	
 	public Camera(int x, int y) {
