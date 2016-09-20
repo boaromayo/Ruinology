@@ -3,12 +3,17 @@ import java.awt.image.*;
 public final class Constants {
 	// PANEL CONSTANTS.
 	public static final int WIDTH = 480;
-	public static final int HEIGHT = 320;
+	public static final int HEIGHT = 360;
+	public static final int HEIGHT_HUD = 40;
+	public static final int HEIGHT_FINAL = HEIGHT + HEIGHT_HUD;
 	public static final int FPS = 60;
 	
 	// PLAYER CONSTANTS.
 	public static final int PLAYER_SIZE = 24;
 	public static final int DELAY_COUNT = 8;
+	
+	// TILE SIZE.
+	public static final int TILE_SIZE = 24;
 	
 	// FILE PATHS.
 	
