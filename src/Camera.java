@@ -56,6 +56,16 @@ public class Camera {
 		}
 	}
 	
+	public void translate(int x, int y) {
+		int xmove = x;
+		int ymove = y;
+		
+		_x += xmove;
+		_y += ymove;
+		
+		setBounds();
+	}
+	
 	public int getx() {
 		return _x;
 	}
