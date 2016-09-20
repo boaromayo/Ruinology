@@ -94,10 +94,10 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	@Override
 	public void paint(Graphics g) {
-		Image img = createImage(Constants.WIDTH, Constants.HEIGHT);
+		Image img = createImage(Constants.WIDTH, Constants.HEIGHT_FINAL);
 		Graphics2D g2 = (Graphics2D) img.getGraphics();
 		draw(g2);
-		g.drawImage(img, 0, 0, Constants.WIDTH, Constants.HEIGHT, null);
+		g.drawImage(img, 0, 0, Constants.WIDTH, Constants.HEIGHT_FINAL, null);
 	}
 	
 	public void draw(Graphics g) {
