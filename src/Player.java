@@ -46,6 +46,7 @@ public class Player {
 	private boolean _dead;
 	
 	// ITEM BAG.
+	private final int _BAGCAP = 3;
 	private UsableItem[] _bag;
 	private int _bagSize;
 	private int _position;
@@ -77,7 +78,7 @@ public class Player {
 		
 		_dead = false;
 		
-		_bag = new UsableItem[3];
+		_bag = new UsableItem[_BAGCAP];
 		_bagSize = 0;
 		_position = 0;
 		
@@ -163,12 +164,12 @@ public class Player {
 		int heartWidth = heartImg.getWidth();
 		int heartHeight = heartImg.getHeight();
 		
-		g.drawImage(heartImg, 20, Constants.HEIGHT - 30, heartWidth, heartHeight, null);
+		g.drawImage(heartImg, 20, Constants.HEIGHT_FINAL - 30, heartWidth, heartHeight, null);
 		
-		//g.drawImage(bar, 50, Game.HEIGHT - 30, bar.getWidth(), bar.getHeight(), null);
+		//g.drawImage(bar, 50, Constants.HEIGHT_FINAL - 30, bar.getWidth(), bar.getHeight(), null);
 		
 		g.setColor(Color.RED);
-		g.fillRect(50, Constants.HEIGHT - 30, (_hp / _maxhp) * 100, 8);
+		g.fillRect(50, Constants.HEIGHT_FINAL - 30, (_hp / _maxhp) * 100, 8);
 	}
 	
 	public void drawStamina(Graphics g) {
@@ -179,26 +180,26 @@ public class Player {
 		int stamWidth = stamImg.getWidth();
 		int stamHeight = stamImg.getHeight();
 		
-		g.drawImage(stamImg, 20, Constants.HEIGHT - 10, stamWidth, stamHeight, null);
+		g.drawImage(stamImg, 20, Constants.HEIGHT_FINAL - 10, stamWidth, stamHeight, null);
 		
-		//g.drawImage(bar, 50, Game.HEIGHT - 10, bar.getWidth(), bar.getHeight(), null);
+		//g.drawImage(bar, 50, Constants.HEIGHT_FINAL - 10, bar.getWidth(), bar.getHeight(), null);
 		
 		g.setColor(Color.GREEN);
-		g.fillRect(50, Constants.HEIGHT - 10, (_sp / _maxsp) * 50, 8);
+		g.fillRect(50, Constants.HEIGHT_FINAL - 10, (_sp / _maxsp) * 50, 8);
 	}
 	
 	public void drawBag(Graphics g) {
 		// draw hud part for bag
 		g.setColor(Color.WHITE);
 		for (int i = 0; i < _bagSize; i++) {
-			g.drawRect(180 + (36 * i), Constants.HEIGHT - 24, 32, 32);
+			g.drawRect(180 + (36 * i), Constants.HEIGHT_FINAL - 24, 32, 32);
 		}
 		
 		// draw bag cursor
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(2));
 		
-		g2.drawRect(180 + (36 * _position), Constants.HEIGHT - 24, 32, 32);
+		g2.drawRect(180 + (36 * _position), Constants.HEIGHT_FINAL - 24, 32, 32);
 	}
 	
 	// ITEMS.
