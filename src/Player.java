@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.image.*;
 
+import javax.sound.sampled.*;
+
 public class Player {
 	
 	// SPRITE.
@@ -54,6 +56,10 @@ public class Player {
 	// SCORE.
 	private int _score;
 	
+	// SOUNDS.
+	private Clip _getItem;
+	private Clip _harm;
+	
 	public Player() {
 		_pDownImg = _pImg[0];
 		_pLeftImg = _pImg[1];
@@ -83,6 +89,9 @@ public class Player {
 		_position = 0;
 		
 		_score = 0;
+		
+		_getItem = Constants._getItem;
+		_harm = Constants._harm;
 	}
 	
 	public void update() {
