@@ -58,6 +58,7 @@ public class Player {
 	
 	// SOUNDS.
 	private Clip _getItem;
+	private Clip _getMoney;
 	private Clip _harm;
 	
 	public Player() {
@@ -91,6 +92,7 @@ public class Player {
 		_score = 0;
 		
 		_getItem = Constants._getItem;
+		_getMoney = Constants._getMoney;
 		_harm = Constants._harm;
 	}
 	
@@ -215,6 +217,7 @@ public class Player {
 	public void addItem(UsableItem item) {
 		if (_bagSize < _bag.length - 1) {
 			item.setVisible(false);
+			itemGet();
 			_bag[_bagSize++] = item;
 		}
 	}
@@ -333,4 +336,18 @@ public class Player {
 	public boolean isDead() {
 		return _dead;
 	}
+	
+	// SOUNDS.
+	public void itemGet() {
+		AudioBank.play(_getItem);
+	}
+	
+	public void moneyGet() {
+		AudioBank.play(_getMoney);
+	}
+	
+	public void harm() {
+		AudioBank.play(_harm);
+	}
+	
 }
