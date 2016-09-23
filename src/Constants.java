@@ -1,5 +1,7 @@
 import java.awt.image.*;
 
+import javax.sound.sampled.*;
+
 public final class Constants {
 	// PANEL CONSTANTS.
 	public static final int WIDTH = 480;
@@ -56,6 +58,22 @@ public final class Constants {
 	private static final String _silverCoinPath = "../img/coin_silver.gif";
 	private static final String _goldCoinPath = "../img/coin_gold.gif";
 	
+	// SOUNDS.
+	
+	// PLAYER SOUNDS.
+	private static final String _drinkPath = "../audio/bubble.wav";
+	private static final String _harmPath = "../audio/harm.wav";
+	
+	// ITEM GET SOUNDS.
+	private static final String _getMoneyPath = "../audio/clink.wav";
+	private static final String _getItemPath = "../audio/item.wav";
+	private static final String _getHrglassPath = "../audio/warp.wav";
+	
+	// MENU SOUNDS.
+	private static final String _cursorAudioPath = "../audio/cursor.wav";
+	private static final String _selectPath = "../audio/select.wav";
+	private static final String _cancelPath = "../audio/cancel.wav";
+	
 	// IMAGES.
 	
 	// TITLE IMAGE.
@@ -96,4 +114,20 @@ public final class Constants {
 	public static final BufferedImage _bronzeCoin = ImageBank.loadImage(_bronzeCoinPath);
 	public static final BufferedImage _silverCoin = ImageBank.loadImage(_silverCoinPath);
 	public static final BufferedImage _goldCoin = ImageBank.loadImage(_goldCoinPath);
+	
+	// SOUNDS.
+	
+	// PLAYER SOUNDS.
+	public static final Clip _drink = AudioBank.load(_drinkPath);
+	public static final Clip _harm = AudioBank.load(_harmPath);
+	
+	// ITEM GET SOUNDS.
+	public static final Clip _getMoney = AudioBank.load(_getMoneyPath);
+	public static final Clip _getItem = AudioBank.load(_getItemPath);
+	public static final Clip _getHrglass = AudioBank.load(_getHrglassPath);
+	
+	// MENU SOUNDS.
+	public static final Clip _cursorPick = AudioBank.load(_cursorAudioPath);
+	public static final Clip _select = AudioBank.load(_selectPath);
+	public static final Clip _cancel = AudioBank.load(_cancelPath);
 }
