@@ -44,8 +44,16 @@ public class Timer {
 		g.drawString(String.format("%02d:%02d", minute, second), Constants.WIDTH - 40, Constants.HEIGHT - 10);
 	}
 	
-	public void setTime(int s) {
-		_timercount = s;
+	public void setTime(int sec) {
+		_timercount = sec;
+	}
+	
+	public void addTime(int sec) {
+		_timercount += sec;
+	}
+	
+	public void subtractTime(int sec) {
+		_timercount -= sec;
 	}
 	
 	public void setTimer(boolean b) {
