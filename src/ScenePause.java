@@ -20,6 +20,9 @@ public class ScenePause extends Scene {
 		if (InputBank.keyDown(InputBank._ENTER)) {
 			SceneBank.removeScene();
 			SceneBank.setScene(SceneBank.getCurrentScene());
+		} else if (InputBank.keyDown(InputBank._ESC)) {
+			SceneBank.clear();
+			SceneBank.setScene(new SceneMenu());
 		}
 	}
 
