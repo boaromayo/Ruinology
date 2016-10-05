@@ -240,7 +240,7 @@ public class Player {
 	}
 	
 	public void heal(int rec) {
-		if (_maxhp < rec || _maxhp < rec + _hp) {
+		if (_maxhp < _hp + rec) {
 			_hp = _maxhp;
 		}
 		
@@ -248,7 +248,7 @@ public class Player {
 	}
 	
 	public void healStamina(int rec) {
-		if (_maxsp < rec || _maxsp < rec + _sp) {
+		if (_maxsp < _sp + rec) {
 			_sp = _maxsp;
 		}
 		
