@@ -224,7 +224,7 @@ public class Player {
 	
 	public void useItem() {
 		if (_bag[_position] != null) {
-			_bag[_position].effect();
+			_bag[_position].use(this);
 			_bag[_position] = null;
 			_bagSize--;
 		}
@@ -240,11 +240,19 @@ public class Player {
 	}
 	
 	public void heal(int rec) {
-		if (_maxhp < rec) {
+		if (_maxhp < rec || _maxhp < rec + _hp) {
 			_hp = _maxhp;
 		}
 		
 		_hp += rec;
+	}
+	
+	public void healStamina(int rec) {
+		if (_maxsp < rec || _maxsp < rec + _sp) {
+			_sp = _maxsp;
+		}
+		
+		_sp += rec;
 	}
 	
 	public void hit() {
