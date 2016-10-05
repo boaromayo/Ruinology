@@ -4,6 +4,14 @@ public class Money extends Item {
 	// MONEY VALUE.
 	protected int _value;
 	
+	public Money() {
+		_value = 1;
+	}
+	
+	public Money(int v) {
+		_value = v;
+	}
+	
 	@Override
 	public void update() {}
 
