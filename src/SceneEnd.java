@@ -7,11 +7,15 @@ public class SceneEnd extends Scene {
 	private BufferedImage _victoryTitle;
 	private BufferedImage _gameoverTitle;
 	
+	// PLAYER FINAL SCORE
+	private int _score;
+	
 	// END CONDITION.
 	private int _condition;
 	
-	public SceneEnd(int condition) {
+	public SceneEnd(int condition, int score) {
 		_condition = condition;
+		_score = score;
 		
 		init();
 	}
@@ -43,14 +47,18 @@ public class SceneEnd extends Scene {
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub		
 		// Draw graphic depending on end conditions
 		if (_condition == 0) {
 			g.drawImage(_victoryTitle, 100, 100, _victoryTitle.getWidth(), _victoryTitle.getHeight(), null);
 		} else if (_condition == 1) {
 			g.drawImage(_gameoverTitle, 100, 100, _gameoverTitle.getWidth(), _gameoverTitle.getHeight(), null);
 		}
+		
+		drawScore(g, _score);
 	}
 	
-
+	private void drawScore(Graphics g, int score) {
+		g.drawString("Score: " + _score, 150, 240);
+	}
 }
