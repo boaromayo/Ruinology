@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class StamPotion extends Potion {
+public class StamPotion extends UsableItem {
 
 	public StamPotion() {
 		// TODO Auto-generated constructor stub
@@ -23,9 +23,9 @@ public class StamPotion extends Potion {
 	}
 
 	@Override
-	public void effect() {
+	public void use(Player p) {
 		// TODO Auto-generated method stub
-
+		p.healStamina(30);
 	}
 
 }
