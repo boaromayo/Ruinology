@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class HealPotion extends Potion {
+public class HealPotion extends UsableItem {
 
 	public HealPotion() {
 		// TODO Auto-generated constructor stub
@@ -23,9 +23,9 @@ public class HealPotion extends Potion {
 	}
 
 	@Override
-	public void effect() {
+	public void use(Player p) {
 		// TODO Auto-generated method stub
-		
+		p.heal(3);
 	}
 
 }
