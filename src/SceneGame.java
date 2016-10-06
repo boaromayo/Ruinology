@@ -78,6 +78,7 @@ public class SceneGame extends Scene {
 	@Override
 	public void draw(Graphics g) {
 		_player.draw(g);
+		
 		_timer.draw(g);
 		
 		for (Item item : _items) {
