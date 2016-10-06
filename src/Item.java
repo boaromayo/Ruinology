@@ -20,6 +20,8 @@ public abstract class Item {
 	
 	public abstract void draw(Graphics g);
 	
+	public abstract void effect(Player p);
+	
 	public void setLocation(int x, int y) {
 		_x = x;
 		_y = y;

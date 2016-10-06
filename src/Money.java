@@ -45,6 +45,11 @@ public class Money extends Item {
 		return coinImg;
 	}
 	
+	@Override
+	public void effect(Player p) {
+		p.addValue(value());
+	}
+	
 	public MoneyType type() {
 		return _type;
 	}

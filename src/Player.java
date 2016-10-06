@@ -53,6 +53,9 @@ public class Player {
 	private int _bagSize;
 	private int _position;
 	
+	// TIMER.
+	//private Timer _timer;
+	
 	// SCORE.
 	private int _score;
 	

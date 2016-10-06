@@ -22,16 +22,16 @@ public class SceneGame extends Scene {
 		// TODO Auto-generated method stub
 		_player = new Player();
 		
-		_timer = new Timer(360); // six minutes is default for 8x8 map
+		_timer = new Timer(360); // Six minutes is default for 8x8 map.
 		
-		//_map = new Map(rand(), rand()); // pick a random starting point for the player
+		//_map = new Map(rand(), rand()); // Pick a random starting point for the player.
 		
-		//_camera = new Camera(); // set camera to player's current room location
+		//_camera = new Camera(); // Set camera to player's current room location.
 		
 		_items = new ArrayList<Item>(); // make items into list
 		
 		for (Item item : _items) {
-			// add items into list if visible on map
+			// Add items into list if visible on map.
 			if (item.isVisible()) {
 				_items.add(item);
 			}
@@ -59,6 +59,12 @@ public class SceneGame extends Scene {
 			} else if (!item.isVisible()) {
 				_items.remove(item);
 			}
+			
+			// Check if player touches items.
+			if (_player.intersects(item)) {
+				item.effect(_player);
+				item.setVisible(false);
+			}
 		}
 		
 		// Check inputs.
@@ -82,7 +88,7 @@ public class SceneGame extends Scene {
 		_timer.draw(g);
 		
 		for (Item item : _items) {
-			// Draw items if items are visible or on map.
+			// Draw items if items are visible in the camera.
 			if (item.isVisible()) {
 				item.draw(g);
 			}

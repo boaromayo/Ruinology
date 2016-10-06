@@ -28,6 +28,9 @@ public class Hourglass extends Item {
 		g.drawImage(_img, _x, _y, _width, _height, null);
 	}
 
+	@Override
+	public void effect(Player p) {}
+	
 	public int addTime() {
 		return _time;
 	}
