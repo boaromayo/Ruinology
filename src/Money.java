@@ -1,15 +1,25 @@
 import java.awt.*;
+import java.awt.image.*;
 
 public class Money extends Item {
-	// MONEY VALUE.
-	protected int _value;
+	// MONEY TYPE.
+	private MoneyType _type;
 	
 	public Money() {
-		_value = 1;
+		_type = MoneyType.BRONZE_COIN;
+		
+		// Set image based on the type of money
+		_img = getCoinImage(_type);
+		_width = _img.getWidth();
+		_height = _img.getHeight();
 	}
 	
-	public Money(int v) {
-		_value = v;
+	public Money(MoneyType mt) {
+		_type = mt;
+	
+		_img = getCoinImage(mt);
+		_width = _img.getWidth();
+		_height = _img.getHeight();
 	}
 	
 	@Override
@@ -21,11 +31,26 @@ public class Money extends Item {
 		g.drawImage(_img, _x, _y, _width, _height, null);
 	}
 
-	public void setValue(int val) {
-		_value = val;
+	private BufferedImage getCoinImage(MoneyType mt) {
+		BufferedImage coinImg = null;
+		
+		if (mt.equals(MoneyType.BRONZE_COIN)) {
+			coinImg = Constants._bronzeCoin;
+		} else if (mt.equals(MoneyType.SILVER_COIN)) {
+			coinImg = Constants._silverCoin;
+		} else if (mt.equals(MoneyType.GOLD_COIN)) {
+			coinImg = Constants._goldCoin;
+		}
+		
+		return coinImg;
+	}
+	
+	public MoneyType type() {
+		return _type;
 	}
 	
 	public int value() {
-		return _value;
+		return _type.value();
 	}
+	
 }
