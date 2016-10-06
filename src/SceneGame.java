@@ -94,10 +94,6 @@ public class SceneGame extends Scene {
 			}
 		}
 	}
-
-	public Timer callTimer() {
-		return _timer;
-	}
 	
 	public void loadMap() {
 		
