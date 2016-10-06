@@ -165,6 +165,11 @@ public class Player {
 		
 		// draw image based on direction
 		g.drawImage(getCurrentImage(), xi, yi, _width, _height, null);
+		
+		// draw hud
+		drawHealth(g);
+		drawStamina(g);
+		drawBag(g);
 	}
 	
 	public void drawHealth(Graphics g) {
@@ -292,13 +297,13 @@ public class Player {
 		_dir = d;
 		
 		// Update the sprites as well.
-		if (_dir == Direction.DOWN)
+		if (_dir.equals(Direction.DOWN))
 			_pCurrentImg = _pDownImg;
-		else if (_dir == Direction.LEFT)
+		else if (_dir.equals(Direction.LEFT))
 			_pCurrentImg = _pLeftImg;
-		else if (_dir == Direction.RIGHT)
+		else if (_dir.equals(Direction.RIGHT))
 			_pCurrentImg = _pRightImg;
-		else if (_dir == Direction.UP)
+		else if (_dir.equals(Direction.UP))
 			_pCurrentImg = _pUpImg;
 	}
 	
