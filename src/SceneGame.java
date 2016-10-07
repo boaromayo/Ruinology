@@ -6,9 +6,6 @@ public class SceneGame extends Scene {
 	// PLAYER.
 	private Player _player;
 	
-	// TIMER.
-	private Timer _timer;
-	
 	// MAP.
 
 	// CAMERA.
@@ -20,9 +17,7 @@ public class SceneGame extends Scene {
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		_player = new Player();
-		
-		_timer = new Timer(360); // Six minutes is default for 8x8 map.
+		_player = new Player(360); // Six minutes is default for 8x8 map.
 		
 		//_map = new Map(rand(), rand()); // Pick a random starting point for the player.
 		
@@ -45,11 +40,11 @@ public class SceneGame extends Scene {
 		
 		// Set timer on if game scene.
 		if (SceneBank.getCurrentScene().equals(this)) {
-			_timer.update();
+			_player.updateTimer();
 		}
 		
 		// Check game over conditions.
-		if (_player.isDead() || _timer.getCount() == 0)
+		if (_player.isDead() || _player.getTimerCount() == 0)
 			SceneBank.setScene(new SceneEnd(1, _player.getScore()));
 	
 		// Update items if they are visible.
@@ -74,7 +69,7 @@ public class SceneGame extends Scene {
 	private void updateInput() {
 		// Pause timer and go to pause screen if 'ESC' pressed.
 		if (InputBank.keyDown(InputBank._ESC)) {
-			_timer.setTimer(false);
+			_player.deactivateTimer();
 			
 			SceneBank.saveScene();
 			SceneBank.setScene(new ScenePause());
@@ -84,8 +79,6 @@ public class SceneGame extends Scene {
 	@Override
 	public void draw(Graphics g) {
 		_player.draw(g);
-		
-		_timer.draw(g);
 		
 		for (Item item : _items) {
 			// Draw items if items are visible in the camera.

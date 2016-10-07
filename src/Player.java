@@ -34,7 +34,7 @@ public class Player {
 	
 	// DIRECTION.
 	private enum Direction { 
-		DOWN, LEFT, RIGHT, UP 
+		DOWN, LEFT, RIGHT, UP
 	};
 	private Direction _dir;
 	
@@ -47,14 +47,14 @@ public class Player {
 	
 	private boolean _dead;
 	
+	// TIMER.
+	private Timer _timer;
+	
 	// ITEM BAG.
 	private final int _BAGCAP = 3;
 	private UsableItem[] _bag;
 	private int _bagSize;
 	private int _position;
-	
-	// TIMER.
-	//private Timer _timer;
 	
 	// SCORE.
 	private int _score;
@@ -64,7 +64,7 @@ public class Player {
 	private Clip _getMoney;
 	private Clip _harm;
 	
-	public Player() {
+	public Player(int sec) {
 		_pDownImg = _pImg[0];
 		_pLeftImg = _pImg[1];
 		_pRightImg = _pImg[2];
@@ -85,6 +85,8 @@ public class Player {
 		
 		_maxsp = 15;
 		_sp = _maxsp;
+		
+		_timer = new Timer(sec); // Set the current amount of seconds.
 		
 		_dead = false;
 		
@@ -148,7 +150,6 @@ public class Player {
 			setdx(0);
 			setdy(0);
 		}
-			
 	}
 	
 	private void move() {
@@ -172,6 +173,7 @@ public class Player {
 		// draw hud
 		drawHealth(g);
 		drawStamina(g);
+		drawTimer(g);
 		drawBag(g);
 	}
 	
@@ -205,6 +207,10 @@ public class Player {
 		
 		g.setColor(Color.GREEN);
 		g.fillRect(50, Constants.HEIGHT_FINAL - 10, (_sp / _maxsp) * 50, 8);
+	}
+	
+	public void drawTimer(Graphics g) {
+		_timer.draw(g);
 	}
 	
 	public void drawBag(Graphics g) {
@@ -296,7 +302,7 @@ public class Player {
 		_dy = y;
 	}
 	
-	public void setDirection(Direction d) {
+	private void setDirection(Direction d) {
 		_dir = d;
 		
 		// Update the sprites as well.
@@ -349,6 +355,52 @@ public class Player {
 	
 	public boolean isDead() {
 		return _dead;
+	}
+	
+	// DIRECTION.
+	public boolean isFacingDown() {
+		return (_dir.equals(Direction.DOWN));
+	}
+	
+	public boolean isFacingLeft() {
+		return (_dir.equals(Direction.LEFT));
+	}
+	
+	public boolean isFacingRight() {
+		return (_dir.equals(Direction.RIGHT));
+	}
+	
+	public boolean isFacingUp() {
+		return (_dir.equals(Direction.UP));
+	}
+	
+	// TIMER.
+	public void updateTimer() {
+		_timer.update();
+	}
+	
+	public void setTime(int sec) {
+		_timer.setTime(sec);
+	}
+	
+	public void addTime(int sec) {
+		_timer.addTime(sec);
+	}
+	
+	public void subtractTime(int sec) {
+		_timer.subtractTime(sec);
+	}
+	
+	public void activateTimer() {
+		_timer.activate();
+	}
+	
+	public void deactivateTimer() {
+		_timer.deactivate();
+	}
+	
+	public int getTimerCount() {
+		return _timer.getCount();
 	}
 	
 	// SOUNDS.

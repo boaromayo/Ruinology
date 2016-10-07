@@ -56,8 +56,12 @@ public class Timer {
 		_timercount -= sec;
 	}
 	
-	public void setTimer(boolean b) {
-		_timerOn = b;
+	public void activate() {
+		_timerOn = true;
+	}
+	
+	public void deactivate() {
+		_timerOn = false;
 	}
 	
 	public int getCount() {
