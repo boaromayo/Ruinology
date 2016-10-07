@@ -51,14 +51,13 @@ public class SceneGame extends Scene {
 		for (Item item : _items) {
 			if (item.isVisible()) {
 				item.update();
-			} else if (!item.isVisible()) {
-				_items.remove(item);
 			}
 			
 			// Check if player touches items.
 			if (_player.intersects(item)) {
 				item.effect(_player);
 				item.setVisible(false);
+				_items.remove(item);
 			}
 		}
 		
