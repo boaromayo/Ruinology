@@ -29,7 +29,10 @@ public final class Constants {
 	private static final String _victoryPath = "../img/victory_title.png";
 	
 	// GAMEOVER IMAGE.
-	private static final String _gameoverPath = "..//img/gameover_title.png";
+	private static final String _gameoverPath = "../img/gameover_title.png";
+	
+	// TEXT.
+	private static final String _textPath = "../img/text.gif";
 	
 	// CURSOR.
 	private static final String _cursorPath = "../img/cursor.png";
@@ -87,6 +90,9 @@ public final class Constants {
 	
 	// GAMEOVER IMAGE.
 	public static final BufferedImage _gameoverTitle = ImageBank.loadImage(_gameoverPath);
+	
+	// TEXT
+	public static final BufferedImage _text = ImageBank.loadImage(_textPath);
 	
 	// CURSOR.
 	public static final BufferedImage _cursor = ImageBank.loadImage(_cursorPath);
