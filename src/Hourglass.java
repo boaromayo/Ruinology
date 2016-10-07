@@ -29,9 +29,8 @@ public class Hourglass extends Item {
 	}
 
 	@Override
-	public void effect(Player p) {}
-	
-	public int addTime() {
-		return _time;
+	public void effect(Player p) {
+		// play sound here and add 30 more secs.
+		p.addTime(_time);
 	}
 }
