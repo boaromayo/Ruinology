@@ -64,7 +64,7 @@ public class Player {
 	private Clip _getMoney;
 	private Clip _harm;
 	
-	public Player(int sec) {
+	public Player() {
 		_pDownImg = _pImg[0];
 		_pLeftImg = _pImg[1];
 		_pRightImg = _pImg[2];
@@ -86,7 +86,7 @@ public class Player {
 		_maxsp = 15;
 		_sp = _maxsp;
 		
-		_timer = new Timer(sec); // Set the current amount of seconds.
+		_timer = new Timer(100); // Set the current amount of seconds.
 		
 		_dead = false;
 		
@@ -401,6 +401,10 @@ public class Player {
 	
 	public int getTimerCount() {
 		return _timer.getCount();
+	}
+	
+	public boolean isTimerActive() {
+		return _timer.isActive();
 	}
 	
 	// SOUNDS.

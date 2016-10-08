@@ -47,6 +47,8 @@ public class Money extends Item {
 	
 	@Override
 	public void effect(Player p) {
+		// play money get sound
+		p.moneyGet();
 		p.addValue(value());
 	}
 	
