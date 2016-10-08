@@ -75,7 +75,7 @@ public class SceneMenu extends Scene {
 		int offset = 5;
 		
 		for (int i = 0; i < _choices.length; i++) {
-			g.drawString(_choices[i], 140, (40 * i) + 120 - offset);
+			Text.draw(g, _choices[i], 140, (40 * i) + 120 - offset);
 		}
 	}
 	

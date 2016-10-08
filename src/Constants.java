@@ -32,7 +32,7 @@ public final class Constants {
 	private static final String _gameoverPath = "../img/gameover_title.png";
 	
 	// TEXT.
-	private static final String _textPath = "../img/text.gif";
+	private static final String _fontPath = "../img/font.gif";
 	
 	// CURSOR.
 	private static final String _cursorPath = "../img/cursor.png";
@@ -92,7 +92,7 @@ public final class Constants {
 	public static final BufferedImage _gameoverTitle = ImageBank.loadImage(_gameoverPath);
 	
 	// TEXT
-	public static final BufferedImage _text = ImageBank.loadImage(_textPath);
+	public static final BufferedImage[][] _font = ImageBank.loadImages(_fontPath, 0, 0, 16, 16);
 	
 	// CURSOR.
 	public static final BufferedImage _cursor = ImageBank.loadImage(_cursorPath);
