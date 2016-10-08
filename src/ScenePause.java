@@ -10,7 +10,6 @@ public class ScenePause extends Scene {
 	public void init() {
 		// TODO Auto-generated method stub
 		_pauseImg = Constants._pauseTitle;
-		
 	}
 
 	@Override
