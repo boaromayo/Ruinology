@@ -21,7 +21,7 @@ public class SceneMenu extends Scene {
 	public void init() {
 		// TODO Auto-generated method stub
 		// Initialize title screen, bg, and cursor.
-		_titleImg = Constants._title;
+		//_titleImg = Constants._title;
 		
 		_cursor = new Cursor(100, 120);
 	}
@@ -50,22 +50,24 @@ public class SceneMenu extends Scene {
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
+		g.fillRect(0, 0, Constants.WIDTH, Constants.HEIGHT_FINAL);
+		
 		drawTitle(g);
 		drawCursor(g);	
 		drawChoices(g);
 	}
 	
 	private void drawTitle(Graphics g) {
-		g.drawImage(_titleImg, 30, 50, _titleImg.getWidth(), _titleImg.getHeight(), null);
+		//g.drawImage(_titleImg, 30, 50, _titleImg.getWidth(), _titleImg.getHeight(), null);
 	}
 	
 	private void drawCursor(Graphics g) {
 		if (_cursor.position() == _START) {
-			_cursor.move(100,120);
-		} else if (_cursor.position() == _MAP) {
 			_cursor.move(100,160);
-		} else if (_cursor.position() == _QUIT) {
+		} else if (_cursor.position() == _MAP) {
 			_cursor.move(100,200);
+		} else if (_cursor.position() == _QUIT) {
+			_cursor.move(100,240);
 		}
 		
 		_cursor.draw(g);
@@ -75,14 +77,15 @@ public class SceneMenu extends Scene {
 		int offset = 5;
 		
 		for (int i = 0; i < _choices.length; i++) {
-			Text.draw(g, _choices[i], 140, (40 * i) + 120 - offset);
+			//Text.draw(g, _choices[i], 120, (40 * i) + 160 + offset);
+			g.drawString(_choices[i], 120, (40 * i) + 160 + offset);
 		}
 	}
 	
 	private void branchChoices(int choice) {
 		if (choice == _START) {
 			// Start game
-			SceneBank.setScene(new SceneGame());
+			//SceneBank.setScene(new SceneGame());
 		} else if (choice == _MAP) {
 			// Go to map menu scene
 		} else if (choice == _QUIT) {

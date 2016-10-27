@@ -26,10 +26,10 @@ public class SceneEnd extends Scene {
 		// branch end conditions depending on victory or gameover
 		if (_condition == 0) {
 			// make victory appear
-			_victoryTitle = Constants._victoryTitle;
+			//_victoryTitle = Constants._victoryTitle;
 		} else if (_condition == 1) {
 			// make gameover appear
-			_gameoverTitle = Constants._gameoverTitle;
+			//_gameoverTitle = Constants._gameoverTitle;
 		}
 	}
 
@@ -47,12 +47,14 @@ public class SceneEnd extends Scene {
 
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub		
+		// TODO Auto-generated method stub	
+		g.fillRect(0, 0, Constants.WIDTH, Constants.HEIGHT_FINAL);
+		
 		// Draw graphic depending on end conditions
 		if (_condition == 0) {
-			g.drawImage(_victoryTitle, 100, 100, _victoryTitle.getWidth(), _victoryTitle.getHeight(), null);
+			//g.drawImage(_victoryTitle, 100, 100, _victoryTitle.getWidth(), _victoryTitle.getHeight(), null);
 		} else if (_condition == 1) {
-			g.drawImage(_gameoverTitle, 100, 100, _gameoverTitle.getWidth(), _gameoverTitle.getHeight(), null);
+			//g.drawImage(_gameoverTitle, 100, 100, _gameoverTitle.getWidth(), _gameoverTitle.getHeight(), null);
 		}
 		
 		drawScore(g, _score);

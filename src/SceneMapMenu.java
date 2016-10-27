@@ -32,7 +32,7 @@ public class SceneMapMenu extends Scene {
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
-		
+		g.fillRect(0, 0, Constants.WIDTH, Constants.HEIGHT_FINAL);
 	}
 
 }
