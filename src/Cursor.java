@@ -21,7 +21,7 @@ public class Cursor {
 		_x = 100;
 		_y = 100;
 		
-		_cursorImg = Constants._cursor;
+		//_cursorImg = Constants._cursor;
 		
 		_width = _cursorImg.getWidth();
 		_height = _cursorImg.getHeight();
@@ -33,16 +33,21 @@ public class Cursor {
 		_x = x;
 		_y = y;
 		
-		_cursorImg = Constants._cursor;
+		//_cursorImg = Constants._cursor;
 		
-		_width = _cursorImg.getWidth();
-		_height = _cursorImg.getHeight();
+		//_width = _cursorImg.getWidth();
+		//_height = _cursorImg.getHeight();
 		
 		_position = 0;
 	}
 	
 	public void draw(Graphics g) {
-		g.drawImage(_cursorImg, _x, _y, _width, _height, null);
+		// draw placeholder cursor
+		int [] x = { _x-10, _x, _x-10 };
+		int [] y = { _y-10, _y, _y+10 };
+		g.setColor(Color.WHITE);
+		//g.drawImage(_cursorImg, _x, _y, _width, _height, null);
+		g.fillPolygon(x, y, 3);
 	}
 	
 	public void move(int x, int y) {

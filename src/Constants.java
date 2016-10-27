@@ -81,7 +81,7 @@ public final class Constants {
 	// IMAGES.
 	
 	// TITLE IMAGE.
-	public static final BufferedImage _title = ImageBank.loadImage(_titlePath);
+	/*public static final BufferedImage _title = ImageBank.loadImage(_titlePath);
 	
 	// PAUSE IMAGE.
 	public static final BufferedImage _pauseTitle = ImageBank.loadImage(_pauseTitlePath);
@@ -137,5 +137,5 @@ public final class Constants {
 	public static final Clip _cursorPick = AudioBank.load(_cursorAudioPath);
 	public static final Clip _select = AudioBank.load(_selectPath);
 	public static final Clip _cancel = AudioBank.load(_cancelPath);
-	public static final Clip _buzzer = AudioBank.load(_buzzerPath);
+	public static final Clip _buzzer = AudioBank.load(_buzzerPath);*/
 }
