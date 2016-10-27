@@ -76,6 +76,7 @@ public final class Constants {
 	private static final String _cursorAudioPath = "../audio/cursor.wav";
 	private static final String _selectPath = "../audio/select.wav";
 	private static final String _cancelPath = "../audio/cancel.wav";
+	private static final String _buzzerPath = "../audio/buzzer.wav";
 	
 	// IMAGES.
 	
@@ -136,4 +137,5 @@ public final class Constants {
 	public static final Clip _cursorPick = AudioBank.load(_cursorAudioPath);
 	public static final Clip _select = AudioBank.load(_selectPath);
 	public static final Clip _cancel = AudioBank.load(_cancelPath);
+	public static final Clip _buzzer = AudioBank.load(_buzzerPath);
 }
