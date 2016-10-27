@@ -35,7 +35,7 @@ public class GamePanel extends JPanel implements Runnable {
 		
 		setBackground(Color.BLACK);
 		
-		SceneBank.setScene(new SceneMenu());
+		SceneBank.init();
 	}
 	
 	public void run() {

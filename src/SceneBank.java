@@ -6,13 +6,13 @@ public final class SceneBank {
 	private static final int SIZE = 4;
 	
 	// STACK FOR SCENES.
-	private static Scene[] _scenes = new Scene[SIZE];
+	private static Scene[] _scenes;
 	
 	// CURRENT SCENE.
-	private static Scene _currentScene = new SceneMenu();
+	private static Scene _currentScene;
 	
 	// SCENE STACK POSITION.
-	private static int _position = -1;
+	private static int _position;
 	
 	/*public SceneBank() {
 		_scenes = new Scene[SIZE];
@@ -21,6 +21,13 @@ public final class SceneBank {
 		
 		setScene(_currentScene);
 	}*/
+	
+	public static void init() {
+		_scenes = new Scene[SIZE];
+		_position = -1;
+		
+		setScene(new SceneMenu());
+	}
 	
 	public static void setScene(Scene newScene) {
 		_currentScene = newScene;
