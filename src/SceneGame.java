@@ -7,7 +7,8 @@ public class SceneGame extends Scene {
 	private Player _player;
 	
 	// MAP.
-
+	//private Map _map;
+	
 	// CAMERA.
 	private Camera _camera;
 
@@ -17,7 +18,9 @@ public class SceneGame extends Scene {
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		_player = new Player(360); // Six minutes is default for 8x8 map.
+		_player = new Player(); 
+		
+		_player.setTime(360); // Six minutes is default for 8x8 map.
 		
 		//_map = new Map(rand(), rand()); // Pick a random starting point for the player.
 		
@@ -38,8 +41,12 @@ public class SceneGame extends Scene {
 		// TODO Auto-generated method stub
 		_player.update();
 		
-		// Set timer on if game scene.
+		// Set timer on if game scene is the scene being used.
 		if (SceneBank.getCurrentScene().equals(this)) {
+			if (_player.isTimerActive()) {
+				_player.activateTimer();
+			}
+			
 			_player.updateTimer();
 		}
 		
@@ -66,10 +73,8 @@ public class SceneGame extends Scene {
 	}
 	
 	private void updateInput() {
-		// Pause timer and go to pause screen if 'ESC' pressed.
+		// Go to pause screen if 'ESC' pressed. Timer stops automatically when not in game scene.
 		if (InputBank.keyDown(InputBank._ESC)) {
-			_player.deactivateTimer();
-			
 			SceneBank.saveScene();
 			SceneBank.setScene(new ScenePause());
 		}
