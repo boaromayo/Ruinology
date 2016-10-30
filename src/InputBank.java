@@ -70,7 +70,8 @@ public class InputBank {
 			break;
 		}
 		
-		System.out.println(i);
+		if (_keyNow[i])
+			System.out.println(i);
 	}
 	
 	public static void update() {
