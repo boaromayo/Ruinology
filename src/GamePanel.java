@@ -90,8 +90,8 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	
 	public void update() {
-		InputBank.update();
 		SceneBank.update();
+		InputBank.update();
 	}
 	
 	@Override
