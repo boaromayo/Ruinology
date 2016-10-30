@@ -23,26 +23,26 @@ public class SceneMenu extends Scene {
 		// Initialize title screen, bg, and cursor.
 		//_titleImg = Constants._title;
 		
-		_cursor = new Cursor(100, 120);
+		_cursor = new Cursor(240, 240);
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
 		// keyboard output here
-		if (InputBank.keyDown(InputBank._W) || 
-				InputBank.keyDown(InputBank._UP)) {
+		if (InputBank.keyPressed(InputBank._W) || 
+				InputBank.keyPressed(InputBank._UP)) {
 			if (_cursor.position() > 0)
 				_cursor.decrement();
 			else
 				_cursor.setPosition(_choices.length - 1);
-		} else if (InputBank.keyDown(InputBank._S) || 
-				InputBank.keyDown(InputBank._DOWN)) {
-			if (_cursor.position() < _choices.length) 
+		} else if (InputBank.keyPressed(InputBank._S) || 
+				InputBank.keyPressed(InputBank._DOWN)) {
+			if (_cursor.position() < _choices.length - 1) 
 				_cursor.increment();
 			else
 				_cursor.setPosition(0);
-		} else if (InputBank.keyDown(InputBank._ENTER)) {
+		} else if (InputBank.keyPressed(InputBank._ENTER)) {
 			branchChoices(_cursor.position());
 		}
 	}
@@ -63,22 +63,22 @@ public class SceneMenu extends Scene {
 	
 	private void drawCursor(Graphics g) {
 		if (_cursor.position() == _START) {
-			_cursor.move(100,160);
+			_cursor.move(240,240);
 		} else if (_cursor.position() == _MAP) {
-			_cursor.move(100,200);
+			_cursor.move(240,280);
 		} else if (_cursor.position() == _QUIT) {
-			_cursor.move(100,240);
+			_cursor.move(240,320);
 		}
 		
 		_cursor.draw(g);
 	}
 	
 	private void drawChoices(Graphics g) {
-		int offset = 5;
+		int offset = 10;
 		
 		for (int i = 0; i < _choices.length; i++) {
-			//Text.draw(g, _choices[i], 120, (40 * i) + 160 + offset);
-			g.drawString(_choices[i], 120, (40 * i) + 160 + offset);
+			//Text.draw(g, _choices[i], 260, (40 * i) + 240 + offset);
+			g.drawString(_choices[i], 260, (40 * i) + 240 + offset);
 		}
 	}
 	
