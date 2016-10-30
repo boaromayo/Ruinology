@@ -75,13 +75,13 @@ public class InputBank {
 		}
 	}
 	
-	public static boolean keyPressed(int key) {
-		int i = checkKey(key);
+	public static boolean keyPressed(int i) {
+		//int i = checkKey(key);
 		return _keyNow[i] && !_keyBefore[i];
 	}
 	
-	public static boolean keyDown(int key) {
-		int i = checkKey(key);
+	public static boolean keyDown(int i) {
+		//int i = checkKey(key);
 		return _keyNow[i];
 	}
 }
