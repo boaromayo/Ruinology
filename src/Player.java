@@ -1,12 +1,15 @@
+package entity;
 import java.awt.*;
 import java.awt.image.*;
 
 import javax.sound.sampled.*;
 
+import content.*;
+
 public class Player {
 	
 	// SPRITE.
-	private BufferedImage[][] _pImg = Constants._player;
+	//private BufferedImage[][] _pImg = Constants._player;
 	
 	private BufferedImage[] _pDownImg;
 	private BufferedImage[] _pLeftImg;
@@ -65,10 +68,10 @@ public class Player {
 	private Clip _harm;
 	
 	public Player() {
-		_pDownImg = _pImg[0];
+		/*_pDownImg = _pImg[0];
 		_pLeftImg = _pImg[1];
 		_pRightImg = _pImg[2];
-		_pUpImg = _pImg[3];
+		_pUpImg = _pImg[3];*/
 		
 		_width = Constants.PLAYER_SIZE;
 		_height = Constants.PLAYER_SIZE;
@@ -96,9 +99,9 @@ public class Player {
 		
 		_score = 0;
 		
-		_getItem = Constants._getItem;
+		/*_getItem = Constants._getItem;
 		_getMoney = Constants._getMoney;
-		_harm = Constants._harm;
+		_harm = Constants._harm;*/
 	}
 	
 	public void update() {
@@ -179,13 +182,13 @@ public class Player {
 	
 	public void drawHealth(Graphics g) {
 		// draw hud for health
-		BufferedImage heartImg = Constants._heart;
+		//BufferedImage heartImg = Constants._heart;
 		//BufferedImage bar = Constants._bar;
 		
-		int heartWidth = heartImg.getWidth();
+		/*int heartWidth = heartImg.getWidth();
 		int heartHeight = heartImg.getHeight();
 		
-		g.drawImage(heartImg, 20, Constants.HEIGHT_FINAL - 30, heartWidth, heartHeight, null);
+		g.drawImage(heartImg, 20, Constants.HEIGHT_FINAL - 30, heartWidth, heartHeight, null);*/
 		
 		//g.drawImage(bar, 50, Constants.HEIGHT_FINAL - 30, bar.getWidth(), bar.getHeight(), null);
 		
@@ -195,13 +198,13 @@ public class Player {
 	
 	public void drawStamina(Graphics g) {
 		// draw hud for stamina
-		BufferedImage stamImg = Constants._stamina;
+		//BufferedImage stamImg = Constants._stamina;
 		//BufferedImage bar = Constants._bar;
 		
-		int stamWidth = stamImg.getWidth();
+		/*int stamWidth = stamImg.getWidth();
 		int stamHeight = stamImg.getHeight();
 		
-		g.drawImage(stamImg, 20, Constants.HEIGHT_FINAL - 10, stamWidth, stamHeight, null);
+		g.drawImage(stamImg, 20, Constants.HEIGHT_FINAL - 10, stamWidth, stamHeight, null);*/
 		
 		//g.drawImage(bar, 50, Constants.HEIGHT_FINAL - 10, bar.getWidth(), bar.getHeight(), null);
 		

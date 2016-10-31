@@ -1,10 +1,12 @@
+package entity;
+
 import java.awt.*;
 
 public class HealPotion extends UsableItem {
 	
 	public HealPotion() {
 		// TODO Auto-generated constructor stub
-		_img = Constants._bluePotion;
+		//_img = Constants._bluePotion;
 		
 		_width = _img.getWidth();
 		_height = _img.getHeight();
@@ -25,7 +27,7 @@ public class HealPotion extends UsableItem {
 	@Override
 	public void use(Player p) {
 		// TODO Auto-generated method stub
-		AudioBank.play(Constants._drink); // play drinking sound
+		//AudioBank.play(Constants._drink); // play drinking sound
 		p.heal(3);
 	}
 

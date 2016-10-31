@@ -1,3 +1,4 @@
+package entity;
 
 public enum MoneyType {
 	// show the types of money in-game
@@ -9,7 +10,8 @@ public enum MoneyType {
 	EMERALD(2500), 
 	RUBY(2500), 
 	SAPPHIRE(2500), 
-	TOPAZ(2500), 
+	TOPAZ(2500),
+	IDOL(3000), 
 	GOLD_DIAMOND(5000),
 	PINK_DIAMOND(10000);*/
 	

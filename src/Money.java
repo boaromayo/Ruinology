@@ -1,3 +1,4 @@
+package entity;
 import java.awt.*;
 import java.awt.image.*;
 
@@ -34,13 +35,13 @@ public class Money extends Item {
 	private BufferedImage getCoinImage(MoneyType mt) {
 		BufferedImage coinImg = null;
 		
-		if (mt.equals(MoneyType.BRONZE_COIN)) {
+		/*if (mt.equals(MoneyType.BRONZE_COIN)) {
 			coinImg = Constants._bronzeCoin;
 		} else if (mt.equals(MoneyType.SILVER_COIN)) {
 			coinImg = Constants._silverCoin;
 		} else if (mt.equals(MoneyType.GOLD_COIN)) {
 			coinImg = Constants._goldCoin;
-		}
+		}*/
 		
 		return coinImg;
 	}

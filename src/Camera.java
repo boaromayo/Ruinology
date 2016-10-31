@@ -1,3 +1,6 @@
+package entity;
+
+import content.*;
 
 public class Camera {
 	

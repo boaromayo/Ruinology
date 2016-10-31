@@ -1,3 +1,4 @@
+package entity;
 
 public abstract class UsableItem extends Item {
 	

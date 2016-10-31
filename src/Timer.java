@@ -1,5 +1,8 @@
+package entity;
 import java.awt.*;
 import java.awt.image.*;
+
+import content.Constants;
 
 public class Timer {
 
@@ -17,7 +20,7 @@ public class Timer {
 	private boolean _timerOn;
 	
 	public Timer(int sec) {
-		_timerImg = Constants._timer;
+		//_timerImg = Constants._timer;
 		
 		_framecount = 0;
 		
@@ -27,11 +30,13 @@ public class Timer {
 	}
 	
 	public void update() {
-		_framecount++;
-		
-		if (_framecount == DELAY) {
-			_timercount--;
-			_framecount = 0;
+		if (isActive()) {
+			_framecount++;
+			
+			if (_framecount == DELAY) {
+				_timercount--;
+				_framecount = 0;
+			}
 		}
 	}
 	
