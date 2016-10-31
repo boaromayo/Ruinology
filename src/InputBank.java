@@ -69,9 +69,6 @@ public class InputBank {
 		default:
 			break;
 		}
-		
-		if (_keyNow[i])
-			System.out.println(i);
 	}
 	
 	public static void update() {
