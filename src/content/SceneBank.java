@@ -1,3 +1,5 @@
+package content;
+
 import java.awt.*;
 
 import scenes.*;
