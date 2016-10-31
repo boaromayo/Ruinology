@@ -90,6 +90,7 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	
 	public void update() {
+		// update order is important here!
 		SceneBank.update();
 		InputBank.update();
 	}
