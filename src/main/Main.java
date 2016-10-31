@@ -1,3 +1,4 @@
+package main;
 /**=================================
 // Ruinology - An unofficial attempt for the 
 // Ludum Dare 36 Game Jam, 
