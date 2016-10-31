@@ -1,5 +1,7 @@
 import java.awt.*;
 
+import scenes.*;
+
 public final class SceneBank {
 	
 	// SCENE BANK SIZE.
