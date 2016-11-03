@@ -7,7 +7,7 @@ import scenes.*;
 public final class SceneBank {
 	
 	// SCENE BANK SIZE.
-	private static final int SIZE = 4;
+	private static final int SIZE = 2;
 	
 	// STACK FOR SCENES.
 	private static Scene[] _scenes;
