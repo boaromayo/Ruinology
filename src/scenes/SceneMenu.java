@@ -93,6 +93,8 @@ public class SceneMenu extends Scene {
 			//SceneBank.setScene(new SceneGame());
 		} else if (choice == _MAP) {
 			// Go to map menu scene
+			SceneBank.saveScene();
+			SceneBank.setScene(new SceneMapMenu());
 		} else if (choice == _QUIT) {
 			System.exit(0); // shutdown
 		}
