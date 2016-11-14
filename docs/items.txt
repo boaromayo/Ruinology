@@ -1,0 +1,13 @@
+Types of items in Ruinology:
+
+Potions:
+	-These are Usable Items and are carried in player's Bag.
+	-Effects vary from recovery of health or stamina to doubling effect of player's score.
+
+Money:
+	-Money increases player's score.
+	-Value varies based on the type of money, or valuable gems or treasures obtained.
+	
+Hourglass:
+	-Are not Usable Items and can work once when picked up.
+	-Amt of time extended based on type of hourglass.
