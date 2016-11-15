@@ -150,12 +150,14 @@ public class Player {
 			setdy(_speed);
 			setDirection(Direction.UP);
 		} else if (InputBank.keyPressed(InputBank._Z)) {
+			// move bag select cursor back
 			if (_position < 0) {
 				setItem(_MAX_BAGSIZE - 1);
 			} else {
 				setItem(_position--);
 			}
 		} else if (InputBank.keyPressed(InputBank._X)) {
+			// move bag select cursor forth
 			if (_position > _MAX_BAGSIZE - 1)
 				setItem(0);
 			else
