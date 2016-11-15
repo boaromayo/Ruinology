@@ -54,7 +54,7 @@ public class Player {
 	private Timer _timer;
 	
 	// ITEM BAG.
-	private final int _BAGCAP = 3;
+	private final int _MAX_BAGSIZE = 3;
 	private UsableItem[] _bag;
 	private int _bagSize;
 	private int _position;
@@ -93,7 +93,7 @@ public class Player {
 		
 		_dead = false;
 		
-		_bag = new UsableItem[_BAGCAP];
+		_bag = new UsableItem[_MAX_BAGSIZE];
 		_bagSize = 0;
 		_position = 0;
 		
@@ -133,22 +133,33 @@ public class Player {
 	
 	private void updateInput() {
 		// keyboard output here
-		if (InputBank.keyDown(InputBank._S) || 
-				InputBank.keyDown(InputBank._DOWN)) {
+		if (InputBank.keyPressed(InputBank._S) || 
+				InputBank.keyPressed(InputBank._DOWN)) {
 			setdy(-_speed);
 			setDirection(Direction.DOWN);
-		} else if (InputBank.keyDown(InputBank._A) ||
-				InputBank.keyDown(InputBank._LEFT)) {
+		} else if (InputBank.keyPressed(InputBank._A) ||
+				InputBank.keyPressed(InputBank._LEFT)) {
 			setdx(-_speed);
 			setDirection(Direction.LEFT);
-		} else if (InputBank.keyDown(InputBank._D) ||
-				InputBank.keyDown(InputBank._RIGHT)) {
+		} else if (InputBank.keyPressed(InputBank._D) ||
+				InputBank.keyPressed(InputBank._RIGHT)) {
 			setdx(_speed);
 			setDirection(Direction.RIGHT);
-		} else if (InputBank.keyDown(InputBank._W) ||
-				InputBank.keyDown(InputBank._UP)) {
+		} else if (InputBank.keyPressed(InputBank._W) ||
+				InputBank.keyPressed(InputBank._UP)) {
 			setdy(_speed);
 			setDirection(Direction.UP);
+		} else if (InputBank.keyPressed(InputBank._Z)) {
+			if (_position < 0) {
+				setItem(0);
+			} else {
+				setItem(_position--);
+			}
+		} else if (InputBank.keyPressed(InputBank._X)) {
+			if (_position > _MAX_BAGSIZE - 1)
+				setItem(_MAX_BAGSIZE - 1);
+			else
+				setItem(_position++);
 		} else {
 			setdx(0);
 			setdy(0);
@@ -219,7 +230,7 @@ public class Player {
 	public void drawBag(Graphics g) {
 		// draw hud part for bag
 		g.setColor(Color.WHITE);
-		for (int i = 0; i < _bagSize; i++) {
+		for (int i = 0; i < _MAX_BAGSIZE; i++) {
 			g.drawRect(180 + (36 * i), Constants.HEIGHT_FINAL - 24, 32, 32);
 		}
 		
@@ -232,7 +243,7 @@ public class Player {
 	
 	// ITEMS.
 	public void addItem(UsableItem item) {
-		if (_bagSize < _bag.length - 1) {
+		if (_bagSize < _MAX_BAGSIZE - 1) {
 			item.setVisible(false);
 			itemGet();
 			_bag[_bagSize++] = item;
@@ -245,6 +256,10 @@ public class Player {
 			_bag[_position] = null;
 			_bagSize--;
 		}
+	}
+	
+	public void setItem(int pos) {
+		_position = pos;
 	}
 	
 	// EFFECTS.
