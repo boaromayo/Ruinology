@@ -4,12 +4,14 @@ import java.awt.event.*;
 public class InputBank {
 
 	// CURRENT KEYS.
-	private static final int _TOTALKEYS = 10;
+	private static final int _TOTALKEYS = 12;
 	
 	public static final int _W = KeyEvent.VK_W;
 	public static final int _A = KeyEvent.VK_A;
 	public static final int _S = KeyEvent.VK_S;
 	public static final int _D = KeyEvent.VK_D;
+	public static final int _Z = KeyEvent.VK_Z;
+	public static final int _X = KeyEvent.VK_X;
 	public static final int _UP = KeyEvent.VK_UP;
 	public static final int _LEFT = KeyEvent.VK_LEFT;
 	public static final int _RIGHT = KeyEvent.VK_RIGHT;
@@ -17,7 +19,7 @@ public class InputBank {
 	public static final int _ENTER = KeyEvent.VK_ENTER;
 	public static final int _ESC = KeyEvent.VK_ESCAPE;
 	
-	private static int [] _keys = { _W, _A, _S, _D, _UP, _LEFT, _RIGHT, _DOWN, _ENTER, _ESC };
+	private static int [] _keys = { _W, _A, _S, _D, _Z, _X, _UP, _LEFT, _RIGHT, _DOWN, _ENTER, _ESC };
 	
 	// KEY PRESS MEMORY STORAGE.
 	private static boolean [] _keyBefore = new boolean[_TOTALKEYS];
@@ -34,8 +36,6 @@ public class InputBank {
 	}
 	
 	public static void setKey(int key, boolean set) {
-		int i = checkKey(key);
-		
 		switch(key) {
 		case _W:
 			_keyNow[0] = set;
@@ -49,23 +49,29 @@ public class InputBank {
 		case _D:
 			_keyNow[3] = set;
 			break;
-		case _UP:
+		case _Z:
 			_keyNow[4] = set;
 			break;
-		case _LEFT:
+		case _X:
 			_keyNow[5] = set;
 			break;
-		case _RIGHT:
+		case _UP:
 			_keyNow[6] = set;
 			break;
-		case _DOWN:
+		case _LEFT:
 			_keyNow[7] = set;
 			break;
-		case _ENTER:
+		case _RIGHT:
 			_keyNow[8] = set;
 			break;
-		case _ESC:
+		case _DOWN:
 			_keyNow[9] = set;
+			break;
+		case _ENTER:
+			_keyNow[10] = set;
+			break;
+		case _ESC:
+			_keyNow[11] = set;
 			break;
 		default:
 			break;
