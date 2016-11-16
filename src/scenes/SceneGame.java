@@ -5,19 +5,20 @@ import java.util.*;
 
 import content.*;
 import entity.*;
+import map.*;
 
 public class SceneGame extends Scene {
 	
 	// PLAYER.
 	private Player _player;
 	
-	// MAP.
-	//private Map _map;
+	// MAZE.
+	//private Maze _maze;
 	
 	// CAMERA.
 	private Camera _camera;
 
-	// SET OF ITEMS ON MAP.
+	// SET OF ITEMS IN MAZE.
 	ArrayList<Item> _items;
 	
 	@Override
@@ -25,9 +26,9 @@ public class SceneGame extends Scene {
 		// TODO Auto-generated method stub
 		_player = new Player(); 
 		
-		_player.setTime(360); // Six minutes is default for 8x8 map.
+		_player.setTime(360); // Six minutes is default for 8x8 maze.
 		
-		//_map = new Map(rand(), rand()); // Pick a random starting point for the player.
+		//_maze = new Maze(rand(), rand()); // Pick a random starting point for the player.
 		
 		//_camera = new Camera(); // Set camera to player's current room location.
 		
@@ -48,7 +49,7 @@ public class SceneGame extends Scene {
 		
 		// Set timer on if game scene is the scene being used.
 		if (SceneBank.getCurrentScene().equals(this)) {
-			if (_player.isTimerActive()) {
+			if (!_player.isTimerActive()) {
 				_player.activateTimer();
 			}
 			
@@ -78,8 +79,9 @@ public class SceneGame extends Scene {
 	}
 	
 	private void updateInput() {
-		// Go to pause screen if 'ESC' pressed. Timer stops automatically when not in game scene.
-		if (InputBank.keyDown(InputBank._ESC)) {
+		// Go to pause screen if 'ESC' pressed. Timer stops when not in game scene.
+		if (InputBank.keyPressed(InputBank._ESC)) {
+			_player.deactivateTimer();
 			SceneBank.saveScene();
 			SceneBank.setScene(new ScenePause());
 		}
