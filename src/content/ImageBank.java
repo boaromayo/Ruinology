@@ -36,6 +36,10 @@ public final class ImageBank {
 		return null;
 	}
 	
+	public static BufferedImage[][] loadImages(String path, int x, int y, int size) {
+		return loadImages(path, x, y, size, size);
+	}
+	
 	public static BufferedImage[][] loadImages(String path, int x, int y, int w, int h) {
 		try {
 			BufferedImage img = loadImage(path);

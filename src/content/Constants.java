@@ -18,6 +18,9 @@ public final class Constants {
 	// TILE SIZE.
 	public static final int TILE_SIZE = 24;
 	
+	// FONT SIZE.
+	private static final int FONT_SIZE = 16;
+	
 	// FILE PATHS.
 	
 	// TITLE IMAGE.
@@ -62,6 +65,9 @@ public final class Constants {
 	private static final String _silverCoinPath = "../img/coin_silver.gif";
 	private static final String _goldCoinPath = "../img/coin_gold.gif";
 	
+	// TILESET.
+	private static final String _tilesetPath = "../img/tileset.gif";
+	
 	// SOUNDS.
 	
 	// PLAYER SOUNDS.
@@ -94,13 +100,13 @@ public final class Constants {
 	public static final BufferedImage _gameoverTitle = ImageBank.loadImage(_gameoverPath);
 	
 	// TEXT
-	public static final BufferedImage[][] _font = ImageBank.loadImages(_fontPath, 0, 0, 16, 16);
+	public static final BufferedImage[][] _font = ImageBank.loadImages(_fontPath, 0, 0, FONT_SIZE);
 	
 	// CURSOR.
 	public static final BufferedImage _cursor = ImageBank.loadImage(_cursorPath);
 	
 	// PLAYER IMAGES.
-	public static final BufferedImage[][] _player = ImageBank.loadImages(_playerPath, 0, 0, PLAYER_SIZE, PLAYER_SIZE);
+	public static final BufferedImage[][] _player = ImageBank.loadImages(_playerPath, 0, 0, PLAYER_SIZE);
 	
 	// TIMER.
 	public static final BufferedImage _timer = ImageBank.loadImage(_timerPath);
@@ -122,6 +128,9 @@ public final class Constants {
 	public static final BufferedImage _bronzeCoin = ImageBank.loadImage(_bronzeCoinPath);
 	public static final BufferedImage _silverCoin = ImageBank.loadImage(_silverCoinPath);
 	public static final BufferedImage _goldCoin = ImageBank.loadImage(_goldCoinPath);
+	
+	// TILESET.
+	public static final BufferedImage[][] _tileset = ImageBank.loadImages(_tilesetPath, 0, 0, TILE_SIZE);
 	
 	// SOUNDS.
 	
