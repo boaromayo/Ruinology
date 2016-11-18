@@ -13,14 +13,15 @@ public class SceneMenu extends Scene {
 	
 	// CHOICES.
 	private final int _START = 0;
-	private final int _MAP = 1;
-	private final int _QUIT = 2;
+	private final int _QUIT = 1;
+	//private final int _MAP = 1;
+	//private final int _QUIT = 2;
 	
 	// CURSOR.
 	private Cursor _cursor;
 	
 	// MENU ARRAY.
-	private String [] _choices = { "START", "MAP SIZE", "QUIT" };
+	private String [] _choices = { "START", "QUIT" };
 	
 	@Override
 	public void init() {
@@ -69,11 +70,11 @@ public class SceneMenu extends Scene {
 	private void drawCursor(Graphics g) {
 		if (_cursor.position() == _START) {
 			_cursor.move(240,240);
-		} else if (_cursor.position() == _MAP) {
-			_cursor.move(240,280);
 		} else if (_cursor.position() == _QUIT) {
+			_cursor.move(240,280);
+		} /*else if (_cursor.position() == _QUIT) {
 			_cursor.move(240,320);
-		}
+		}*/
 		
 		_cursor.draw(g);
 	}
@@ -91,12 +92,14 @@ public class SceneMenu extends Scene {
 		if (choice == _START) {
 			// Start game
 			//SceneBank.setScene(new SceneGame());
-		} else if (choice == _MAP) {
+		} else if (choice == _QUIT) {
+			System.exit(0); // shutdown
+		}/* else if (choice == _MAP) {
 			// Go to map menu scene
 			SceneBank.saveScene();
 			SceneBank.setScene(new SceneMapMenu());
 		} else if (choice == _QUIT) {
 			System.exit(0); // shutdown
-		}
+		}*/
 	}
 }
