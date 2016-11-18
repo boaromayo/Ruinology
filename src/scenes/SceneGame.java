@@ -28,7 +28,7 @@ public class SceneGame extends Scene {
 		
 		_player.setTime(360); // Six minutes is default for 8x8 maze.
 		
-		//_maze = new Maze(rand(), rand()); // Pick a random starting point for the player.
+		//_maze = new Maze(_player, 1); // Let maze set player's starting room.
 		
 		//_camera = new Camera(); // Set camera to player's current room location.
 		
