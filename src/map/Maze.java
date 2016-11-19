@@ -35,9 +35,8 @@ public class Maze {
 		} else if (_mazeMode == 2) {
 			_rooms = new Room[10][10]; // 10x10 is 100 rooms!!!
 		} else {
-			System.err.println("ERROR: Maze mode number is not within range.");
-			System.err.println("Maze mode number: " + _mazeMode);
-			System.exit(1);
+			throw new RuntimeException("ERROR: Maze mode number is not within range.\n" +
+					"Maze mode number: " + _mazeMode);
 		}
 	}
 }

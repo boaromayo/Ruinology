@@ -27,11 +27,11 @@ public class Tile {
 	}
 	
 	public Tile(BufferedImage img, int id, String type) {
-		new Tile(img, id, type, false, false, 0);
+		this(img, id, type, false, false, 0);
 	}
 	
 	public Tile(BufferedImage img, int id, String type, boolean solid) {
-		new Tile(img, id, type, solid, false, 0);
+		this(img, id, type, solid, false, 0);
 	}
 	
 	public Tile(BufferedImage img, int id, String type, boolean solid, boolean dangerous, int dmg) {
