@@ -71,19 +71,19 @@ public final class Constants {
 	// SOUNDS.
 	
 	// PLAYER SOUNDS.
-	private static final String _drinkPath = "../audio/bubble.wav";
-	private static final String _harmPath = "../audio/harm.wav";
+	private static final String _drinkPath = "../sfx/bubble.wav";
+	private static final String _harmPath = "../sfx/harm.wav";
 	
 	// ITEM GET SOUNDS.
-	private static final String _getMoneyPath = "../audio/clink.wav";
-	private static final String _getItemPath = "../audio/item.wav";
-	private static final String _getHrglassPath = "../audio/warp.wav";
+	private static final String _getMoneyPath = "../sfx/clink.wav";
+	private static final String _getItemPath = "../sfx/item.wav";
+	private static final String _getHrglassPath = "../sfx/warp.wav";
 	
 	// MENU SOUNDS.
-	private static final String _cursorAudioPath = "../audio/cursor.wav";
-	private static final String _selectPath = "../audio/select.wav";
-	private static final String _cancelPath = "../audio/cancel.wav";
-	private static final String _buzzerPath = "../audio/buzzer.wav";
+	private static final String _cursorAudioPath = "../sfx/cursor.wav";
+	private static final String _selectPath = "../sfx/select.wav";
+	private static final String _cancelPath = "../sfx/cancel.wav";
+	private static final String _buzzerPath = "../sfx/buzzer.wav";
 	
 	// IMAGES.
 	
@@ -130,7 +130,7 @@ public final class Constants {
 	public static final BufferedImage _goldCoin = ImageBank.loadImage(_goldCoinPath);
 	
 	// TILESET.
-	public static final BufferedImage[][] _tileset = ImageBank.loadImages(_tilesetPath, 0, 0, TILE_SIZE);
+	public static final BufferedImage[][] _tileset = ImageBank.loadImage(_tilesetPath, 0, 0, TILE_SIZE);
 	
 	// SOUNDS.
 	
