@@ -1,5 +1,9 @@
 package entity;
 
+import java.awt.image.*;
+
+import content.Constants;
+
 public enum MoneyType {
 	// show the types of money in-game
 	BRONZE_COIN(10), 
@@ -17,11 +21,23 @@ public enum MoneyType {
 	
 	private int _value;
 	
+	private BufferedImage _img;
+	
 	private MoneyType(int v) {
 		_value = v;
+		_img = null;
+	}
+	
+	private MoneyType(int v, BufferedImage img) {
+		_value = v;
+		_img = img;
 	}
 	
 	public int value() {
 		return _value;
+	}
+	
+	public BufferedImage image() {
+		return _img;
 	}
 }
