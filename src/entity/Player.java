@@ -8,15 +8,24 @@ import content.*;
 
 public class Player {
 	
-	// SPRITE.
+	// SPRITES - IDLE & MOVING.
 	//private BufferedImage[][] _pImg = Constants._player;
 	
 	private BufferedImage[] _pDownImg;
-	private BufferedImage[] _pLeftImg;
-	private BufferedImage[] _pRightImg;
-	private BufferedImage[] _pUpImg;
+	private BufferedImage[] _pDownMovingImg;
 	
-	private BufferedImage[] _pCurrentImg;
+	private BufferedImage[] _pLeftImg;
+	private BufferedImage[] _pLeftMovingImg;
+	
+	private BufferedImage[] _pRightImg;
+	private BufferedImage[] _pRightMovingImg;
+	
+	private BufferedImage[] _pUpImg;
+	private BufferedImage[] _pUpMovingImg;
+	
+	private BufferedImage[] _pDeadImg;
+	
+	private BufferedImage[] _pCurrentImg; // The current sprites being used.
 	
 	// ANIMATION VARS.
 	private int _framecount;
@@ -48,6 +57,8 @@ public class Player {
 	private int _sp;
 	private int _maxsp;
 	
+	private boolean _moving;
+	
 	private boolean _dead;
 	
 	// TIMER.
@@ -71,7 +82,11 @@ public class Player {
 		/*_pDownImg = _pImg[0];
 		_pLeftImg = _pImg[1];
 		_pRightImg = _pImg[2];
-		_pUpImg = _pImg[3];*/
+		_pUpImg = _pImg[3];
+		_pDownMovingImg = _pImg[4]
+		_pLeftMovingImg = _pImg[5]
+		_pRightMovingImg = _pImg[6]
+		_pDownMovingImg = _pImg[7]*/
 		
 		_width = Constants.PLAYER_SIZE;
 		_height = Constants.PLAYER_SIZE;
@@ -105,16 +120,25 @@ public class Player {
 	}
 	
 	public void update() {
-		// if health is 0, kill player.
+		// If health is 0 or below that, kill player.
 		if (getHealth() <= 0) {
 			kill();
 		}
 		
-		// animate sprite.
-		animate();
+		// Check if player's dead.
+		if (isDead()) {
+			// Play dead sound
+			// Set to dead sprite.
+			_pCurrentImg = _pDeadImg;
+		}
 		
+		// Animate sprite.
+		animate();
+				
+		// Check the input being pressed.
 		updateInput();
-
+				
+		// Move player.
 		move();
 	}
 	
@@ -133,21 +157,25 @@ public class Player {
 	
 	private void updateInput() {
 		// keyboard output here
-		if (InputBank.keyPressed(InputBank._S) || 
-				InputBank.keyPressed(InputBank._DOWN)) {
+		if (InputBank.keyDown(InputBank._S) || 
+				InputBank.keyDown(InputBank._DOWN)) {
 			setdy(-_speed);
+			setMoving(true);
 			setDirection(Direction.DOWN);
-		} else if (InputBank.keyPressed(InputBank._A) ||
-				InputBank.keyPressed(InputBank._LEFT)) {
+		} else if (InputBank.keyDown(InputBank._A) ||
+				InputBank.keyDown(InputBank._LEFT)) {
 			setdx(-_speed);
+			setMoving(true);
 			setDirection(Direction.LEFT);
-		} else if (InputBank.keyPressed(InputBank._D) ||
-				InputBank.keyPressed(InputBank._RIGHT)) {
+		} else if (InputBank.keyDown(InputBank._D) ||
+				InputBank.keyDown(InputBank._RIGHT)) {
 			setdx(_speed);
+			setMoving(true);
 			setDirection(Direction.RIGHT);
-		} else if (InputBank.keyPressed(InputBank._W) ||
-				InputBank.keyPressed(InputBank._UP)) {
+		} else if (InputBank.keyDown(InputBank._W) ||
+				InputBank.keyDown(InputBank._UP)) {
 			setdy(_speed);
+			setMoving(true);
 			setDirection(Direction.UP);
 		} else if (InputBank.keyPressed(InputBank._Z)) {
 			// move bag select cursor back
@@ -165,12 +193,13 @@ public class Player {
 		} else {
 			setdx(0);
 			setdy(0);
+			setMoving(false);
 		}
 	}
 	
 	private void move() {
 		_x += _dx;
-		_y += _dy;
+		_y += _dy;	
 	}
 	
 	public void draw(Graphics g) {
@@ -193,7 +222,7 @@ public class Player {
 		drawBag(g);
 	}
 	
-	public void drawHealth(Graphics g) {
+	private void drawHealth(Graphics g) {
 		// draw hud for health
 		//BufferedImage heartImg = Constants._heart;
 		//BufferedImage bar = Constants._bar;
@@ -209,7 +238,7 @@ public class Player {
 		g.fillRect(50, Constants.HEIGHT_FINAL - 30, (_hp / _maxhp) * 100, 8);
 	}
 	
-	public void drawStamina(Graphics g) {
+	private void drawStamina(Graphics g) {
 		// draw hud for stamina
 		//BufferedImage stamImg = Constants._stamina;
 		//BufferedImage bar = Constants._bar;
@@ -225,11 +254,11 @@ public class Player {
 		g.fillRect(50, Constants.HEIGHT_FINAL - 10, (_sp / _maxsp) * 50, 8);
 	}
 	
-	public void drawTimer(Graphics g) {
+	private void drawTimer(Graphics g) {
 		_timer.draw(g);
 	}
 	
-	public void drawBag(Graphics g) {
+	private void drawBag(Graphics g) {
 		// draw hud part for bag
 		g.setColor(Color.WHITE);
 		for (int i = 0; i < _MAX_BAGSIZE; i++) {
@@ -322,18 +351,33 @@ public class Player {
 		_dy = y;
 	}
 	
+	public void setMoving(boolean m) {
+		_moving = m;
+	}
+	
 	private void setDirection(Direction d) {
 		_dir = d;
 		
 		// Update the sprites as well.
-		if (_dir.equals(Direction.DOWN))
-			_pCurrentImg = _pDownImg;
-		else if (_dir.equals(Direction.LEFT))
-			_pCurrentImg = _pLeftImg;
-		else if (_dir.equals(Direction.RIGHT))
-			_pCurrentImg = _pRightImg;
-		else if (_dir.equals(Direction.UP))
-			_pCurrentImg = _pUpImg;
+		if (isMoving()) {
+			if (isFacingDown())
+				_pCurrentImg = _pDownMovingImg;
+			else if (isFacingLeft())
+				_pCurrentImg = _pLeftMovingImg;
+			else if (isFacingRight())
+				_pCurrentImg = _pRightMovingImg;
+			else if (isFacingUp())
+				_pCurrentImg = _pUpMovingImg;
+		} else {
+			if (isFacingDown())
+				_pCurrentImg = _pDownImg;
+			else if (isFacingLeft())
+				_pCurrentImg = _pLeftImg;
+			else if (isFacingRight())
+				_pCurrentImg = _pRightImg;
+			else if (isFacingUp())
+				_pCurrentImg = _pUpImg;
+		}
 	}
 	
 	public BufferedImage getCurrentImage() {
@@ -371,6 +415,10 @@ public class Player {
 	
 	public int getScore() {
 		return _score;
+	}
+	
+	public boolean isMoving() {
+		return _moving;
 	}
 	
 	public boolean isDead() {
