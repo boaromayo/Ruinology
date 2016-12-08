@@ -159,9 +159,6 @@ public class Room {
 				for (col = 0; col < _tiles[row].length; col++)
 					_tiles[row][col] = new Tile(_tilesetImg[_tileids[row][col]], 
 							_tileids[row][col], _tiletypes[_tileids[row][col]]); // Form the tiles for the room.
-			
-			for (row = 0; row < _tiles.length; row++)
-				for (col = 0; col < _tiles[row].length; col++)
 					
 			reader.close(); // Close reader.
 		} catch (Exception e) {
@@ -182,10 +179,26 @@ public class Room {
 						Constants.TILE_SIZE, Constants.TILE_SIZE, null); // Draw the room.
 	}
 	
+	public int getRows() {
+		return _height;
+	}
+	
+	public int getCols() {
+		return _width;
+	}
+	
 	public int[][] getRoomArray() {
 		if (_tileids == null)
 			return null;
 		
 		return _tileids;
+	}
+	
+	public Tile getTile(int row, int col) {
+		Tile tile = _tiles[row][col];
+		if (tile == null)
+			return new Tile(_tilesetImg[0], 0, _tiletypes[0]); // Return a blank tile.
+		
+		return tile;
 	}
 }
