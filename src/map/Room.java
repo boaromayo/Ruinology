@@ -92,6 +92,40 @@ public class Room {
 	}
 	
 	private void loadTiles() {
+		// Read through a separate file and get the
+		// image, type, and behavior corresponding to the ID number.
+		File tableFile = new File("../assets/maps/tileset.txt");
+		
+		try {
+			BufferedReader tablereader = new BufferedReader(
+					new FileReader(tableFile));
+			String delim = "\\s+"; // Ignore whitespace.
+			
+			int tableRows = Integer.valueOf(tablereader.readLine()); // First line to read in the table is the number available.
+			int row = 0;
+						
+			// Set size of arrays of tile images and types.
+			_tilesetImg = new BufferedImage[tableRows];
+			_tiletypes = new String[tableRows];
+						
+			while (row < tableRows) {
+				String line = tablereader.readLine();
+				String strImg = line.split(delim)[1].substring(0);
+				String strType = line.split(delim)[2].substring(0);
+				
+				_tilesetImg[row] = ImageBank.loadImage("../assets/img/" + strImg);
+				_tiletypes[row] = strType;
+				
+				row++;
+			}
+			
+			tablereader.close(); // Close reader for table.
+		} catch (IOException ioe) {
+			System.err.println("Could not load the table file " + tableFile.getPath() + "\n"
+					+ "Reason: " + ioe.getMessage());
+			ioe.printStackTrace();
+		}
+		
 		/*for (int row = 0; row < _tiles.length; row++)
 			for (int col = 0; col < _tiles[row].length; col++)
 				_tiles[row][col] = new Tile(_tileset[row][col]);*/
@@ -104,16 +138,12 @@ public class Room {
 	}
 	
 	private void printRoom(File file) {
-		// Read through each line.
+		// Read through each line of the map.
 		try {
-			File tableFile = new File("../assets/maps/tileset.txt");
 			BufferedReader reader = new BufferedReader(
-					new FileReader(file));
-			BufferedReader tablereader = new BufferedReader(
-					new FileReader(tableFile));
+					new FileReader(file));			
 			String delim = "\\s+"; // Ignore whitespace.
-			
-			int tableRows = 0;
+
 			int row = 0;
 			int col = 0;
 			
@@ -125,26 +155,6 @@ public class Room {
 				}
 			}
 			
-			// Read through a separate file and get the
-			// image, type, and behavior corresponding to the ID number.
-			tableRows = Integer.valueOf(tablereader.readLine()); // First line to read in the table is the number available.
-			row = 0;
-			
-			// Set size of arrays of tile images and types.
-			_tilesetImg = new BufferedImage[tableRows];
-			_tiletypes = new String[tableRows];
-			
-			while (row < tableRows) {
-				String line = tablereader.readLine();
-				String strImg = line.split(delim)[1].substring(0);
-				String strType = line.split(delim)[2].substring(0);
-				
-				_tilesetImg[row] = ImageBank.loadImage("../assets/img/" + strImg);
-				_tiletypes[row] = strType;
-				
-				row++;
-			}
-			
 			for (row = 0; row < _tiles.length; row++)
 				for (col = 0; col < _tiles[row].length; col++)
 					_tiles[row][col] = new Tile(_tilesetImg[_tileids[row][col]], 
@@ -154,7 +164,6 @@ public class Room {
 				for (col = 0; col < _tiles[row].length; col++)
 					
 			reader.close(); // Close reader.
-			tablereader.close(); // Close reader for table.
 		} catch (Exception e) {
 			System.err.println("Unable to read file " + _file + "\n" + 
 					"Reason: " + e.getMessage());
