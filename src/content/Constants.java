@@ -5,8 +5,8 @@ import javax.sound.sampled.*;
 
 public final class Constants {
 	// PANEL CONSTANTS.
-	public static final int WIDTH = 640;
-	public static final int HEIGHT = 440;
+	public static final int WIDTH = 480;
+	public static final int HEIGHT = 320;
 	public static final int HEIGHT_HUD = 40;
 	public static final int HEIGHT_FINAL = HEIGHT + HEIGHT_HUD;
 	public static final int FPS = 60;
