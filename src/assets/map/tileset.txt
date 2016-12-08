@@ -1,0 +1,11 @@
+10
+0 blank.gif blank
+1 floor.gif floor
+2 wall.gif wall true
+3 block.gif block true
+4 pillar.gif pillar true
+5 openchest.gif chest_open true
+6 closechest.gif chest_closed true
+7 water.gif water true
+8 lava.gif lava false true 2
+9 ladder.gif ladder false
