@@ -8,7 +8,8 @@ public enum MoneyType {
 	// show the types of money in-game
 	BRONZE_COIN(10), 
 	SILVER_COIN(20), 
-	GOLD_COIN(50); 
+	GOLD_COIN(50),
+	CRYSTAL(100);
 	/*DIAMOND(200), 
 	PEARL(1000), 
 	EMERALD(2500), 
