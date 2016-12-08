@@ -132,7 +132,7 @@ public class Player {
 			// Play dead sound
 			// Set to dead sprite.
 			// Block input.
-			setCurrentImage(_pDeadImg);
+			setCurrentImages(_pDeadImg);
 		} else {
 			// Check the input being pressed.
 			updateInput();
@@ -366,27 +366,27 @@ public class Player {
 		// Update the sprites as well.
 		if (isMoving()) {
 			if (isFacingDown())
-				setCurrentImage(_pDownMovingImg);
+				setCurrentImages(_pDownMovingImg);
 			else if (isFacingLeft())
-				setCurrentImage(_pLeftMovingImg);
+				setCurrentImages(_pLeftMovingImg);
 			else if (isFacingRight())
-				setCurrentImage(_pRightMovingImg);
+				setCurrentImages(_pRightMovingImg);
 			else if (isFacingUp())
-				setCurrentImage(_pUpMovingImg);
+				setCurrentImages(_pUpMovingImg);
 		} else if (isIdle()) {
 			if (isFacingDown())
-				setCurrentImage(_pDownImg);
+				setCurrentImages(_pDownImg);
 			else if (isFacingLeft())
-				setCurrentImage(_pLeftImg);
+				setCurrentImages(_pLeftImg);
 			else if (isFacingRight())
-				setCurrentImage(_pRightImg);
+				setCurrentImages(_pRightImg);
 			else if (isFacingUp())
-				setCurrentImage(_pUpImg);
+				setCurrentImages(_pUpImg);
 		}
 	}
 	
 	// CURRENT IMAGE METHODS.
-	public void setCurrentImage(BufferedImage[] img) {
+	public void setCurrentImages(BufferedImage[] img) {
 		_pCurrentImg = img;
 	}
 	
