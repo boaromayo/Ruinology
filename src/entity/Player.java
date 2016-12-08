@@ -44,9 +44,15 @@ public class Player {
 	private int _dy;
 	private int _speed;
 	
+	// STATE.
+	private enum State {
+		_IDLE, _MOVING, _DEAD 
+	};
+	private State _state;
+		
 	// DIRECTION.
 	private enum Direction { 
-		DOWN, LEFT, RIGHT, UP
+		_DOWN, _LEFT, _RIGHT, _UP
 	};
 	private Direction _dir;
 	
@@ -56,10 +62,6 @@ public class Player {
 	
 	private int _sp;
 	private int _maxsp;
-	
-	private boolean _moving;
-	
-	private boolean _dead;
 	
 	// TIMER.
 	private Timer _timer;
@@ -94,7 +96,9 @@ public class Player {
 		_framecount = 0;
 		_currentFrame = 0;
 		
-		setDirection(Direction.DOWN); // Also sets the current image.
+		// Setting state and direction also sets the current image.
+		setState(State._IDLE);
+		setDirection(Direction._DOWN);
 		
 		_speed = 2;
 		
@@ -105,8 +109,6 @@ public class Player {
 		_sp = _maxsp;
 		
 		_timer = new Timer(100); // Set the current amount of seconds.
-		
-		_dead = false;
 		
 		_bag = new UsableItem[_MAX_BAGSIZE];
 		_bagSize = 0;
@@ -129,17 +131,18 @@ public class Player {
 		if (isDead()) {
 			// Play dead sound
 			// Set to dead sprite.
-			_pCurrentImg = _pDeadImg;
+			// Block input.
+			setCurrentImage(_pDeadImg);
+		} else {
+			// Check the input being pressed.
+			updateInput();
+					
+			// Move player.
+			move();
 		}
 		
 		// Animate sprite.
 		animate();
-				
-		// Check the input being pressed.
-		updateInput();
-				
-		// Move player.
-		move();
 	}
 	
 	private void animate() {
@@ -160,23 +163,23 @@ public class Player {
 		if (InputBank.keyDown(InputBank._S) || 
 				InputBank.keyDown(InputBank._DOWN)) {
 			setdy(-_speed);
-			setMoving(true);
-			setDirection(Direction.DOWN);
+			setState(State._MOVING);
+			setDirection(Direction._DOWN);
 		} else if (InputBank.keyDown(InputBank._A) ||
 				InputBank.keyDown(InputBank._LEFT)) {
 			setdx(-_speed);
-			setMoving(true);
-			setDirection(Direction.LEFT);
+			setState(State._MOVING);
+			setDirection(Direction._LEFT);
 		} else if (InputBank.keyDown(InputBank._D) ||
 				InputBank.keyDown(InputBank._RIGHT)) {
 			setdx(_speed);
-			setMoving(true);
-			setDirection(Direction.RIGHT);
+			setState(State._MOVING);
+			setDirection(Direction._RIGHT);
 		} else if (InputBank.keyDown(InputBank._W) ||
 				InputBank.keyDown(InputBank._UP)) {
 			setdy(_speed);
-			setMoving(true);
-			setDirection(Direction.UP);
+			setState(State._MOVING);
+			setDirection(Direction._UP);
 		} else if (InputBank.keyPressed(InputBank._Z)) {
 			// move bag select cursor back
 			if (_position < 0) {
@@ -193,7 +196,7 @@ public class Player {
 		} else {
 			setdx(0);
 			setdy(0);
-			setMoving(false);
+			setState(State._IDLE);
 		}
 	}
 	
@@ -325,7 +328,7 @@ public class Player {
 	}
 	
 	public void kill() {
-		_dead = true;
+		setState(State._DEAD);
 	}
 	
 	// SCORE VALUE.
@@ -337,7 +340,7 @@ public class Player {
 		addValue(1);
 	}
 	
-	// MOVE/ANIMATION METHODS.
+	// MOVE METHODS.
 	public void setLocation(int x, int y) {
 		_x = x;
 		_y = y;
@@ -351,33 +354,40 @@ public class Player {
 		_dy = y;
 	}
 	
-	public void setMoving(boolean m) {
-		_moving = m;
+	// STATE METHODS.
+	public void setState(State s) {
+		_state = s;
 	}
 	
+	// DIRECTION METHODS.
 	private void setDirection(Direction d) {
 		_dir = d;
 		
 		// Update the sprites as well.
 		if (isMoving()) {
 			if (isFacingDown())
-				_pCurrentImg = _pDownMovingImg;
+				setCurrentImage(_pDownMovingImg);
 			else if (isFacingLeft())
-				_pCurrentImg = _pLeftMovingImg;
+				setCurrentImage(_pLeftMovingImg);
 			else if (isFacingRight())
-				_pCurrentImg = _pRightMovingImg;
+				setCurrentImage(_pRightMovingImg);
 			else if (isFacingUp())
-				_pCurrentImg = _pUpMovingImg;
-		} else {
+				setCurrentImage(_pUpMovingImg);
+		} else if (isIdle()) {
 			if (isFacingDown())
-				_pCurrentImg = _pDownImg;
+				setCurrentImage(_pDownImg);
 			else if (isFacingLeft())
-				_pCurrentImg = _pLeftImg;
+				setCurrentImage(_pLeftImg);
 			else if (isFacingRight())
-				_pCurrentImg = _pRightImg;
+				setCurrentImage(_pRightImg);
 			else if (isFacingUp())
-				_pCurrentImg = _pUpImg;
+				setCurrentImage(_pUpImg);
 		}
+	}
+	
+	// CURRENT IMAGE METHODS.
+	public void setCurrentImage(BufferedImage[] img) {
+		_pCurrentImg = img;
 	}
 	
 	public BufferedImage getCurrentImage() {
@@ -417,29 +427,34 @@ public class Player {
 		return _score;
 	}
 	
+	// STATE.
+	public boolean isIdle() {
+		return (_state.equals(State._IDLE));
+	}
+	
 	public boolean isMoving() {
-		return _moving;
+		return (_state.equals(State._MOVING));
 	}
 	
 	public boolean isDead() {
-		return _dead;
+		return (_state.equals(State._DEAD));
 	}
 	
 	// DIRECTION.
 	public boolean isFacingDown() {
-		return (_dir.equals(Direction.DOWN));
+		return (_dir.equals(Direction._DOWN));
 	}
 	
 	public boolean isFacingLeft() {
-		return (_dir.equals(Direction.LEFT));
+		return (_dir.equals(Direction._LEFT));
 	}
 	
 	public boolean isFacingRight() {
-		return (_dir.equals(Direction.RIGHT));
+		return (_dir.equals(Direction._RIGHT));
 	}
 	
 	public boolean isFacingUp() {
-		return (_dir.equals(Direction.UP));
+		return (_dir.equals(Direction._UP));
 	}
 	
 	// TIMER.
