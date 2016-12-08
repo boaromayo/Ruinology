@@ -3,6 +3,8 @@ package map;
 import java.awt.*;
 import java.awt.image.*;
 
+import java.io.*;
+
 import java.util.*;
 
 import content.Constants;
@@ -30,6 +32,9 @@ public class Room {
 	// RANDOMIZER.
 	//private Random _rand;
 	
+	// TEXT FILE FOR ROOM.
+	private File _file;
+	
 	// TILESET.
 	private BufferedImage[][] _tileset;
 	
@@ -46,7 +51,6 @@ public class Room {
 	public Room() {
 		//_tileset = Constants._tileset;
 		
-		
 		_width = Constants.WIDTH / Constants.TILE_SIZE;
 		_height = Constants.HEIGHT / Constants.TILE_SIZE;
 		
@@ -55,9 +59,33 @@ public class Room {
 		init();
 	}
 	
+	public Room(String path) {
+		//_tileset = Constants._tileset
+		
+		_width = Constants.WIDTH / Constants.TILE_SIZE;
+		_height = Constants.HEIGHT / Constants.TILE_SIZE;
+		
+		_tileids = new int[_height][_width];
+		
+		try {
+			_file = new File("../assets/maps/" + path);
+		} catch (Exception e) {
+			System.err.println("Unable to find or load " + path + "/n" + 
+					"Reason:" + e.getMessage());
+			e.printStackTrace();
+		}
+		
+		init();
+	}
+	
 	private void init() {
 		loadTiles(); // Load images as Room Tiles.
-		printRoom(); // Print an array of ints of the Room.
+		
+		if (_file.exists()) {
+			printRoom(_file); // Print an array of ints of the Room.
+		} else {
+			printRoom();
+		}
 	}
 	
 	private void loadTiles() {
@@ -72,12 +100,76 @@ public class Room {
 				_tileids[row][col] = 1; // Start by making the Room out of wall tiles.
 	}
 	
+	private void printRoom(File file) {
+		// Read through each line.
+		try {
+			File tableFile = new File("../assets/maps/tileset.txt");
+			BufferedReader reader = new BufferedReader(
+					new FileReader(file));
+			BufferedReader tablereader = new BufferedReader(
+					new FileReader(tableFile));
+			String delim = "\\s+"; // Ignore whitespace.
+			
+			BufferedImage[] tileImg = null;
+			String[] tileType = null;
+			int tableRows = 0;
+			int row = 0;
+			int col = 0;
+			
+			for (row = 0; row < _tiles.length; row++) {
+				String line = reader.readLine();
+				for (col = 0; col < _tiles[row].length; col++) {
+					String [] id = line.split(delim);
+					_tileids[row][col] = id[col].charAt(0); // Get the ID from the text file.
+				}
+			}
+			
+			// Read through a separate file and get the
+			// image, type, and behavior corresponding to the ID number.
+			tableRows = Integer.valueOf(tablereader.readLine()); // First line to read in the table is the number available.
+			row = 0;
+			
+			// Set size of arrays of tile images and types.
+			tileImg = new BufferedImage[tableRows];
+			tileType = new String[tableRows];
+			
+			while (row < tableRows) {
+				String line = tablereader.readLine();
+				String strImg = line.split(delim)[1].substring(0);
+				String strType = line.split(delim)[2].substring(0);
+				
+				tileImg[row] = ImageBank.loadImage("../assets/img/" + strImg);
+				tileType[row] = strType;
+				
+				row++;
+			}
+			
+			for (row = 0; row < _tiles.length; row++)
+				for (col = 0; col < _tiles[row].length; col++)
+					_tiles[row][col] = new Tile(tileImg[_tileids[row][col]], 
+							_tileids[row][col], tileType[_tileids[row][col]]); // Form the tiles for the room.
+			
+			for (row = 0; row < _tiles.length; row++)
+				for (col = 0; col < _tiles[row].length; col++)
+					
+			reader.close(); // Close reader.
+			tablereader.close(); // Close reader for table.
+		} catch (Exception e) {
+			System.err.println("Unable to read file " + _file + "\n" + 
+					"Reason: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	
 	public void update() {
 		
 	}
 	
 	public void draw(Graphics g) {
-		
+		for (int row = 0; row < _tiles.length; row++)
+			for (int col = 0; col < _tiles[row].length; col++)
+				g.drawImage(_tiles[row][col].getImage(), 
+						Constants.TILE_SIZE, Constants.TILE_SIZE, null); // Draw the room.
 	}
 	
 	public int[][] getRoomArray() {
