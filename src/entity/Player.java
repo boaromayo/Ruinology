@@ -60,8 +60,8 @@ public class Player {
 	private int _hp;
 	private int _maxhp;
 	
-	private int _sp;
-	private int _maxsp;
+	/*private int _sp;
+	private int _maxsp;*/ // Stamina will be cut.
 	
 	// TIMER.
 	private Timer _timer;
@@ -105,8 +105,8 @@ public class Player {
 		_maxhp = 10;
 		_hp = _maxhp;
 		
-		_maxsp = 15;
-		_sp = _maxsp;
+		//_maxsp = 15;
+		//_sp = _maxsp;
 		
 		_timer = new Timer(100); // Set the current amount of seconds.
 		
@@ -220,7 +220,7 @@ public class Player {
 		
 		// draw hud
 		drawHealth(g);
-		drawStamina(g);
+		//drawStamina(g);
 		drawTimer(g);
 		drawBag(g);
 	}
@@ -241,7 +241,7 @@ public class Player {
 		g.fillRect(50, Constants.HEIGHT_FINAL - 30, (_hp / _maxhp) * 100, 8);
 	}
 	
-	private void drawStamina(Graphics g) {
+	/*private void drawStamina(Graphics g) {
 		// draw hud for stamina
 		//BufferedImage stamImg = Constants._stamina;
 		//BufferedImage bar = Constants._bar;
@@ -249,13 +249,13 @@ public class Player {
 		/*int stamWidth = stamImg.getWidth();
 		int stamHeight = stamImg.getHeight();
 		
-		g.drawImage(stamImg, 20, Constants.HEIGHT_FINAL - 10, stamWidth, stamHeight, null);*/
+		g.drawImage(stamImg, 20, Constants.HEIGHT_FINAL - 10, stamWidth, stamHeight, null);
 		
 		//g.drawImage(bar, 50, Constants.HEIGHT_FINAL - 10, bar.getWidth(), bar.getHeight(), null);
 		
 		g.setColor(Color.GREEN);
 		g.fillRect(50, Constants.HEIGHT_FINAL - 10, (_sp / _maxsp) * 50, 8);
-	}
+	}*/
 	
 	private void drawTimer(Graphics g) {
 		_timer.draw(g);
@@ -312,12 +312,12 @@ public class Player {
 			_hp += rec;
 	}
 	
-	public void healStamina(int rec) {
+	/*public void healStamina(int rec) {
 		if (_maxsp < _sp + rec)
 			_sp = _maxsp;
 		else 
 			_sp += rec;
-	}
+	}*/
 	
 	public void hit() {
 		hit(1);
@@ -415,13 +415,13 @@ public class Player {
 		return _maxhp;
 	}
 	
-	public int getStamina() {
+	/*public int getStamina() {
 		return _sp;
 	}
 	
 	public int getMaxStamina() {
 		return _maxsp;
-	}
+	}*/
 	
 	public int getScore() {
 		return _score;
