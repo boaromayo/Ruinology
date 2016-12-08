@@ -6,6 +6,8 @@ import javax.sound.sampled.*;
 
 import content.*;
 
+import map.*;
+
 public class Player {
 	
 	// SPRITES - IDLE & MOVING.
@@ -26,6 +28,9 @@ public class Player {
 	private BufferedImage[] _pDeadImg;
 	
 	private BufferedImage[] _pCurrentImg; // The current sprites being used.
+	
+	// ROOM.
+	private Room _room;
 	
 	// ANIMATION VARS.
 	private int _framecount;
@@ -89,6 +94,8 @@ public class Player {
 		_pLeftMovingImg = _pImg[5]
 		_pRightMovingImg = _pImg[6]
 		_pDownMovingImg = _pImg[7]*/
+		
+		_room = new Room("room_sample.txt");
 		
 		_width = Constants.PLAYER_SIZE;
 		_height = Constants.PLAYER_SIZE;
@@ -201,6 +208,10 @@ public class Player {
 	}
 	
 	private void move() {
+		// Check to see if any tile is solid (collidable)
+		// or dangerous before moving.
+		checkCollisions();
+		
 		_x += _dx;
 		_y += _dy;	
 	}
@@ -404,6 +415,49 @@ public class Player {
 		Rectangle ri = item.getBoundingBox();
 		
 		return rp.intersects(ri);
+	}
+	
+	private void checkCollisions() {
+		int rows = _room.getRows();
+		int cols = _room.getCols();
+		
+		int tx = (int)(_x / cols);
+		int ty = (int)(_y / rows);
+		
+		Tile upTile = _room.getTile(tx, ty - 1);
+		Tile leftTile = _room.getTile(tx - 1, ty);
+		Tile rightTile = _room.getTile(tx + 1, ty);
+		Tile downTile = _room.getTile(tx, ty + 1);
+		
+		if (isFacingUp()) {
+			if (upTile.isSolid()) {
+				setdy(0);
+				setState(State._IDLE);
+			} else if (upTile.isDangerous()) {
+				hit(upTile.damage());
+			}
+		} else if (isFacingLeft()) {
+			if (leftTile.isSolid()) {
+				setdx(0);
+				setState(State._IDLE);
+			} else if (leftTile.isDangerous()) {
+				hit(leftTile.damage());
+			}
+		} else if (isFacingRight()) {
+			if (rightTile.isSolid()) {
+				setdx(0);
+				setState(State._IDLE);
+			} else if (rightTile.isDangerous()) {
+				hit(rightTile.damage());
+			}
+		} else if (isFacingDown()) {
+			if (downTile.isSolid()) {
+				setdy(0);
+				setState(State._IDLE);
+			} else if (downTile.isDangerous()) {
+				hit(downTile.damage());
+			}
+		}
 	}
 	
 	// STATUS METHODS.
