@@ -39,7 +39,7 @@ public class Room {
 	private BufferedImage[] _tilesetImg;
 	
 	// TILE TYPES TABLE.
-	private String[] _tileType;
+	private String[] _tiletypes;
 	
 	// TILES FROM TILESET.
 	private Tile[][] _tiles;
@@ -132,7 +132,7 @@ public class Room {
 			
 			// Set size of arrays of tile images and types.
 			_tilesetImg = new BufferedImage[tableRows];
-			_tileType = new String[tableRows];
+			_tiletypes = new String[tableRows];
 			
 			while (row < tableRows) {
 				String line = tablereader.readLine();
@@ -140,7 +140,7 @@ public class Room {
 				String strType = line.split(delim)[2].substring(0);
 				
 				_tilesetImg[row] = ImageBank.loadImage("../assets/img/" + strImg);
-				_tileType[row] = strType;
+				_tiletypes[row] = strType;
 				
 				row++;
 			}
@@ -148,7 +148,7 @@ public class Room {
 			for (row = 0; row < _tiles.length; row++)
 				for (col = 0; col < _tiles[row].length; col++)
 					_tiles[row][col] = new Tile(_tilesetImg[_tileids[row][col]], 
-							_tileids[row][col], _tileType[_tileids[row][col]]); // Form the tiles for the room.
+							_tileids[row][col], _tiletypes[_tileids[row][col]]); // Form the tiles for the room.
 			
 			for (row = 0; row < _tiles.length; row++)
 				for (col = 0; col < _tiles[row].length; col++)
