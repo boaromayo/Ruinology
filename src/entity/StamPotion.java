@@ -27,7 +27,7 @@ public class StamPotion extends UsableItem {
 	public void use(Player p) {
 		// TODO Auto-generated method stub
 		//AudioBank.play(Constants._drink); // play drink sound
-		p.healStamina(30);
+		//p.healStamina(30);
 	}
 
 }
