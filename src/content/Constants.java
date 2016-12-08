@@ -64,6 +64,7 @@ public final class Constants {
 	private static final String _bronzeCoinPath = "../img/coin_bronze.gif";
 	private static final String _silverCoinPath = "../img/coin_silver.gif";
 	private static final String _goldCoinPath = "../img/coin_gold.gif";
+	private static final String _crystalPath = "../img/crystal.gif";
 	
 	// TILESET.
 	private static final String _tilesetPath = "../img/tileset.gif";
@@ -128,6 +129,7 @@ public final class Constants {
 	public static final BufferedImage _bronzeCoin = ImageBank.loadImage(_bronzeCoinPath);
 	public static final BufferedImage _silverCoin = ImageBank.loadImage(_silverCoinPath);
 	public static final BufferedImage _goldCoin = ImageBank.loadImage(_goldCoinPath);
+	public static final BufferedImage _crystal = ImageBank.loadImage(_crystalPath);
 	
 	// TILESET.
 	public static final BufferedImage[][] _tileset = ImageBank.loadImage(_tilesetPath, 0, 0, TILE_SIZE);
