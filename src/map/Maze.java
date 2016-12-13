@@ -1,5 +1,9 @@
 package map;
 
+import java.io.*;
+
+import java.util.*;
+
 import entity.Player;
 
 public class Maze {
@@ -19,24 +23,101 @@ public class Maze {
 	// The player is randomly placed in a Room that must NOT have the final exit out of the maze,
 	// or be adjacent to the final exit Room.
 	
-	// MAZE SIZE.
+	// MAZE MODE AND SIZES.
 	private int _mazeMode; // Maze mode number indicates size: 0 is 6x6, 1 is 8x8, and 2 is 10x10. 
+	private int _mazeSize;
+	
+	// MAZE SIZE CONSTANTS.
+	private final int _SIX = 6;
+	private final int _EIGHT = 8;
+	private final int _TEN = 10;
 	
 	// MAZE OF ROOMS.
 	private Room[][] _rooms;
 	
-	public Maze(Player p, int mazeMode) {
+	// ROOM SIZE.
+	private int _roomWidth;
+	private int _roomHeight;
+	
+	public Maze() {
+		this(1); // Loads an 8x8 maze by default.
+	}
+	
+	public Maze(int mazeMode) {
 		_mazeMode = mazeMode;
 		
 		if (_mazeMode == 0) {
-			_rooms = new Room[6][6]; // 6x6 is 36 rooms, easy!
+			_rooms = new Room[_SIX][_SIX]; // 6x6 is 36 rooms, easy!
 		} else if (_mazeMode == 1) {
-			_rooms = new Room[8][8]; // 8x8 is 64 rooms, the default.
+			_rooms = new Room[_EIGHT][_EIGHT]; // 8x8 is 64 rooms, the default.
 		} else if (_mazeMode == 2) {
-			_rooms = new Room[10][10]; // 10x10 is 100 rooms!!!
+			_rooms = new Room[_TEN][_TEN]; // 10x10 is 100 rooms!!!
 		} else {
 			throw new RuntimeException("ERROR: Maze mode number is not within range.\n" +
 					"Maze mode number: " + _mazeMode);
 		}
+		
+		_mazeSize = _rooms.length; // Set the maze size.
+		
+		_roomWidth = _rooms[0][0].getCols();
+		_roomHeight = _rooms[0][0].getRows();
+	}
+	
+	public void loadRooms(Room[][] newRooms) {
+		int roomRows = newRooms.length;
+		int roomCols = newRooms[0].length;
+		
+		// Check for any discrepancies in the Room[][] array. Return if
+		// Rooms do not meet requirements.
+		if (newRooms == null || roomCols != newRooms[1].length ||
+				roomRows != roomCols || roomRows != _mazeSize)
+			return;
+		
+		for (int row = 0; row < roomRows; row++) {
+			for (int col = 0; col < roomCols; col++) {
+				_rooms[row][col] = newRooms[row][col];
+			}
+		}
+	}
+	
+	public void loadRoomsFromFile(File[][] files) {
+		try {
+			for (int row = 0; row < files.length; row++) {
+				for (int col = 0; col < files[0].length; col++) {
+					String pathname = files[row][col].getPath();
+					_rooms[row][col] = new Room(pathname);
+				}
+			}
+		} catch (Exception e) {
+			System.err.println("ERROR: Cannot load rooms from file." +
+					"\n" + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	
+	public void setLocation(Player p) {
+		Random rand = new Random();
+		
+		int randRow = rand.nextInt(_mazeSize);
+		int randCol = rand.nextInt(_mazeSize);
+		int centx = _rooms[randRow][randCol].getCols() / 2;
+		int centy = _rooms[randRow][randCol].getRows() / 2;
+		int x = rand.nextInt(_roomWidth);
+		int y = rand.nextInt(_roomHeight);
+		
+		// If the randomly picked room has a ladder, try another room.
+		if (_rooms[randRow][randCol].getTile(centx, centy).isType("ladder")) {
+			randRow = rand.nextInt(_mazeSize);
+			randCol = rand.nextInt(_mazeSize);
+			x = rand.nextInt(_roomWidth);
+			y = rand.nextInt(_roomHeight);
+		}
+		
+		if (_rooms[randRow][randCol].getTile(x,y).isSolid()) {
+			x = rand.nextInt(_roomWidth);
+			y = rand.nextInt(_roomHeight);
+		}
+		
+		p.setLocation(x,y);
 	}
 }
