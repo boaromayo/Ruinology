@@ -100,12 +100,15 @@ public class Maze {
 		
 		int randRow = rand.nextInt(_mazeSize);
 		int randCol = rand.nextInt(_mazeSize);
-		int centx = _rooms[randRow][randCol].getCols() / 2;
+		
+		// Get the center of the Room.
+		// Since each Room has the same size, this can apply to any Room.
+		int centx = _rooms[randRow][randCol].getCols() / 2; 
 		int centy = _rooms[randRow][randCol].getRows() / 2;
 		int x = rand.nextInt(_roomWidth);
 		int y = rand.nextInt(_roomHeight);
 		
-		// If the randomly picked room has a ladder, try another room.
+		// If the randomly picked Room has a ladder, move player to another Room.
 		if (_rooms[randRow][randCol].getTile(centx, centy).isType("ladder")) {
 			randRow = rand.nextInt(_mazeSize);
 			randCol = rand.nextInt(_mazeSize);
@@ -113,6 +116,7 @@ public class Maze {
 			y = rand.nextInt(_roomHeight);
 		}
 		
+		// Check if tile is solid, or impassable.
 		if (_rooms[randRow][randCol].getTile(x,y).isSolid()) {
 			x = rand.nextInt(_roomWidth);
 			y = rand.nextInt(_roomHeight);
