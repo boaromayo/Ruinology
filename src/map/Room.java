@@ -51,6 +51,7 @@ public class Room {
 	private int _width;
 	private int _height;
 	
+	// DEFAULT CONSTRUCTOR.
 	public Room() {
 		//_tileset = Constants._tileset;
 		
@@ -62,6 +63,7 @@ public class Room {
 		init();
 	}
 	
+	// CONSTRUCTOR FOR SINGLE ROOM.
 	public Room(String path) {
 		//_tileset = Constants._tileset
 		
@@ -77,6 +79,16 @@ public class Room {
 					"Reason:" + e.getMessage());
 			e.printStackTrace();
 		}
+		
+		init();
+	}
+	
+	// CONSTRUCTOR FOR MULTIPLE ROOMS, TRANSLATED FROM ONE FILE.
+	public Room(int[][] tileids) {
+		_width = Constants.WIDTH / Constants.TILE_SIZE;
+		_height = Constants.HEIGHT / Constants.TILE_SIZE;
+		
+		_tileids = tileids;
 		
 		init();
 	}
@@ -125,16 +137,17 @@ public class Room {
 					+ "Reason: " + ioe.getMessage());
 			ioe.printStackTrace();
 		}
-		
-		/*for (int row = 0; row < _tiles.length; row++)
-			for (int col = 0; col < _tiles[row].length; col++)
-				_tiles[row][col] = new Tile(_tileset[row][col]);*/
 	}
 	
 	private void printRoom() {
-		for (int row = 0; row < _tiles.length; row++)
-			for (int col = 0; col < _tiles[row].length; col++)
-				_tileids[row][col] = 1; // Start by making the Room out of wall tiles.
+		// Read through each line of the array.
+		// Translate each of the tile IDs to tiles.
+		int row, col;
+		
+		for (row = 0; row < _tiles.length; row++)
+			for (col = 0; col < _tiles[row].length; col++)
+				_tiles[row][col] = new Tile(_tilesetImg[_tileids[row][col]], 
+						_tileids[row][col], _tiletypes[_tileids[row][col]]); // Form the tiles for the room.
 	}
 	
 	private void printRoom(File file) {
