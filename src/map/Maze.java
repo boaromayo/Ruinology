@@ -4,6 +4,8 @@ import java.io.*;
 
 import java.util.*;
 
+import content.Constants;
+
 import entity.Player;
 
 public class Maze {
@@ -80,7 +82,47 @@ public class Maze {
 		}
 	}
 	
-	public void loadRoomsFromFile(File[][] files) {
+	/*public void loadRoomsFromFile(String path) {
+		try {
+			File file = new File(path);
+			File[][] files = new File[_mazeSize][_mazeSize]; // Make the empty files.
+			// Create the reader and writer.
+			BufferedReader reader = new BufferedReader
+					(new FileReader(file));
+			Room[][] newRooms = _rooms;
+			String delim = "\\s+";
+			
+			// This file will be read based on the size of numbers
+			// in the file and will spit out an error if not enough numbers are read.
+			// If 
+			int numRows = _roomHeight * _rooms.length;
+			int numCols = _roomWidth * _rooms[0].length;
+			
+			for (int row = 0, r = 0; row < numRows; row++) {
+				if (row % _roomHeight == 0)
+					r++;
+				
+				String line = reader.readLine();
+				for (int col = 0, c = 0; col < numCols; col++) {
+					if (col % _roomWidth == 0)
+						c++;
+					
+					File curFile = files[r][c];
+					String[] lines = line.split(delim);
+					int linenum = Integer.valueOf(lines[col]);
+					
+					curFile = new File("room-" + r + "-" + c + ".txt");
+				}
+			}
+			
+			reader.close();
+		} catch (Exception e) {
+			System.err.println("ERROR: Unable to load rooms from file." + "\n" + e.getMessage());
+			e.printStackTrace();
+		}
+	}*/
+	
+	public void loadRoomsFromFiles(File[][] files) {
 		try {
 			for (int row = 0; row < files.length; row++) {
 				for (int col = 0; col < files[0].length; col++) {
