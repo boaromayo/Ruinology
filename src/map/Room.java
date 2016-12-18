@@ -5,8 +5,6 @@ import java.awt.image.*;
 
 import java.io.*;
 
-import java.util.*;
-
 import content.Constants;
 import content.ImageBank;
 
