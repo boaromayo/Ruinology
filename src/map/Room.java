@@ -93,7 +93,13 @@ public class Room {
 		_width = Constants.WIDTH / Constants.TILE_SIZE;
 		_height = Constants.HEIGHT / Constants.TILE_SIZE;
 		
-		_tileids = tileids;
+		if (tileids.length == _height && tileids[0].length == _width) {
+			_tileids = tileids;
+		} else {
+			for (int row = 0; row < _height; row++)
+				for (int col = 0; col < _width; col++)
+					_tileids[row][col] = tileids[row][col];
+		}
 		
 		init();
 	}
