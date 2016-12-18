@@ -41,6 +41,13 @@ public class Room {
 	// TILE TYPES TABLE.
 	private String[] _tiletypes;
 	
+	// TILE SOLID TABLE.
+	private boolean[] _tileSolid;
+	
+	// TILE DANGEROUS TABLE AND DAMAGE VALUES.
+	private boolean[] _tileDanger;
+	private int[] _tiledmgs;
+	
 	// TILES FROM TILESET.
 	private Tile[][] _tiles;
 	
@@ -113,22 +120,57 @@ public class Room {
 					new FileReader(tableFile));
 			String delim = "\\s+"; // Ignore whitespace.
 			
-			int tableRows = Integer.valueOf(tablereader.readLine()); // First line to read in the table is the number available.
+			// First line read in the tileset file is the number of tiles available in the set.
+			int tableRows = Integer.valueOf(tablereader.readLine());
 			int row = 0;
 						
-			// Set size of arrays of tile images and types.
+			// Set array size of tile images, types, and behavior.
 			_tilesetImg = new BufferedImage[tableRows];
 			_tiletypes = new String[tableRows];
+			_tileSolid = new boolean[tableRows];
+			_tileDanger = new boolean[tableRows];
+			_tiledmgs = new int[tableRows];
 						
-			while (row < tableRows) {
+			for (row = 0; row < tableRows; row++) {
 				String line = tablereader.readLine();
-				String strImg = line.split(delim)[1].substring(0);
-				String strType = line.split(delim)[2].substring(0);
+				String strImg = line.split(delim)[1];
+				String strType = line.split(delim)[2];
+				String strSolid = line.split(delim)[3];
+				String strDanger = line.split(delim)[4];
+				int damage = 0;
 				
+				// Set default to "false" if substring has no
+				// solid or danger states or is a bad input. Otherwise, read
+				// in substring of text file line.
+				if (strSolid.equals(null) || 
+						!(strSolid.equals("true") || strSolid.equals("false")) ||
+						strSolid.isEmpty()) {
+					strSolid = "false";
+				} else {
+					strSolid = line.split(delim)[3];
+				}
+				
+				if (strDanger.equals(null) || 
+						!(strDanger.equals("true") || strDanger.equals("false")) ||
+						strDanger.isEmpty()) {
+					strDanger = "false";
+				} else {
+					strDanger = line.split(delim)[4];
+				}
+				
+				if (line.split(delim)[5].equals(null) || 
+						line.split(delim)[5].isEmpty()) {
+					damage = 0;
+				} else {
+					damage = Integer.valueOf(line.split(delim)[5]);
+				}
+				
+				// load tileset into arrays.
 				_tilesetImg[row] = ImageBank.loadImage("../assets/img/" + strImg);
 				_tiletypes[row] = strType;
-				
-				row++;
+				_tileSolid[row] = Boolean.getBoolean(strSolid);
+				_tileDanger[row] = Boolean.getBoolean(strDanger);
+				_tiledmgs[row] = damage;
 			}
 			
 			tablereader.close(); // Close reader for table.
@@ -147,7 +189,11 @@ public class Room {
 		for (row = 0; row < _tiles.length; row++)
 			for (col = 0; col < _tiles[row].length; col++)
 				_tiles[row][col] = new Tile(_tilesetImg[_tileids[row][col]], 
-						_tileids[row][col], _tiletypes[_tileids[row][col]]); // Form the tiles for the room.
+						_tileids[row][col], 
+						_tiletypes[_tileids[row][col]], 
+						_tileSolid[_tileids[row][col]],
+						_tileDanger[_tileids[row][col]],
+						_tiledmgs[_tileids[row][col]]); // Form the tiles for the room.
 	}
 	
 	private void printRoom(File file) {
@@ -171,7 +217,11 @@ public class Room {
 			for (row = 0; row < _tiles.length; row++)
 				for (col = 0; col < _tiles[row].length; col++)
 					_tiles[row][col] = new Tile(_tilesetImg[_tileids[row][col]], 
-							_tileids[row][col], _tiletypes[_tileids[row][col]]); // Form the tiles for the room.
+							_tileids[row][col], 
+							_tiletypes[_tileids[row][col]],
+							_tileSolid[_tileids[row][col]],
+							_tileDanger[_tileids[row][col]],
+							_tiledmgs[_tileids[row][col]]); // Form the tiles for the room.
 					
 			reader.close(); // Close reader.
 		} catch (Exception e) {
