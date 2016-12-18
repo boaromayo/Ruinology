@@ -1,11 +1,12 @@
-10
+11
 0 blank.gif blank
 1 floor.gif floor
 2 wall-top.gif wall-top true
 3 wall-btm.gif wall-btm true
 4 wall-lt.gif wall-lt true
 5 wall-rt.gif wall-rt true
-6 block.gif block true
-7 water.gif water true
-8 lava.gif lava false true 2
-9 ladder.gif ladder false
+6 blockwall.gif wall-block true
+7 block.gif block true
+8 water.gif water true
+9 lava.gif lava false true 2
+10 ladder.gif ladder false
