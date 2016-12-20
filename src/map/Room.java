@@ -134,14 +134,15 @@ public class Room {
 			_tileDanger = new boolean[tableRows];
 			_tiledmgs = new int[tableRows];
 			
-			// Set strings to take into array for each tile in set.
+			// Set properties to take into each array for each tile in set.
 			String line;
 			String strImg;
 			String strType;
 			String strSolid;
 			String strDanger;
+			int damage = 0;
 						
-			for (int row = 0, damage = 0; row < tableRows; row++) {
+			for (int row = 0; row < tableRows; row++) {
 				line = tablereader.readLine();
 				strImg = line.split(delim)[1];
 				strType = line.split(delim)[2];
