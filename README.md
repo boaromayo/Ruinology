@@ -8,6 +8,10 @@ Mechanics
 ---------
 + Programming: Java
 
+Documentation
+--------
+May plan to put up soon.
+
 Platform
 --------
 Compatible with Windows, or Mac OS X.
@@ -18,7 +22,7 @@ Java version of 6.5 or higher.
 
 Details
 -------
-- Rooms are randomly generated, ranging from an 6x6 to 10x10 set of rooms.
+- Rooms are randomly generated, ranging from an 6x6 to 10x10 set of rooms. For the prototype version, I plan on doing just the default 8x8 sized maze.
 - Items are also randomly scattered in each room.
 - Starts in a random place on the maze.
 
