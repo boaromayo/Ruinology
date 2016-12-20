@@ -126,7 +126,6 @@ public class Room {
 			
 			// First line read in the tileset file is the number of tiles available in the set.
 			int tableRows = Integer.valueOf(tablereader.readLine());
-			int row = 0;
 						
 			// Set array size of tile images, types, and behavior.
 			_tilesetImg = new BufferedImage[tableRows];
@@ -134,14 +133,20 @@ public class Room {
 			_tileSolid = new boolean[tableRows];
 			_tileDanger = new boolean[tableRows];
 			_tiledmgs = new int[tableRows];
+			
+			// Set strings to take into array for each tile in set.
+			String line;
+			String strImg;
+			String strType;
+			String strSolid;
+			String strDanger;
 						
-			for (row = 0; row < tableRows; row++) {
-				String line = tablereader.readLine();
-				String strImg = line.split(delim)[1];
-				String strType = line.split(delim)[2];
-				String strSolid = line.split(delim)[3];
-				String strDanger = line.split(delim)[4];
-				int damage = 0;
+			for (int row = 0, damage = 0; row < tableRows; row++) {
+				line = tablereader.readLine();
+				strImg = line.split(delim)[1];
+				strType = line.split(delim)[2];
+				strSolid = line.split(delim)[3];
+				strDanger = line.split(delim)[4];
 				
 				// Set default to "false" if substring has no
 				// solid or danger states or is a bad input. Otherwise, read
@@ -189,15 +194,19 @@ public class Room {
 		// Read through each line of the array.
 		// Translate each of the tile IDs to tiles.
 		int row, col;
+		int tileid;
 		
-		for (row = 0; row < _tiles.length; row++)
-			for (col = 0; col < _tiles[row].length; col++)
-				_tiles[row][col] = new Tile(_tilesetImg[_tileids[row][col]], 
-						_tileids[row][col], 
-						_tiletypes[_tileids[row][col]], 
-						_tileSolid[_tileids[row][col]],
-						_tileDanger[_tileids[row][col]],
-						_tiledmgs[_tileids[row][col]]); // Form the tiles for the room.
+		for (row = 0; row < _tiles.length; row++) {
+			for (col = 0; col < _tiles[row].length; col++) {
+				tileid = _tileids[row][col];
+				_tiles[row][col] = new Tile(_tilesetImg[tileid], 
+						tileid, 
+						_tiletypes[tileid], 
+						_tileSolid[tileid],
+						_tileDanger[tileid],
+						_tiledmgs[tileid]); // Form the tiles for the room.
+			}
+		}
 	}
 	
 	private void printRoom(File file) {
@@ -207,25 +216,30 @@ public class Room {
 					new FileReader(file));			
 			String delim = "\\s+"; // Ignore whitespace.
 
-			int row = 0;
-			int col = 0;
+			int row, col;
+			int tileid;
+			String line;
+			String [] idstr;
 			
 			for (row = 0; row < _tiles.length; row++) {
-				String line = reader.readLine();
+				line = reader.readLine();
 				for (col = 0; col < _tiles[row].length; col++) {
-					String [] id = line.split(delim);
-					_tileids[row][col] = id[col].charAt(0); // Get the ID from the text file.
+					idstr = line.split(delim);
+					_tileids[row][col] = idstr[col].charAt(0); // Get the ID from the text file.
 				}
 			}
 			
-			for (row = 0; row < _tiles.length; row++)
-				for (col = 0; col < _tiles[row].length; col++)
-					_tiles[row][col] = new Tile(_tilesetImg[_tileids[row][col]], 
-							_tileids[row][col], 
-							_tiletypes[_tileids[row][col]],
-							_tileSolid[_tileids[row][col]],
-							_tileDanger[_tileids[row][col]],
-							_tiledmgs[_tileids[row][col]]); // Form the tiles for the room.
+			for (row = 0; row < _tiles.length; row++) {
+				for (col = 0; col < _tiles[row].length; col++) {
+					tileid = _tileids[row][col];
+					_tiles[row][col] = new Tile(_tilesetImg[tileid], 
+							tileid, 
+							_tiletypes[tileid],
+							_tileSolid[tileid],
+							_tileDanger[tileid],
+							_tiledmgs[tileid]); // Form the tiles for the room.
+				}
+			}
 					
 			reader.close(); // Close reader.
 		} catch (Exception e) {

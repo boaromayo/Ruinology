@@ -49,17 +49,17 @@ public class Maze {
 		_mazeMode = mazeMode;
 		
 		if (_mazeMode == 0) {
-			_rooms = new Room[_SIX][_SIX]; // 6x6 is 36 rooms, easy!
+			_mazeSize = _SIX; // 6x6 is 36 rooms, easy!
 		} else if (_mazeMode == 1) {
-			_rooms = new Room[_EIGHT][_EIGHT]; // 8x8 is 64 rooms, the default.
+			_mazeSize = _EIGHT; // 8x8 is 64 rooms, the default.
 		} else if (_mazeMode == 2) {
-			_rooms = new Room[_TEN][_TEN]; // 10x10 is 100 rooms!!!
+			_mazeSize = _TEN; // 10x10 is 100 rooms!!!
 		} else {
 			throw new RuntimeException("ERROR: Maze mode number is not within range.\n" +
 					"Maze mode number: " + _mazeMode);
 		}
 		
-		_mazeSize = _rooms.length; // Set the maze size.
+		_rooms = new Room[_mazeSize][_mazeSize]; // Set the number of Rooms in Maze.
 		
 		_roomWidth = _rooms[0][0].getCols();
 		_roomHeight = _rooms[0][0].getRows();
