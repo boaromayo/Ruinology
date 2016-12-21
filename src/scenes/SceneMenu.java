@@ -19,6 +19,8 @@ public class SceneMenu extends Scene {
 	
 	// CURSOR.
 	private Cursor _cursor;
+	private final int _CURSOR_X = 180;
+	private final int _CURSOR_Y = 200;
 	
 	// MENU ARRAY.
 	private String [] _choices = { "START", "QUIT" };
@@ -29,7 +31,7 @@ public class SceneMenu extends Scene {
 		// Initialize title screen, bg, and cursor.
 		//_titleImg = Constants._title;
 		
-		_cursor = new Cursor(240, 240);
+		_cursor = new Cursor(_CURSOR_X, _CURSOR_Y);
 	}
 
 	@Override
@@ -69,11 +71,11 @@ public class SceneMenu extends Scene {
 	
 	private void drawCursor(Graphics g) {
 		if (_cursor.position() == _START) {
-			_cursor.move(240,240);
+			_cursor.move(_CURSOR_X, _CURSOR_Y);
 		} else if (_cursor.position() == _QUIT) {
-			_cursor.move(240,280);
+			_cursor.move(_CURSOR_X, _CURSOR_Y + 40);
 		} /*else if (_cursor.position() == _QUIT) {
-			_cursor.move(240,320);
+			_cursor.move(_CURSOR_X, _CURSOR_Y + 80);
 		}*/
 		
 		_cursor.draw(g);
@@ -83,8 +85,8 @@ public class SceneMenu extends Scene {
 		int offset = 10;
 		
 		for (int i = 0; i < _choices.length; i++) {
-			//Text.draw(g, _choices[i], 260, (40 * i) + 240 + offset);
-			g.drawString(_choices[i], 260, (40 * i) + 240 + offset);
+			//Text.draw(g, _choices[i], _CURSOR_X + (offset * 3), (40 * i) + _CURSOR_Y + offset);
+			g.drawString(_choices[i], _CURSOR_X + (offset * 3), (40 * i) + _CURSOR_Y + offset);
 		}
 	}
 	
