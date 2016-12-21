@@ -61,7 +61,7 @@ public class Cursor {
 	}
 	
 	public void printPosition() {
-		System.out.println("Cursor position: " + _position);
+		System.out.println("Cursor position: " + _position); // For debug purposes.
 	}
 	
 	public void increment() {
