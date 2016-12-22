@@ -87,67 +87,71 @@ public final class Constants {
 	private static final String _buzzerPath = "../sfx/buzzer.wav";
 	
 	// IMAGES.
+	public static BufferedImage getImage(String path) { return ImageBank.loadImage(path); }
+	
+	public static BufferedImage[][] getImages(String path, int x, int y, int size) { return ImageBank.loadImages(path, x, y, size); }
 	
 	// TITLE IMAGE.
-	/*public static final BufferedImage getTitle() { return ImageBank.loadImage(_titlePath); }
+	/*public static BufferedImage getTitle() { return getImage(_titlePath); }
 	
 	// PAUSE IMAGE.
-	public static final BufferedImage _pauseTitle = ImageBank.loadImage(_pauseTitlePath);
+	public static BufferedImage getPauseTitle() { return getImage(_pauseTitlePath); }
 	
 	// VICTORY TITLE IMAGE.
-	public static final BufferedImage _victoryTitle = ImageBank.loadImage(_victoryPath);
+	public static BufferedImage getVictoryTitle() { return getImage(_victoryPath); }
 	
 	// GAMEOVER IMAGE.
-	public static final BufferedImage _gameoverTitle = ImageBank.loadImage(_gameoverPath);
+	public static BufferedImage getGameoverTitle() { return getImage(_gameoverPath); }
 	
 	// TEXT
-	public static final BufferedImage[][] _font = ImageBank.loadImages(_fontPath, 0, 0, FONT_SIZE);
+	public static BufferedImage[][] getGameFont() { return getImages(_fontPath, 0, 0, FONT_SIZE); }
 	
 	// CURSOR.
-	public static final BufferedImage _cursor = ImageBank.loadImage(_cursorPath);
+	public static BufferedImage getCursorImg() { return getImage(_cursorPath); }
 	
 	// PLAYER IMAGES.
-	public static final BufferedImage[][] _player = ImageBank.loadImages(_playerPath, 0, 0, PLAYER_SIZE);
+	public static BufferedImage[][] getPlayerImages() { return getImages(_playerPath, 0, 0, PLAYER_SIZE); }
 	
 	// TIMER.
-	public static final BufferedImage _timer = ImageBank.loadImage(_timerPath);
+	public static BufferedImage getTimerImg() { return getImage(_timerPath); }
 	
 	// HEALTH.
-	public static final BufferedImage _heart = ImageBank.loadImage(_heartPath);
+	public static BufferedImage getHeartImg() { return getImage(_heartPath); }
 	
 	// STAMINA.
-	public static final BufferedImage _stamina = ImageBank.loadImage(_staminaPath);
+	//public static BufferedImage _stamina = ImageBank.loadImage(_staminaPath);
 	
 	// ITEMS.
-	public static final BufferedImage _hrglass = ImageBank.loadImage(_hrglassPath);
+	public static BufferedImage getHrglassImg() { return getImage(_hrglassPath); }
 	
 	// ITEMS -> USABLE ITEMS.
-	public static final BufferedImage _bluePotion = ImageBank.loadImage(_bluePotionPath);
-	public static final BufferedImage _greenPotion = ImageBank.loadImage(_greenPotionPath);
+	public static BufferedImage getBluePotionImg() { return getImage(_bluePotionPath); }
+	public static BufferedImage getGreenPotionImg() { return getImage(_greenPotionPath); }
 	
 	// ITEMS -> MONEY.
-	public static final BufferedImage _bronzeCoin = ImageBank.loadImage(_bronzeCoinPath);
-	public static final BufferedImage _silverCoin = ImageBank.loadImage(_silverCoinPath);
-	public static final BufferedImage _goldCoin = ImageBank.loadImage(_goldCoinPath);
-	public static final BufferedImage _crystal = ImageBank.loadImage(_crystalPath);*/
+	public static BufferedImage getBronzeCoinImg() { return getImage(_bronzeCoinPath); }
+	public static BufferedImage getSilverCoinImg() { return getImage(_silverCoinPath); }
+	public static BufferedImage getGoldCoinImg() { return getImage(_goldCoinPath); }
+	public static BufferedImage getCrystalImg() { return getImage(_crystalPath); }*/
 	
 	// TILESET.
 	public static String getTilesetPath() { return _tilesetPath; }
 	
 	// SOUNDS.
+	public static Clip getClip(String path) { return AudioBank.load(path); } 
 	
 	// PLAYER SOUNDS.
-	/*public static final Clip _drink = AudioBank.load(_drinkPath);
-	public static final Clip _harm = AudioBank.load(_harmPath);
+	/*public static Clip drink() { return getClip(_drinkPath); }
+	public static Clip harm() { return getClip(_harmPath); }
 	
 	// ITEM GET SOUNDS.
-	public static final Clip _getMoney = AudioBank.load(_getMoneyPath);
-	public static final Clip _getItem = AudioBank.load(_getItemPath);
-	public static final Clip _getHrglass = AudioBank.load(_getHrglassPath);
+	public static Clip getMoney() { return getClip(_getMoneyPath); }
+	public static Clip getItem() { return getClip(_getItemPath); }
+	public static Clip getHrglass() { return getClip(_getHrglassPath); }
 	
 	// MENU SOUNDS.
-	public static final Clip _cursorPick = AudioBank.load(_cursorAudioPath);
-	public static final Clip _select = AudioBank.load(_selectPath);
-	public static final Clip _cancel = AudioBank.load(_cancelPath);
-	public static final Clip _buzzer = AudioBank.load(_buzzerPath);*/
+	public static Clip cursor() { return getClip(_cursorAudioPath); }
+	public static Clip select() { return getClip(_selectPath); }
+	public static Clip cancel() { return getClip(_cancelPath); }
+	public static Clip buzzer() { return getClip(_buzzerPath); }*/
 }
