@@ -123,9 +123,9 @@ public class Player {
 		
 		_score = 0;
 		
-		/*_getItem = Constants._getItem;
-		_getMoney = Constants._getMoney;
-		_harm = Constants._harm;*/
+		/*_getItem = Constants.getItem();
+		_getMoney = Constants.getMoney();
+		_harm = Constants.harm();*/
 	}
 	
 	public void update() {
@@ -238,15 +238,24 @@ public class Player {
 	
 	private void drawHealth(Graphics g) {
 		// draw hud for health
-		//BufferedImage heartImg = Constants._heart;
-		//BufferedImage bar = Constants._bar;
+		//BufferedImage heartImg = Constants.getHeartImg();
+		//BufferedImage bar = Constants.getHealthCtrImg(true);
+		//BufferedImage barGray = Constants.getHealthCtrImg(false);
+		
+		int hpnow = (int)(_hp / _maxhp);
 		
 		/*int heartWidth = heartImg.getWidth();
 		int heartHeight = heartImg.getHeight();
 		
 		g.drawImage(heartImg, 20, Constants.HEIGHT_FINAL - 30, heartWidth, heartHeight, null);*/
 		
-		//g.drawImage(bar, 50, Constants.HEIGHT_FINAL - 30, bar.getWidth(), bar.getHeight(), null);
+		for (int i = 0; i < _maxhp; i++) {
+			//g.drawImage(barGray, 50, Constants.HEIGHT_FINAL - 30, barGray.getWidth(), barGray.getHeight(), null);
+		}
+		
+		for (int i = 0; i < hpnow; i++) {
+			//g.drawImage(bar, 50, Constants.HEIGHT_FINAL - 30, bar.getWidth(), bar.getHeight(), null);
+		}
 		
 		g.setColor(Color.RED);
 		g.fillRect(50, Constants.HEIGHT_FINAL - 30, (_hp / _maxhp) * 100, 8);
