@@ -242,7 +242,7 @@ public class Player {
 		//BufferedImage bar = Constants.getHealthCtrImg(true);
 		//BufferedImage barGray = Constants.getHealthCtrImg(false);
 		
-		int hpnow = (int)(_hp / _maxhp);
+		int hppercent = (int)(_hp / _maxhp);
 		
 		/*int heartWidth = heartImg.getWidth();
 		int heartHeight = heartImg.getHeight();
@@ -253,12 +253,12 @@ public class Player {
 			//g.drawImage(barGray, 50, Constants.HEIGHT_FINAL - 30, barGray.getWidth(), barGray.getHeight(), null);
 		}
 		
-		for (int i = 0; i < hpnow; i++) {
+		for (int i = 0; i < _hp; i++) {
 			//g.drawImage(bar, 50, Constants.HEIGHT_FINAL - 30, bar.getWidth(), bar.getHeight(), null);
 		}
 		
 		g.setColor(Color.RED);
-		g.fillRect(50, Constants.HEIGHT_FINAL - 30, (_hp / _maxhp) * 100, 8);
+		g.fillRect(50, Constants.HEIGHT_FINAL - 30, hppercent * 100, 8);
 	}
 	
 	/*private void drawStamina(Graphics g) {
