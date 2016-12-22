@@ -132,7 +132,7 @@ public final class Constants {
 	}
 	
 	// STAMINA.
-	//public static BufferedImage _stamina = ImageBank.loadImage(_staminaPath);
+	//public static BufferedImage _stamina = ImageBank.loadImage(_staminaPath);*/
 	
 	// ITEMS.
 	public static BufferedImage getHrglassImg() { return getImage(_hrglassPath); }
@@ -145,7 +145,7 @@ public final class Constants {
 	public static BufferedImage getBronzeCoinImg() { return getImage(_bronzeCoinPath); }
 	public static BufferedImage getSilverCoinImg() { return getImage(_silverCoinPath); }
 	public static BufferedImage getGoldCoinImg() { return getImage(_goldCoinPath); }
-	public static BufferedImage getCrystalImg() { return getImage(_crystalPath); }*/
+	public static BufferedImage getCrystalImg() { return getImage(_crystalPath); }
 	
 	// TILESET.
 	public static String getTilesetPath() { return _tilesetPath; }
