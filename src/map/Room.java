@@ -282,4 +282,8 @@ public class Room {
 		
 		return tile;
 	}
+	
+	public Room getRoom() {
+		return this;
+	}
 }

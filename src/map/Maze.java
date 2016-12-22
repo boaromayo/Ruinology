@@ -42,13 +42,15 @@ public class Maze {
 	private int _roomHeight;
 	
 	public Maze() {
-		this(1); // Loads an 8x8 maze by default.
+		this(-1); // Loads an 1x1 maze by default for debug.
 	}
 	
 	public Maze(int mazeMode) {
 		_mazeMode = mazeMode;
 		
-		if (_mazeMode == 0) {
+		if (_mazeMode == -1) {
+			_mazeSize = 1; // One room for debugging.
+		} else if (_mazeMode == 0) {
 			_mazeSize = _SIX; // 6x6 is 36 rooms, easy!
 		} else if (_mazeMode == 1) {
 			_mazeSize = _EIGHT; // 8x8 is 64 rooms, the default.
@@ -71,8 +73,8 @@ public class Maze {
 		
 		// Check for any discrepancies in the Room[][] array. Return if
 		// Rooms do not meet requirements.
-		if (newRooms == null || roomCols != newRooms[1].length ||
-				roomRows != roomCols || roomRows != _mazeSize)
+		if (newRooms == null || roomCols != _mazeSize ||
+				roomRows != _mazeSize || roomRows != roomCols)
 			return;
 		
 		for (int row = 0; row < roomRows; row++) {
@@ -82,19 +84,19 @@ public class Maze {
 		}
 	}
 	
-	/*public void loadRoomsFromFile(String path) {
+	/*public void loadRooms(String path) {
 		try {
 			File file = new File(path);
-			File[][] files = new File[_mazeSize][_mazeSize]; // Make the empty files.
 			// Create the reader and writer.
 			BufferedReader reader = new BufferedReader
 					(new FileReader(file));
 			Room[][] newRooms = _rooms;
+			int[][] tileids = new int[_roomWidth][_roomHeight];
 			String delim = "\\s+";
 			
 			// This file will be read based on the size of numbers
 			// in the file and will spit out an error if not enough numbers are read.
-			// If 
+			// If the reader is reading past the roomWidth threshold, skip to the next row.
 			int numRows = _roomHeight * _rooms.length;
 			int numCols = _roomWidth * _rooms[0].length;
 			
@@ -107,11 +109,10 @@ public class Maze {
 					if (col % _roomWidth == 0)
 						c++;
 					
-					File curFile = files[r][c];
 					String[] lines = line.split(delim);
-					int linenum = Integer.valueOf(lines[col]);
+					tileids[row][col] = Integer.valueOf(lines[col]);
 					
-					curFile = new File("room-" + r + "-" + c + ".txt");
+					newRooms[r][c] = new Room(tileids);
 				}
 			}
 			
@@ -122,7 +123,7 @@ public class Maze {
 		}
 	}*/
 	
-	public void loadRoomsFromFiles(File[][] files) {
+	/*public void loadRooms(File[][] files) {
 		try {
 			for (int row = 0; row < files.length; row++) {
 				for (int col = 0; col < files[0].length; col++) {
@@ -135,7 +136,7 @@ public class Maze {
 					"\n" + e.getMessage());
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	public void setLocation(Player p) {
 		Random rand = new Random();
