@@ -13,7 +13,7 @@ public class SceneGame extends Scene {
 	private Player _player;
 	
 	// MAZE.
-	//private Maze _maze;
+	private Maze _maze;
 	
 	// CAMERA.
 	private Camera _camera;
@@ -24,13 +24,15 @@ public class SceneGame extends Scene {
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
+		_maze = new Maze(); // Let maze set player's starting room.
+		
 		_player = new Player(); 
 		
 		_player.setTime(360); // Six minutes is default for 8x8 maze.
 		
-		//_maze = new Maze(_player, 1); // Let maze set player's starting room.
+		_maze.setLocation(_player); // Set random location for player.
 		
-		//_camera = new Camera(); // Set camera to player's current room location.
+		//_camera = new Camera(_player); // Set camera to player's current room location.
 		
 		_items = new ArrayList<Item>(); // make items into list
 		
