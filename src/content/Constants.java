@@ -50,8 +50,15 @@ public final class Constants {
 	// HEALTH.
 	private static final String _heartPath = "../assets/img/heart.gif";
 	
+	// HEALTH COUNTER.
+	private static final String _heartCtrGrayPath = "../assets/img/heart_bar_gray.gif";
+	private static final String _heartCtrPath = "../assets/img/heart_bar.gif";
+	
 	// STAMINA.
 	private static final String _staminaPath = "../assets/img/stamina.gif";
+	
+	// STAMINA BAR?
+	private static final String _staminaGaugePath = "../assets/img/stamina_gauge.gif";
 	
 	// ITEMS.
 	private static final String _hrglassPath = "../assets/img/hourglass.png";
@@ -117,6 +124,12 @@ public final class Constants {
 	
 	// HEALTH.
 	public static BufferedImage getHeartImg() { return getImage(_heartPath); }
+	public static BufferedImage getHealthCtrImg(boolean healthy) {
+		if (healthy)
+			getImage(_heartCtrPath);
+		else
+			getImage(_heartCtrGrayPath);
+	}
 	
 	// STAMINA.
 	//public static BufferedImage _stamina = ImageBank.loadImage(_staminaPath);
