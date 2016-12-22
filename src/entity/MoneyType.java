@@ -6,10 +6,10 @@ import content.Constants;
 
 public enum MoneyType {
 	// show the types of money in-game
-	BRONZE_COIN(10), 
-	SILVER_COIN(20), 
-	GOLD_COIN(50),
-	CRYSTAL(100);
+	BRONZE_COIN(10, Constants.getBronzeCoinImg()), 
+	SILVER_COIN(20, Constants.getSilverCoinImg()), 
+	GOLD_COIN(50, Constants.getGoldCoinImg()),
+	CRYSTAL(100, Constants.getCrystalImg());
 	/*DIAMOND(200), 
 	PEARL(1000), 
 	EMERALD(2500), 
