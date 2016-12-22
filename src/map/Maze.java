@@ -152,7 +152,8 @@ public class Maze {
 		int y = rand.nextInt(_roomHeight);
 		
 		// If the randomly picked Room has a ladder, move player to another Room.
-		if (_rooms[randRow][randCol].getTile(centx, centy).isType("ladder")) {
+		if (_rooms[randRow][randCol].getTile(centx, centy).isType("ladder") &&
+				_mazeSize > 1) {
 			randRow = rand.nextInt(_mazeSize);
 			randCol = rand.nextInt(_mazeSize);
 			x = rand.nextInt(_roomWidth);
