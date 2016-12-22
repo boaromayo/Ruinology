@@ -250,11 +250,11 @@ public class Player {
 		g.drawImage(heartImg, 20, Constants.HEIGHT_FINAL - 30, heartWidth, heartHeight, null);*/
 		
 		for (int i = 0; i < _maxhp; i++) {
-			//g.drawImage(barGray, 50, Constants.HEIGHT_FINAL - 30, barGray.getWidth(), barGray.getHeight(), null);
+			//g.drawImage(barGray, 50 * (i + 1), Constants.HEIGHT_FINAL - 30, barGray.getWidth(), barGray.getHeight(), null);
 		}
 		
 		for (int i = 0; i < _hp; i++) {
-			//g.drawImage(bar, 50, Constants.HEIGHT_FINAL - 30, bar.getWidth(), bar.getHeight(), null);
+			//g.drawImage(bar, 50 * (i + 1), Constants.HEIGHT_FINAL - 30, bar.getWidth(), bar.getHeight(), null);
 		}
 		
 		g.setColor(Color.RED);
