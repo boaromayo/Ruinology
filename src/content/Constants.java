@@ -24,50 +24,50 @@ public final class Constants {
 	// FILE PATHS.
 	
 	// TITLE IMAGE.
-	private static final String _titlePath = "../img/title.png";
+	private static final String _titlePath = "../assets/img/title.png";
 	
 	// PAUSE IMAGE.
-	private static final String _pauseTitlePath = "../img/pausetitle.png";
+	private static final String _pauseTitlePath = "../assets/img/pausetitle.png";
 	
 	// VICTORY TITLE IMAGE.
-	private static final String _victoryPath = "../img/victory_title.png";
+	private static final String _victoryPath = "../assets/img/victory_title.png";
 	
 	// GAMEOVER IMAGE.
-	private static final String _gameoverPath = "../img/gameover_title.png";
+	private static final String _gameoverPath = "../assets/img/gameover_title.png";
 	
 	// TEXT.
-	private static final String _fontPath = "../img/font.gif";
+	private static final String _fontPath = "../assets/img/font.gif";
 	
 	// CURSOR.
-	private static final String _cursorPath = "../img/cursor.png";
+	private static final String _cursorPath = "../assets/img/cursor.png";
 	
 	// PLAYER FILE.
-	private static final String _playerPath = "../img/player.png";
+	private static final String _playerPath = "../assets/img/player.png";
 	
 	// TIMER.
-	private static final String _timerPath = "../img/timer.png";
+	private static final String _timerPath = "../assets/img/timer.png";
 	
 	// HEALTH.
-	private static final String _heartPath = "../img/heart.gif";
+	private static final String _heartPath = "../assets/img/heart.gif";
 	
 	// STAMINA.
-	private static final String _staminaPath = "../img/stamina.gif";
+	private static final String _staminaPath = "../assets/img/stamina.gif";
 	
 	// ITEMS.
-	private static final String _hrglassPath = "../img/hourglass.png";
+	private static final String _hrglassPath = "../assets/img/hourglass.png";
 	
 	// ITEMS -> USABLE ITEMS.
-	private static final String _bluePotionPath = "../img/potion_blue.gif";
-	private static final String _greenPotionPath = "../img/potion_green.gif";
+	private static final String _bluePotionPath = "../assets/img/potion_blue.gif";
+	private static final String _greenPotionPath = "../assets/img/potion_green.gif";
 	
 	// ITEMS -> MONEY.
-	private static final String _bronzeCoinPath = "../img/coin_bronze.gif";
-	private static final String _silverCoinPath = "../img/coin_silver.gif";
-	private static final String _goldCoinPath = "../img/coin_gold.gif";
-	private static final String _crystalPath = "../img/crystal.gif";
+	private static final String _bronzeCoinPath = "../assets/img/coin_bronze.gif";
+	private static final String _silverCoinPath = "../assets/img/coin_silver.gif";
+	private static final String _goldCoinPath = "../assets/img/coin_gold.gif";
+	private static final String _crystalPath = "../assets/img/crystal.gif";
 	
 	// TILESET.
-	private static final String _tilesetPath = "../img/tileset.gif";
+	private static final String _tilesetPath = "../assets/maps/tileset.txt";
 	
 	// SOUNDS.
 	
@@ -89,7 +89,7 @@ public final class Constants {
 	// IMAGES.
 	
 	// TITLE IMAGE.
-	/*public static final BufferedImage _title = ImageBank.loadImage(_titlePath);
+	/*public static final BufferedImage getTitle() { return ImageBank.loadImage(_titlePath); }
 	
 	// PAUSE IMAGE.
 	public static final BufferedImage _pauseTitle = ImageBank.loadImage(_pauseTitlePath);
@@ -129,15 +129,15 @@ public final class Constants {
 	public static final BufferedImage _bronzeCoin = ImageBank.loadImage(_bronzeCoinPath);
 	public static final BufferedImage _silverCoin = ImageBank.loadImage(_silverCoinPath);
 	public static final BufferedImage _goldCoin = ImageBank.loadImage(_goldCoinPath);
-	public static final BufferedImage _crystal = ImageBank.loadImage(_crystalPath);
+	public static final BufferedImage _crystal = ImageBank.loadImage(_crystalPath);*/
 	
 	// TILESET.
-	public static final BufferedImage[][] _tileset = ImageBank.loadImage(_tilesetPath, 0, 0, TILE_SIZE);
+	public static String getTilesetPath() { return _tilesetPath; }
 	
 	// SOUNDS.
 	
 	// PLAYER SOUNDS.
-	public static final Clip _drink = AudioBank.load(_drinkPath);
+	/*public static final Clip _drink = AudioBank.load(_drinkPath);
 	public static final Clip _harm = AudioBank.load(_harmPath);
 	
 	// ITEM GET SOUNDS.
