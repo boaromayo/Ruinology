@@ -5,8 +5,7 @@ import java.awt.image.*;
 
 import java.io.*;
 
-import content.Constants;
-import content.ImageBank;
+import content.*;
 
 public class Room {
 	
@@ -117,7 +116,7 @@ public class Room {
 	private void loadTiles() {
 		// Read through a separate file and get the
 		// image, type, and behavior corresponding to the ID number.
-		File tableFile = new File("../assets/maps/tileset.txt");
+		File tableFile = new File(Constants.getTilesetPath());
 		
 		try {
 			BufferedReader tablereader = new BufferedReader(
