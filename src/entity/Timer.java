@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.image.*;
 
 import content.Constants;
+import content.Text;
 
 public class Timer {
 
@@ -43,10 +44,12 @@ public class Timer {
 	public void draw(Graphics g) {
 		int minute = (int) (_timercount / DELAY);
 		int second = (int) (_timercount % DELAY);
+		String timeStr = String.format("%02d:%02d", minute, second);
 		
 		// Draw the timer img and clock
-		g.drawImage(_timerImg, Constants.WIDTH - 50, Constants.HEIGHT - 10, _timerImg.getWidth(), _timerImg.getHeight(), null);
-		g.drawString(String.format("%02d:%02d", minute, second), Constants.WIDTH - 40, Constants.HEIGHT - 10);
+		g.drawImage(_timerImg, Constants.WIDTH - 50, Constants.HEIGHT_FINAL - 10, _timerImg.getWidth(), _timerImg.getHeight(), null);
+		//Text.draw(g, timeStr, Constants.WIDTH - 40, Constants.HEIGHT_FINAL - 10);
+		g.drawString(timeStr, Constants.WIDTH - 40, Constants.HEIGHT_FINAL - 10);
 	}
 	
 	public void setTime(int sec) {
