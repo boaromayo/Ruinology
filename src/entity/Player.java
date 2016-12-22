@@ -249,14 +249,14 @@ public class Player {
 		/*int heartWidth = heartImg.getWidth();
 		int heartHeight = heartImg.getHeight();
 		
-		g.drawImage(heartImg, 20, Constants.HEIGHT_FINAL - 30, heartWidth, heartHeight, null);*/
+		g.drawImage(heartImg, offset, Constants.HEIGHT_FINAL - (basex-offset), heartWidth, heartHeight, null);*/
 		
 		for (int i = 0; i < _maxhp; i++) {
-			//g.drawImage(barGray, basex + (i * offset), Constants.HEIGHT_FINAL - (basex - offset), barGray.getWidth(), barGray.getHeight(), null);
+			//g.drawImage(barGray, basex + (i * offset), Constants.HEIGHT_FINAL - (basex-offset), barGray.getWidth(), barGray.getHeight(), null);
 		}
 		
 		for (int i = 0; i < _hp; i++) {
-			//g.drawImage(bar, basex + (i * offset), Constants.HEIGHT_FINAL - (basex - offset), bar.getWidth(), bar.getHeight(), null);
+			//g.drawImage(bar, basex + (i * offset), Constants.HEIGHT_FINAL - (basex-offset), bar.getWidth(), bar.getHeight(), null);
 		}
 		
 		g.setColor(Color.RED);
