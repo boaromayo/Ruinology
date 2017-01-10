@@ -19,7 +19,7 @@ public final class Constants {
 	public static final int TILE_SIZE = 24;
 	
 	// FONT SIZE.
-	private static final int FONT_SIZE = 16;
+	private static final int FONT_SIZE = 20;
 	
 	// FILE PATHS.
 	
@@ -108,13 +108,13 @@ public final class Constants {
 	public static BufferedImage getVictoryTitle() { return getImage(_victoryPath); }
 	
 	// GAMEOVER IMAGE.
-	public static BufferedImage getGameoverTitle() { return getImage(_gameoverPath); }
+	public static BufferedImage getGameoverTitle() { return getImage(_gameoverPath); }*/
 	
 	// TEXT
 	public static BufferedImage[][] getGameFont() { return getImages(_fontPath, 0, 0, FONT_SIZE); }
 	
 	// CURSOR.
-	public static BufferedImage getCursorImg() { return getImage(_cursorPath); }
+	/*public static BufferedImage getCursorImg() { return getImage(_cursorPath); }
 	
 	// PLAYER IMAGES.
 	public static BufferedImage[][] getPlayerImages() { return getImages(_playerPath, 0, 0, PLAYER_SIZE); }

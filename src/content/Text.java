@@ -2,10 +2,12 @@ package content;
 import java.awt.*;
 import java.awt.image.*;
 
+import content.Constants;
+
 public final class Text {
 
 	// TEXT.
-	//private static BufferedImage [][] _text = Constants._font;
+	private static BufferedImage [][] _text = Constants.getGameFont();
 	
 	public static void draw(Graphics g, String str, int x, int y) {
 		// convert upcased string to char array to handle letter-by-letter.
