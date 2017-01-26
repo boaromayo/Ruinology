@@ -41,6 +41,9 @@ public class Maze {
 	private int _roomWidth;
 	private int _roomHeight;
 	
+	// CURRENT ROOM.
+	private Room _currentRoom;
+	
 	public Maze() {
 		this(-1); // Loads an 1x1 maze by default for debug.
 	}
@@ -141,6 +144,7 @@ public class Maze {
 	public void setLocation(Player p) {
 		Random rand = new Random();
 		
+		// Pick a random Room in the maze.
 		int randRow = rand.nextInt(_mazeSize);
 		int randCol = rand.nextInt(_mazeSize);
 		
@@ -151,21 +155,33 @@ public class Maze {
 		int x = rand.nextInt(_roomWidth);
 		int y = rand.nextInt(_roomHeight);
 		
-		// If the randomly picked Room has a ladder, move player to another Room.
+		// Set the current Room the player is in.
+		_currentRoom = _rooms[randRow][randCol];
+		
+		// If the picked Room has a ladder, move player to another Room.
 		if (_rooms[randRow][randCol].getTile(centx, centy).isType("ladder") &&
 				_mazeSize > 1) {
 			randRow = rand.nextInt(_mazeSize);
 			randCol = rand.nextInt(_mazeSize);
 			x = rand.nextInt(_roomWidth);
 			y = rand.nextInt(_roomHeight);
+			_currentRoom = _rooms[randRow][randCol];
 		}
 		
-		// Check if tile is solid, or impassable.
+		// Check if tile is solid, or impassable. If solid, move player to a passable tile.
 		if (_rooms[randRow][randCol].getTile(x,y).isSolid()) {
 			x = rand.nextInt(_roomWidth);
 			y = rand.nextInt(_roomHeight);
 		}
 		
 		p.setLocation(x,y);
+	}
+	
+	public void setCurrentRoom(int row, int col) {
+		_currentRoom = _rooms[row][col];
+	}
+	
+	public Room getCurrentRoom() {
+		return _currentRoom;
 	}
 }
