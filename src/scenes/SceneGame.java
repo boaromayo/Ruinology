@@ -32,7 +32,9 @@ public class SceneGame extends Scene {
 		
 		_maze.setLocation(_player); // Set random location for player.
 		
-		//_camera = new Camera(_player); // Set camera to player's current room location.
+		//_camera = new Camera();
+		
+		//_camera.setLocation(); // Set camera to player's current room location.
 		
 		_items = new ArrayList<Item>(); // make items into list
 		
@@ -99,9 +101,5 @@ public class SceneGame extends Scene {
 				item.draw(g);
 			}
 		}
-	}
-	
-	public void loadMap() {
-		
 	}
 }
