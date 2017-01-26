@@ -48,6 +48,7 @@ public class SceneGame extends Scene {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+		//_camera.update();
 		_player.update();
 		
 		// Set timer on if game scene is the scene being used.
@@ -92,6 +93,7 @@ public class SceneGame extends Scene {
 
 	@Override
 	public void draw(Graphics g) {
+		//_camera.draw(g);
 		_player.draw(g);
 		
 		for (Item item : _items) {
