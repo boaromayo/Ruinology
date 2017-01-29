@@ -152,8 +152,8 @@ public class Maze {
 		
 		// Get the center of the Room.
 		// Since each Room has the same size, this can apply to any Room.
-		int centx = _rooms[randRow][randCol].getCols() / 2; 
-		int centy = _rooms[randRow][randCol].getRows() / 2;
+		int centx = _roomWidth / 2; 
+		int centy = _roomHeight / 2;
 		int x = rand.nextInt(_roomWidth);
 		int y = rand.nextInt(_roomHeight);
 		
