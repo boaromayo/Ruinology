@@ -160,9 +160,12 @@ public class Maze {
 		// Set the current Room the player is in.
 		_currentRoom = _rooms[randRow][randCol];
 		
-		// If the picked Room has a ladder, move player to another Room.
-		if (_currentRoom.getTile(centx, centy).isType("ladder") &&
-				_mazeSize > 1) {
+		// If the picked Room has a ladder, move player to another Room. 
+		// Keep doing this until the player is in a Room
+		// with no ladder.
+		while (_currentRoom.getTile(centx, centy).isType("ladder")) {
+			if (_mazeSize == 1) { break; }
+			
 			randRow = rand.nextInt(_mazeSize);
 			randCol = rand.nextInt(_mazeSize);
 			x = rand.nextInt(_roomWidth);
@@ -170,8 +173,9 @@ public class Maze {
 			_currentRoom = _rooms[randRow][randCol];
 		}
 		
-		// Check if tile is solid, or impassable. If solid, move player to a passable tile.
-		if (_currentRoom.getTile(x,y).isSolid()) {
+		// Check if the player location has a solid, or impassable tile. 
+		// If so, relocate player to a passable tile.
+		while (_currentRoom.getTile(x,y).isSolid()) {
 			x = rand.nextInt(_roomWidth);
 			y = rand.nextInt(_roomHeight);
 		}
