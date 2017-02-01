@@ -492,6 +492,15 @@ public class Player {
 		return _score;
 	}
 	
+	// MOVE METHODS.
+	public int getx() {
+		return (int)_x;
+	}
+	
+	public int gety() {
+		return (int)_y;
+	}
+	
 	// STATE.
 	public boolean isIdle() {
 		return (_state.equals(State._IDLE));
