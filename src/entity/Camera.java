@@ -1,15 +1,20 @@
 package entity;
 
+import java.awt.*;
+
 import content.*;
 
 public class Camera {
 	
 	// CONSTANTS.
-	private final int _OFFSET = 10;
+	private final int _OFFSET = 2;
 	
 	// COORDINATES.
 	private int _x;
 	private int _y;
+	
+	// SPEED.
+	private int _speed = 3;
 	
 	// THRESHOLDS.
 	private int _xmin;
@@ -18,30 +23,53 @@ public class Camera {
 	private int _ymax;
 	
 	public Camera() {
-		_xmin = 0;
-		_xmax = (Constants.WIDTH - _OFFSET) / Constants.TILE_SIZE;
-		_ymin = 0;
-		_ymax = (Constants.HEIGHT - _OFFSET) / Constants.TILE_SIZE;
+		_xmin = -Constants.WIDTH - _OFFSET;
+		_xmax = 0;
+		_ymin = -Constants.HEIGHT - _OFFSET;
+		_ymax = 0;
+		
+		_x = _xmin;
+		_y = _ymin;
+		
+		setLocation(_x, _y);
 	}
 	
 	public Camera(int x, int y) {
-		_xmin = 0;
-		_xmax = _OFFSET;
-		_ymin = 0;
-		_ymax = _OFFSET;
+		_xmin = -x - _OFFSET;
+		_xmax = 0;
+		_ymin = -y - _OFFSET;
+		_ymax = 0;
+		
+		_x = _xmin;
+		_y = _ymin;
 		
 		setLocation(x,y);
 	}
 	
 	public void update() {
 		
+		setBounds();
 	}
 	
 	public void setLocation(int x, int y) {
 		_x = x;
 		_y = y;
-		
-		setBounds();
+	}
+	
+	public void translate(int movex, int movey) {
+		// move camera based on destination
+		if (_x > movex) {
+			_x -= _speed;
+		} 
+		if (_x < movex) {
+			_x += _speed;
+		}
+		if (_y > movey) {
+			_y -= _speed;
+		} 
+		if (_y < movey) {
+			_y += _speed;
+		}
 	}
 	
 	public void setBounds() {
@@ -57,16 +85,7 @@ public class Camera {
 		if (_y > _ymax) {
 			_y = _ymax;
 		}
-	}
-	
-	public void translate(int x, int y) {
-		int xmove = x; // add more to translate method
-		int ymove = y;
 		
-		_x += xmove;
-		_y += ymove;
-		
-		setBounds();
 	}
 	
 	public int getx() {
@@ -75,5 +94,9 @@ public class Camera {
 	
 	public int gety() {
 		return _y;
+	}
+	
+	public void draw(Graphics g) {
+		
 	}
 }
