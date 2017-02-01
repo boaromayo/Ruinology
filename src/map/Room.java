@@ -67,7 +67,7 @@ public class Room {
 		init();
 	}
 	
-	// CONSTRUCTOR FOR SINGLE ROOM.
+	// CONSTRUCTOR FOR SINGLE ROOM FROM ONE FILE.
 	public Room(String path) {
 		//_tileset = Constants._tileset
 		
@@ -247,10 +247,6 @@ public class Room {
 					"Reason: " + e.getMessage());
 			e.printStackTrace();
 		}
-	}
-	
-	public void update() {
-		
 	}
 	
 	public void draw(Graphics g) {

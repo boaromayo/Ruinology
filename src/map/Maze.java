@@ -1,6 +1,6 @@
 package map;
 
-import java.io.*;
+import java.awt.*;
 
 import java.util.*;
 
@@ -76,12 +76,13 @@ public class Maze {
 		int roomRows = newRooms.length;
 		int roomCols = newRooms[0].length;
 		
-		// Check for any discrepancies in the Room[][] array. Return if
+		// Check for any discrepancies in the array. Return if
 		// Rooms do not meet requirements.
 		if (newRooms == null || roomCols != _mazeSize ||
 				roomRows != _mazeSize || roomRows != roomCols)
 			return;
 		
+		// Put the Rooms in the maze.
 		for (int row = 0; row < roomRows; row++) {
 			for (int col = 0; col < roomCols; col++) {
 				_rooms[row][col] = newRooms[row][col];
@@ -189,5 +190,9 @@ public class Maze {
 	
 	public Room getCurrentRoom() {
 		return _currentRoom;
+	}
+	
+	public void draw(Graphics g) {
+		_currentRoom.draw(g);
 	}
 }
