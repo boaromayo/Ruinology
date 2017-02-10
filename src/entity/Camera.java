@@ -62,11 +62,11 @@ public class Camera {
 		// If player moves out of bounds, have camera move with player to next Room.
 		if (_player.getx() > -_xmin ||
 				_player.getx() < _xmax) {
-			translate();
+			//translate();
 		}
 		if (_player.gety() > -_ymin ||
 				_player.gety() < _ymax) {
-			translate();
+			//translate();
 		}
 		
 	}
