@@ -59,13 +59,17 @@ public class Camera {
 	}
 	
 	public void update() {
-		// If player moves out of bounds, have camera move with player to next Room.
-		if (_player.getx() > -_xmin ||
-				_player.getx() < _xmax) {
+		// Have camera move with player to next Room.
+		if (_player.getx() > -_xmin) {
 			//translate();
 		}
-		if (_player.gety() > -_ymin ||
-				_player.gety() < _ymax) {
+		if (_player.getx() < _xmax) {
+			//translate();
+		}
+		if (_player.gety() > -_ymin) {
+			//translate();
+		}
+		if (_player.gety() < _ymax) {
 			//translate();
 		}
 		
