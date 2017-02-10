@@ -4,6 +4,8 @@ import java.awt.*;
 
 import content.*;
 
+import map.*;
+
 public class Camera {
 	
 	// CONSTANTS.
@@ -22,7 +24,11 @@ public class Camera {
 	private int _ymin;
 	private int _ymax;
 	
-	public Camera() {
+	// "HAS" VARIABLES.
+	private Maze _maze;
+	private Player _player;
+	
+	public Camera(Maze m, Player p) {
 		_xmin = -Constants.WIDTH - _OFFSET;
 		_xmax = 0;
 		_ymin = -Constants.HEIGHT - _OFFSET;
@@ -31,10 +37,13 @@ public class Camera {
 		_x = _xmin;
 		_y = _ymin;
 		
+		_maze = m;
+		_player = p;
+		
 		setLocation(_x, _y);
 	}
 	
-	public Camera(int x, int y) {
+	public Camera(Maze m, Player p, int x, int y) {
 		_xmin = -x - _OFFSET;
 		_xmax = 0;
 		_ymin = -y - _OFFSET;
@@ -43,12 +52,23 @@ public class Camera {
 		_x = _xmin;
 		_y = _ymin;
 		
+		_maze = m;
+		_player = p;
+		
 		setLocation(x,y);
 	}
 	
 	public void update() {
+		// If player moves out of bounds, have camera move with player to next Room.
+		if (_player.getx() > -_xmin ||
+				_player.getx() < _xmax) {
+			translate();
+		}
+		if (_player.gety() > -_ymin ||
+				_player.gety() < _ymax) {
+			translate();
+		}
 		
-		setBounds();
 	}
 	
 	public void setLocation(int x, int y) {
@@ -70,6 +90,8 @@ public class Camera {
 		if (_y < movey) {
 			_y += _speed;
 		}
+		
+		setBounds();
 	}
 	
 	public void setBounds() {
@@ -97,6 +119,18 @@ public class Camera {
 	}
 	
 	public void draw(Graphics g) {
+		Room room = _maze.getCurrentRoom();
+		int row, col;
+		Tile currentTile;
 		
+		for (row = _y - _OFFSET; row < _y + room.getRows() + _OFFSET; row++) {
+			for (col = _x - _OFFSET; col < _x + room.getCols() + _OFFSET; col++) {
+				currentTile = room.getTile(row, col);
+				g.drawImage(currentTile.getImage(), 
+						Constants.TILE_SIZE, 
+						Constants.TILE_SIZE, 
+						null); // Draw the area.
+			}
+		}
 	}
 }
