@@ -249,12 +249,12 @@ public class Room {
 		}
 	}
 	
-	public void draw(Graphics g) {
+	/*public void draw(Graphics g) {
 		for (int row = 0; row < _tiles.length; row++)
 			for (int col = 0; col < _tiles[row].length; col++)
 				g.drawImage(_tiles[row][col].getImage(), 
 						Constants.TILE_SIZE, Constants.TILE_SIZE, null); // Draw the room.
-	}
+	}*/
 	
 	public int getRows() {
 		return _height;

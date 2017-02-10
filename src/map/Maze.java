@@ -191,8 +191,4 @@ public class Maze {
 	public Room getCurrentRoom() {
 		return _currentRoom;
 	}
-	
-	public void draw(Graphics g) {
-		_currentRoom.draw(g);
-	}
 }
