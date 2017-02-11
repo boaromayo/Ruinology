@@ -136,9 +136,9 @@ public class Camera {
 	
 	public void draw(Graphics g) {
 		Room room = _maze.getCurrentRoom();
-		int row, col;
-		int tx, ty;
-		Tile currentTile;
+		int row, col; // Init variables to optimize looping.
+		int tx, ty; // Init tile coords.
+		Tile currentTile; // Init a cursor Tile for drawing area.
 		
 		tx = _x / Constants.TILE_SIZE;
 		ty = _y / Constants.TILE_SIZE;
