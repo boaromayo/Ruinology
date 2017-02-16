@@ -2,9 +2,23 @@ package entity;
 import java.awt.*;
 import java.awt.image.*;
 
-public class Money extends Item {
+public class Money {
 	// MONEY TYPE.
 	private MoneyType _type;
+	
+	// SPRITE.
+	private BufferedImage _img;
+	
+	// COORDINATES.
+	protected int _x;
+	protected int _y;
+	
+	// SIZE.
+	protected int _width;
+	protected int _height;
+	
+	// VISIBILITY.
+	protected boolean _visible;
 	
 	public Money() {
 		_type = MoneyType.BRONZE_COIN;
@@ -23,24 +37,34 @@ public class Money extends Item {
 		_height = _img.getHeight();
 	}
 	
-	@Override
 	public void update() {}
 
-	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
 		g.drawImage(_img, _x, _y, _width, _height, null);
 	}
-
-	private BufferedImage getCoinImage(MoneyType mt) {
-		return mt.image();
-	}
 	
-	@Override
 	public void effect(Player p) {
 		// play money get sound
 		p.moneyGet();
 		p.addValue(value());
+	}
+	
+	public void setLocation(int x, int y) {
+		_x = x;
+		_y = y;
+	}
+	
+	public void setVisible(boolean v) {
+		_visible = v;
+	}
+
+	public Rectangle getBoundingBox() {
+		return new Rectangle(_x, _y, _width, _height);
+	}
+	
+	private BufferedImage getCoinImage(MoneyType mt) {
+		return mt.image();
 	}
 	
 	public MoneyType type() {
@@ -49,6 +73,10 @@ public class Money extends Item {
 	
 	public int value() {
 		return _type.value();
+	}
+	
+	public boolean isVisible() {
+		return _visible;
 	}
 	
 }

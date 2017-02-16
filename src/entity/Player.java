@@ -200,6 +200,8 @@ public class Player {
 				setItem(0);
 			else
 				setItem(_position++);
+		} else if (InputBank.keyPressed(InputBank._ENTER)) {
+			useItem();
 		} else {
 			setdx(0);
 			setdy(0);
@@ -308,9 +310,12 @@ public class Player {
 	
 	public void useItem() {
 		if (_bag[_position] != null) {
+			// use item if there is one in bag's slot
 			_bag[_position].use(this);
 			_bag[_position] = null;
 			_bagSize--;
+		} else {
+			// otherwise, play buzzer sound
 		}
 	}
 	
@@ -426,6 +431,13 @@ public class Player {
 		Rectangle ri = item.getBoundingBox();
 		
 		return rp.intersects(ri);
+	}
+	
+	public boolean intersects(Money money) {
+		Rectangle rp = getBoundingBox();
+		Rectangle rm = money.getBoundingBox();
+		
+		return rp.intersects(rm);
 	}
 	
 	private void checkCollisions() {
