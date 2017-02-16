@@ -20,6 +20,7 @@ public class SceneGame extends Scene {
 
 	// SET OF ITEMS IN MAZE.
 	ArrayList<Item> _items;
+	ArrayList<Money> _moneys;
 	
 	@Override
 	public void init() {
@@ -43,6 +44,13 @@ public class SceneGame extends Scene {
 			// Add items into list if visible on map.
 			if (item.isVisible()) {
 				_items.add(item);
+			}
+		}
+		
+		for (Money money : _moneys) {
+			// Add currency into list if visible on map.
+			if (money.isVisible()) {
+				_moneys.add(money);
 			}
 		}
 	}
@@ -70,13 +78,23 @@ public class SceneGame extends Scene {
 		for (Item item : _items) {
 			if (item.isVisible()) {
 				item.update();
-			}
 			
+				// Check if player touches items.
+				if (_player.intersects(item)) {
+					item.effect(_player);
+					item.setVisible(false);
+					_items.remove(item);
+				}
+			}
+		}
+		
+		// Update money if visible.
+		for (Money money : _moneys) {
 			// Check if player touches items.
-			if (_player.intersects(item)) {
-				item.effect(_player);
-				item.setVisible(false);
-				_items.remove(item);
+			if (_player.intersects(money)) {
+				money.effect(_player);
+				money.setVisible(false);
+				_items.remove(money);
 			}
 		}
 		
