@@ -90,11 +90,15 @@ public class SceneGame extends Scene {
 		
 		// Update money if visible.
 		for (Money money : _moneys) {
-			// Check if player touches items.
-			if (_player.intersects(money)) {
-				money.effect(_player);
-				money.setVisible(false);
-				_items.remove(money);
+			if (money.isVisible()) {
+				money.update();
+				
+				// Check if player touches items.
+				if (_player.intersects(money)) {
+					money.effect(_player);
+					money.setVisible(false);
+					_items.remove(money);
+				}
 			}
 		}
 		
