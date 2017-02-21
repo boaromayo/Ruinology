@@ -13,7 +13,7 @@ public class HealPotion extends UsableItem {
 	@Override
 	public void use(Player p) {
 		// TODO Auto-generated method stub
-		//AudioBank.play(Constants._drink); // play drinking sound
+		//AudioBank.play(Constants.drink()); // play drinking sound
 		p.heal(3);
 	}
 
