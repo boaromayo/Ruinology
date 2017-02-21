@@ -12,8 +12,8 @@ public abstract class Item {
 	protected BufferedImage _img;
 	
 	// COORDINATES.
-	protected int _x;
-	protected int _y;
+	protected float _x;
+	protected float _y;
 	
 	// SIZE.
 	protected int _width;
@@ -52,7 +52,9 @@ public abstract class Item {
 	}
 	
 	public Rectangle getBoundingBox() {
-		return new Rectangle(_x, _y, _width, _height);
+		int x = (int)_x;
+		int y = (int)_y;
+		return new Rectangle(x, y, _width, _height);
 	}
 	
 	public BufferedImage getImage(ItemType it) {

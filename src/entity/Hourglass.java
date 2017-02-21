@@ -1,17 +1,13 @@
 package entity;
 import java.awt.*;
 
-public class Hourglass extends Item {
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		
-	}
-
+public class Hourglass extends Powerup {
 	@Override
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
-		g.drawImage(_img, _x, _y, _width, _height, null);
+		int x = (int)_x;
+		int y = (int)_y;
+		g.drawImage(_img, x, y, _width, _height, null);
 	}
 
 	@Override

@@ -1,10 +1,10 @@
 package entity;
 
-import java.awt.Graphics;
+import java.awt.*;
 
-public abstract class UsableItem extends Item {
-	// TIME LIMIT FOR USABLE ITEMS ON SCREEN.
-	private int _USABLETIME = 30;
+public abstract class Powerup extends Item {
+	// TIME LIMIT FOR POWERUP ON SCREEN.
+	private int _POWERUPTIME = 15;
 	
 	@Override
 	public void update() {
@@ -17,7 +17,7 @@ public abstract class UsableItem extends Item {
 			sec++;
 			frame = 0;
 			
-			if (sec == _USABLETIME) {
+			if (sec == _POWERUPTIME) {
 				sec = 0;
 				this.setVisible(false);
 			}
@@ -26,17 +26,12 @@ public abstract class UsableItem extends Item {
 	
 	@Override
 	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
 		int x = (int)_x;
 		int y = (int)_y;
 		g.drawImage(_img, x, y, _width, _height, null);
 	}
 	
 	@Override
-	public void effect(Player p) {
-		p.addItem(this);
-	}
-	
-	public abstract void use(Player p);
-	
+	public abstract void effect(Player p);
+
 }
