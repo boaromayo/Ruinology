@@ -11,6 +11,6 @@ Money:
 	-Money increases player's score.
 	-Value varies based on the type of money, or treasures obtained.
 	
-Effect Items:
+Powerups:
 	-Works only once when picked up.
 	-Effects range from giving more time, freezing time, to becoming invincible.
