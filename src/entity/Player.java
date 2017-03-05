@@ -579,15 +579,15 @@ public class Player {
 	
 	// SOUNDS.
 	public void itemGet() {
-		AudioBank.play(_getItem);
+		Constants.playClip(_getItem);
 	}
 	
 	public void moneyGet() {
-		AudioBank.play(_getMoney);
+		Constants.playClip(_getMoney);
 	}
 	
 	public void harm() {
-		AudioBank.play(_harm);
+		Constants.playClip(_harm);
 	}
 	
 }
