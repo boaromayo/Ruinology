@@ -10,12 +10,16 @@ public class Money {
 	private BufferedImage _img;
 	
 	// COORDINATES.
-	protected int _x;
-	protected int _y;
+	protected float _x;
+	protected float _y;
 	
 	// SIZE.
 	protected int _width;
 	protected int _height;
+	
+	// DURATION.
+	protected int _MONEYTIME = 30;
+	protected int _sec = 0;
 	
 	// VISIBILITY.
 	protected boolean _visible;
@@ -37,11 +41,36 @@ public class Money {
 		_height = _img.getHeight();
 	}
 	
-	public void update() {}
+	public void update() {
+		int frame = 0;
+		
+		frame++;
+		
+		if (frame == 60) {
+			_sec++;
+			frame = 0;
+			
+			if (_sec == _MONEYTIME) {
+				_sec = 0;
+				this.setVisible(false);
+			}
+		}
+		
+	}
 
 	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
-		g.drawImage(_img, _x, _y, _width, _height, null);
+		Graphics2D g2 = (Graphics2D) g;
+		int x = (int)_x;
+		int y = (int)_y;
+		float opacity = 0.5f;
+		
+		if (_sec == _MONEYTIME - 5) {
+			g2.setComposite(AlphaComposite.getInstance(
+					AlphaComposite.SRC_OVER, opacity));
+		}
+		
+		g2.drawImage(_img, x, y, _width, _height, null);
 	}
 	
 	public void effect(Player p) {
@@ -60,7 +89,9 @@ public class Money {
 	}
 
 	public Rectangle getBoundingBox() {
-		return new Rectangle(_x, _y, _width, _height);
+		int x = (int)_x;
+		int y = (int)_y;
+		return new Rectangle(x, y, _width, _height);
 	}
 	
 	private BufferedImage getCoinImage(MoneyType mt) {
