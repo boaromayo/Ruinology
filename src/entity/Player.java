@@ -287,16 +287,17 @@ public class Player {
 	
 	private void drawBag(Graphics g) {
 		// draw hud part for bag
-		g.setColor(Color.WHITE);
+		g.setColor(Color.GRAY);
 		for (int i = 0; i < _MAX_BAGSIZE; i++) {
-			g.drawRect(180 + (36 * i), Constants.HEIGHT_FINAL - 24, 32, 32);
+			g.drawRect(180 + (30 * i), Constants.HEIGHT_FINAL - 24, 24, 24);
 		}
 		
 		// draw bag cursor
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(2));
+		g2.setColor(Color.WHITE);
 		
-		g2.drawRect(180 + (36 * _position), Constants.HEIGHT_FINAL - 24, 32, 32);
+		g2.drawRect(180 + (30 * _position), Constants.HEIGHT_FINAL - 24, 24, 24);
 	}
 	
 	// ITEMS.
