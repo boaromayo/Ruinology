@@ -120,10 +120,16 @@ public class SceneGame extends Scene {
 		//_camera.draw(g);
 		_player.draw(g);
 		
+		// Draw items if items are visible in the camera.
 		for (Item item : _items) {
-			// Draw items if items are visible in the camera.
 			if (item.isVisible()) {
 				item.draw(g);
+			}
+		}
+		
+		for (Money money : _moneys) {
+			if (money.isVisible()) {
+				money.draw(g);
 			}
 		}
 	}
