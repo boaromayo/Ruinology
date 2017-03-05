@@ -7,7 +7,21 @@ public final class AudioBank {
 	// Prevents any client code instantiation.
 	private AudioBank() {}
 	
-	public static Clip load(String path) {
+	// SINGLETON OBJECT.
+	private static AudioBank _ab;
+	
+	// Call instance to ensure only one object is used throughout program.
+	public static AudioBank get() {
+		synchronized (AudioBank.class) {
+			if (_ab == null)
+				_ab = new AudioBank();
+		}
+		
+		return _ab;
+	}
+	
+	
+	public Clip load(String path) {
 		Clip clip = null;
 		try {
 			System.out.println("Loading " + path + "...");
@@ -28,7 +42,7 @@ public final class AudioBank {
 		return clip;
 	}
 	
-	public static void play(Clip clip) {
+	public void play(Clip clip) {
 		if (clip == null)
 			return;
 		
@@ -37,18 +51,18 @@ public final class AudioBank {
 		clip.start();
 	}
 	
-	public static void stop(Clip clip) {
+	public void stop(Clip clip) {
 		if (clip.isRunning())
 			clip.stop();
 	}
 	
-	public static void close(Clip clip) {
+	public void close(Clip clip) {
 		stop(clip);
 		if (clip.isOpen())
 			clip.close();
 	}
 	
-	private static AudioFormat decodeClip(AudioFormat base) {
+	private AudioFormat decodeClip(AudioFormat base) {
 		try {
 			AudioFormat decoder = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 
 					base.getSampleRate(), 

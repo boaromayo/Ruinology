@@ -151,7 +151,9 @@ public final class Constants {
 	public static String getTilesetPath() { return _tilesetPath; }
 	
 	// SOUNDS.
-	public static Clip getClip(String path) { return AudioBank.load(path); } 
+	public static Clip getClip(String path) { return AudioBank.get().load(path); }
+	
+	public static void playClip(Clip clip) { AudioBank.get().play(clip); }
 	
 	// PLAYER SOUNDS.
 	/*public static Clip drink() { return getClip(_drinkPath); }
