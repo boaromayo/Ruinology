@@ -23,7 +23,7 @@ public abstract class Item {
 	protected boolean _visible;
 	
 	public Item() {
-		_img = ImageBank.loadImage("../img/blank.gif");
+		_img = ImageBank.get().loadImage("../img/blank.gif");
 		_width = _img.getWidth();
 		_height = _img.getHeight();
 	}
