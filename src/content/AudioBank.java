@@ -8,7 +8,7 @@ public final class AudioBank {
 	private AudioBank() {}
 	
 	// SINGLETON OBJECT.
-	private static AudioBank _ab;
+	private static AudioBank _ab = null;
 	
 	// Call instance to ensure only one object is used throughout program.
 	public static AudioBank get() {
