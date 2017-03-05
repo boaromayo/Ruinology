@@ -20,9 +20,11 @@ public final class ImageBank {
 	//=========================
 	public static ImageBank get() {
 		// Deal with thread concurrency issues with this block.
-		synchronized (ImageBank.class) {
-			if (_ib == null)
-				_ib = new ImageBank(); // Create Singleton object.
+		if (_ib == null) {
+			synchronized (ImageBank.class) {
+				if (_ib == null)
+					_ib = new ImageBank(); // Create Singleton object.
+			}
 		}
 		
 		return _ib;

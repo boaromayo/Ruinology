@@ -10,11 +10,19 @@ public final class AudioBank {
 	// SINGLETON OBJECT.
 	private static AudioBank _ab = null;
 	
+	//=========================
 	// Call instance to ensure only one object is used throughout program.
+	// Special thanks to:
+	// "http://www.journaldev.com/1377/java-singleton-design-pattern-best-practices-examples"
+	// "http://www.tutorialspoint.com/java/java_using_singleton.htm" and
+	// "http://www.oodesign.com/singleton-pattern.html" for information. 
+	//=========================
 	public static AudioBank get() {
-		synchronized (AudioBank.class) {
-			if (_ab == null)
-				_ab = new AudioBank();
+		if (_ab == null) {
+			synchronized (AudioBank.class) {
+				if (_ab == null)
+					_ab = new AudioBank();
+			}
 		}
 		
 		return _ab;
