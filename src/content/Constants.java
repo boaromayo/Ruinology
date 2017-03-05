@@ -94,9 +94,9 @@ public final class Constants {
 	private static final String _buzzerPath = "../sfx/buzzer.wav";
 	
 	// IMAGES.
-	public static BufferedImage getImage(String path) { return ImageBank.loadImage(path); }
+	public static BufferedImage getImage(String path) { return ImageBank.get().loadImage(path); }
 	
-	public static BufferedImage[][] getImages(String path, int x, int y, int size) { return ImageBank.loadImages(path, x, y, size); }
+	public static BufferedImage[][] getImages(String path, int x, int y, int size) { return ImageBank.get().loadImages(path, x, y, size); }
 	
 	// TITLE IMAGE.
 	/*public static BufferedImage getTitle() { return getImage(_titlePath); }
