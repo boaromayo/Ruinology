@@ -26,7 +26,9 @@ public final class ImageBank {
 		try {
 			System.out.println("Image loading...");
 			BufferedImage bi = ImageIO.read(new File(path));
-			return bi;
+			BufferedImage img = new BufferedImage( 
+					bi.getWidth(), bi.getHeight(), BufferedImage.TYPE_INT_ARGB);
+			return img;
 		} catch (Exception e) {
 			System.err.println("ERROR: Image failed to load.");
 			System.err.println("REASON: " + e.getMessage());
