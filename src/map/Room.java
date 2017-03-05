@@ -175,7 +175,7 @@ public class Room {
 				}
 				
 				// load tileset into arrays.
-				_tilesetImg[row] = ImageBank.loadImage("../assets/img/" + strImg);
+				_tilesetImg[row] = ImageBank.get().loadImage("../assets/img/" + strImg);
 				_tiletypes[row] = strType;
 				_tileSolid[row] = Boolean.getBoolean(strSolid);
 				_tileDanger[row] = Boolean.getBoolean(strDanger);
