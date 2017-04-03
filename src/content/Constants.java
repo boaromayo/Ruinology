@@ -38,6 +38,9 @@ public final class Constants {
 	// TEXT.
 	private static final String _fontPath = "../assets/img/font.gif";
 	
+	// TEXT SMALL.
+	private static final String _fontSmallPath = "../assets/img/font-small.png";
+	
 	// CURSOR.
 	private static final String _cursorPath = "../assets/img/cursor.png";
 	
@@ -79,19 +82,19 @@ public final class Constants {
 	// SOUNDS.
 	
 	// PLAYER SOUNDS.
-	private static final String _drinkPath = "../sfx/bubble.wav";
-	private static final String _harmPath = "../sfx/harm.wav";
+	private static final String _drinkPath = "../assets/sfx/bubble.wav";
+	private static final String _harmPath = "../assets/sfx/harm.wav";
 	
 	// ITEM GET SOUNDS.
-	private static final String _getMoneyPath = "../sfx/clink.wav";
-	private static final String _getItemPath = "../sfx/item.wav";
-	private static final String _getHrglassPath = "../sfx/warp.wav";
+	private static final String _getMoneyPath = "../assets/sfx/clink.wav";
+	private static final String _getItemPath = "../assets/sfx/item.wav";
+	private static final String _getHrglassPath = "../assets/sfx/warp.wav";
 	
 	// MENU SOUNDS.
-	private static final String _cursorAudioPath = "../sfx/cursor.wav";
-	private static final String _selectPath = "../sfx/select.wav";
-	private static final String _cancelPath = "../sfx/cancel.wav";
-	private static final String _buzzerPath = "../sfx/buzzer.wav";
+	private static final String _cursorAudioPath = "../assets/sfx/cursor.wav";
+	private static final String _selectPath = "../assets/sfx/select.wav";
+	private static final String _cancelPath = "../assets/sfx/cancel.wav";
+	private static final String _buzzerPath = "../assets/sfx/buzzer.wav";
 	
 	// IMAGES.
 	public static BufferedImage getImage(String path) { return ImageBank.get().loadImage(path); }
