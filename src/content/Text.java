@@ -17,11 +17,11 @@ public final class Text {
 		for (int i = 0; i < cset.length; i++) {
 			int ch = cset[i]; // set char to an int
 			
-			if (ch > 48 && ch < 57) {
-				
+			if (ch >= 48 && ch <= 57) {
+				// for numbers
 			}
-			if (ch > 90) {
-				ch -= 32; // 
+			if (ch >= 97 && ch <= 122) {
+				ch -= 32; // convert to uppercase
 			}
 			
 			/*int r = ch / 32; // row
