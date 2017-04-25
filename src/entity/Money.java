@@ -89,8 +89,8 @@ public class Money {
 	}
 
 	public Rectangle getBoundingBox() {
-		int x = (int)_x;
-		int y = (int)_y;
+		int x = (int)(_x - (_width / 2));
+		int y = (int)(_y - (_height / 2));
 		return new Rectangle(x, y, _width, _height);
 	}
 	

@@ -424,7 +424,14 @@ public class Player {
 	
 	// COLLISION METHODS.
 	public Rectangle getBoundingBox() {
-		return new Rectangle((int)_x, (int)_y, _width, _height);
+		return new Rectangle((int)(_x - (_width / 2)), 
+				(int)(_y - (_height / 2)), 
+				_width, 
+				_height);
+	}
+	
+	public boolean intersects(Rectangle r) {
+		return getBoundingBox().intersects(r);
 	}
 	
 	public boolean intersects(Item item) {

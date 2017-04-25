@@ -47,13 +47,18 @@ public abstract class Item {
 		_y = y;
 	}
 	
+	public void setLocation(float x, float y) {
+		_x = x;
+		_y = y;
+	}
+	
 	public void setVisible(boolean v) {
 		_visible = v;
 	}
 	
 	public Rectangle getBoundingBox() {
-		int x = (int)_x;
-		int y = (int)_y;
+		int x = (int)(_x - (_width / 2));
+		int y = (int)(_y - (_height / 2));
 		return new Rectangle(x, y, _width, _height);
 	}
 	
