@@ -77,7 +77,7 @@ public class Room {
 		_tileids = new int[_height][_width];
 		
 		try {
-			_file = new File("../assets/maps/" + path);
+			_file = new File("/assets/maps/" + path);
 		} catch (Exception e) {
 			System.err.println("Unable to find or load " + path + "/n" + 
 					"Reason:" + e.getMessage());
