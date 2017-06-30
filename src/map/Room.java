@@ -46,7 +46,7 @@ public class Room {
 	private int[] _tiledmgs;
 	
 	// ESCAPE LADDER.
-	private boolean hasLadder = false;
+	private boolean _hasLadder = false;
 	
 	// TILES FROM TILESET.
 	private Tile[][] _tiles;
@@ -242,7 +242,7 @@ public class Room {
 							_tileDanger[tileid],
 							_tiledmgs[tileid]); // Form the tiles for the room.
 					if (_tiles[row][col].isType("ladder")) // Mark if this room has a ladder.
-						hasLadder = true;
+						_hasLadder = true;
 				}
 			}
 					
@@ -264,7 +264,7 @@ public class Room {
 	}*/
 	
 	public boolean hasLadder() {
-		return hasLadder;
+		return _hasLadder;
 	}
 	
 	public int getRows() {
