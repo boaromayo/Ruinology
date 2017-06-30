@@ -18,21 +18,22 @@ public class Maze {
 	// All Rooms must be sorted to be reachable to each other.
 	//
 	// The total number of Rooms in the maze will be determined on the size selected.
-	// The default size is 8x8 Rooms, or 64 Rooms.
+	// The default size is 6x6 Rooms, or 36 Rooms. 
+	// UPDATE: 64 Rooms will be the hard difficulty due to high memory maintenance.
 	//
-	// The maze is a square maze.
+	// The maze will be a maze of perfect squares.
 	//
 	// The player is randomly placed in a Room that must NOT have the final exit out of the maze,
 	// or be adjacent to the final exit Room.
 	
 	// MAZE MODE AND SIZES.
-	private int _mazeMode; // Maze mode number indicates size: 0 is 6x6, 1 is 8x8, and 2 is 10x10. 
+	private int _mazeMode; // Maze mode number indicates size: 0 is 4x4, 1 is 6x6, and 2 is 8x8. 
 	private int _mazeSize;
 	
 	// MAZE SIZE CONSTANTS.
+	private final int _FOUR = 4;
 	private final int _SIX = 6;
 	private final int _EIGHT = 8;
-	private final int _TEN = 10;
 	
 	// MAZE OF ROOMS.
 	private Room[][] _rooms;
@@ -54,11 +55,11 @@ public class Maze {
 		if (_mazeMode == -1) {
 			_mazeSize = 1; // One room for debugging.
 		} else if (_mazeMode == 0) {
-			_mazeSize = _SIX; // 6x6 is 36 rooms, easy!
+			_mazeSize = _FOUR; // 4x4 is 16 rooms, easy!
 		} else if (_mazeMode == 1) {
-			_mazeSize = _EIGHT; // 8x8 is 64 rooms, the default.
+			_mazeSize = _SIX; // 6x6 is 36 rooms, the default.
 		} else if (_mazeMode == 2) {
-			_mazeSize = _TEN; // 10x10 is 100 rooms!!!
+			_mazeSize = _EIGHT; // 8x8 is 64 rooms!!!
 		} else {
 			throw new RuntimeException("ERROR: Maze mode number is not within range.\n" +
 					"Maze mode number: " + _mazeMode);
@@ -148,13 +149,10 @@ public class Maze {
 		Random rand = new Random();
 		
 		// Pick a random Room in the maze.
+		// Since each Room has the same size, this can apply to any Room.
 		int randRow = rand.nextInt(_mazeSize);
 		int randCol = rand.nextInt(_mazeSize);
 		
-		// Get the center of the Room.
-		// Since each Room has the same size, this can apply to any Room.
-		int centx = _roomWidth / 2; 
-		int centy = _roomHeight / 2;
 		int x = rand.nextInt(_roomWidth);
 		int y = rand.nextInt(_roomHeight);
 		
@@ -164,7 +162,7 @@ public class Maze {
 		// If the picked Room has a ladder, move player to another Room. 
 		// Keep doing this until the player is in a Room
 		// with no ladder.
-		while (_currentRoom.getTile(centx, centy).isType("ladder")) {
+		while (_currentRoom.hasLadder()) {
 			if (_mazeSize == 1) { break; }
 			
 			randRow = rand.nextInt(_mazeSize);

@@ -45,6 +45,9 @@ public class Room {
 	private boolean[] _tileDanger;
 	private int[] _tiledmgs;
 	
+	// ESCAPE LADDER.
+	private boolean hasLadder = false;
+	
 	// TILES FROM TILESET.
 	private Tile[][] _tiles;
 	
@@ -77,7 +80,7 @@ public class Room {
 		_tileids = new int[_height][_width];
 		
 		try {
-			_file = new File("../assets/maps/" + path);
+			_file = new File("/assets/maps/" + path);
 		} catch (Exception e) {
 			System.err.println("Unable to find or load " + path + "/n" + 
 					"Reason:" + e.getMessage());
@@ -238,6 +241,8 @@ public class Room {
 							_tileSolid[tileid],
 							_tileDanger[tileid],
 							_tiledmgs[tileid]); // Form the tiles for the room.
+					if (_tiles[row][col].isType("ladder")) // Mark if this room has a ladder.
+						hasLadder = true;
 				}
 			}
 					
@@ -257,6 +262,10 @@ public class Room {
 						Constants.TILE_SIZE, 
 						null); // Draw the room.
 	}*/
+	
+	public boolean hasLadder() {
+		return hasLadder;
+	}
 	
 	public int getRows() {
 		return _height;
