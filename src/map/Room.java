@@ -91,17 +91,13 @@ public class Room {
 	}
 	
 	// CONSTRUCTOR FOR MULTIPLE ROOMS, TRANSLATED FROM ONE FILE.
-	public Room(int[][] tileids) {
+	public Room(int[][] ids) {
 		_width = Constants.WIDTH / Constants.TILE_SIZE;
 		_height = Constants.HEIGHT / Constants.TILE_SIZE;
 		
-		if (tileids.length == _height && tileids[0].length == _width) {
-			_tileids = tileids;
-		} else {
-			for (int row = 0; row < _height; row++)
-				for (int col = 0; col < _width; col++)
-					_tileids[row][col] = tileids[row][col];
-		}
+		for (int row = 0; row < _height; row++)
+			for (int col = 0; col < _width; col++)
+				_tileids[row][col] = ids[row][col];
 		
 		init();
 	}
@@ -254,14 +250,11 @@ public class Room {
 		}
 	}
 	
-	/*public void draw(Graphics g) {
+	public void draw(Graphics g) {
 		for (int row = 0; row < _tiles.length; row++)
 			for (int col = 0; col < _tiles[row].length; col++)
-				g.drawImage(_tiles[row][col].getImage(), 
-						Constants.TILE_SIZE, 
-						Constants.TILE_SIZE, 
-						null); // Draw the room.
-	}*/
+				_tiles[row][col].draw(g, col, row); // Draw the room.
+	}
 	
 	public boolean hasLadder() {
 		return _hasLadder;
@@ -282,6 +275,16 @@ public class Room {
 		return _tileids;
 	}
 	
+	public Tile getTile(int n) {
+		int row = n / _width;
+		int col = n % _width;
+		Tile tile = _tiles[row][col];
+		if (tile == null)
+			return new Tile(_tilesetImg[0], 0, _tiletypes[0]); // Return a blank tile.
+		
+		return tile;
+	}
+	
 	public Tile getTile(int row, int col) {
 		Tile tile = _tiles[row][col];
 		if (tile == null)
@@ -290,7 +293,7 @@ public class Room {
 		return tile;
 	}
 	
-	public Room getRoom() {
+	public Room room() {
 		return this;
 	}
 }
