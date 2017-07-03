@@ -9,8 +9,9 @@ import content.*;
 
 public class Room {
 	
-	/** Make a Room based on these rules:
-	 *
+	/** 
+	 * Make a Room based on these rules:
+	 *============================================================
 	 * Each Room starts with solid walls, then a floor is created.
 	 *
 	 * Have at least one exit for each Room connecting to another Room.
@@ -27,6 +28,9 @@ public class Room {
 	 *
 	 * The tiles making the Room will also be the same size.
 	 * 
+	 * Some Rooms can be duplicated. The only exception should be for the Room
+	 * exiting out of the Maze (ie, the room that has a ladder).
+	 *============================================================
 	**/
 	
 	// RANDOMIZER.
