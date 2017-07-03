@@ -1,8 +1,7 @@
 package map;
 
+import java.awt.*;
 import java.awt.image.*;
-
-import content.*;
 
 public class Tile {
 	
@@ -26,12 +25,21 @@ public class Tile {
 		_damage = 0;
 	}
 	
+	// Copy constructor.
+	public Tile(Tile t) {
+		this(t._img, t._id, t._type, t._solid, t._dangerous, t._damage);
+	}
+	
 	public Tile(BufferedImage img, int id, String type) {
 		this(img, id, type, false, false, 0);
 	}
 	
 	public Tile(BufferedImage img, int id, String type, boolean solid) {
 		this(img, id, type, solid, false, 0);
+	}
+	
+	public Tile(BufferedImage img, int id, String type, boolean solid, boolean dangerous) {
+		this(img, id, type, solid, dangerous, 0);
 	}
 	
 	public Tile(BufferedImage img, int id, String type, boolean solid, boolean dangerous, int dmg) {
@@ -42,6 +50,12 @@ public class Tile {
 		_solid = solid;
 		_dangerous = dangerous;
 		_damage = dmg;
+	}
+	
+	public void draw(Graphics g, int x, int y) {
+		if (_img != null) {
+			g.drawImage(_img, x, y, null);
+		}
 	}
 	
 	public void setSolid(boolean s) {
