@@ -9,22 +9,25 @@ import content.*;
 
 public class Room {
 	
-	// Make a Room based on these rules:
-	//
-	// Each Room starts with solid walls, then a floor is created.
-	//
-	// Have at least one exit for each Room connecting to another Room.
-	//
-	// Also have one Room be the exit out of the maze, which will be created first.
-	//
-	// Each Room contains either nothing, a few items, money, 
-	// dangerous tiles, or traps. Several Rooms may contain a key to open a way to another Room(?)
-	//
-	// The Room may contain a mixture of items and dangers.
-	//
-	// All of the Rooms made will be exactly the same size.
-	//
-	// The tiles making the Room will also be the same size.
+	/** Make a Room based on these rules:
+	 *
+	 * Each Room starts with solid walls, then a floor is created.
+	 *
+	 * Have at least one exit for each Room connecting to another Room.
+	 *
+	 * Also have one Room be the exit out of the Maze (containing a ladder), 
+	 * which will be the first Room to be created.
+	 *
+	 * Each Room contains either nothing, a few items, money, 
+	 * dangerous tiles, or traps. Several Rooms may contain a key to open a way to another Room ()
+	 *
+	 * The Room may contain a mixture of items and dangers.
+	 *
+	 * All of the Rooms made will be exactly the same size.
+	 *
+	 * The tiles making the Room will also be the same size.
+	 * 
+	**/
 	
 	// RANDOMIZER.
 	//private Random _rand;
@@ -204,6 +207,8 @@ public class Room {
 						_tileSolid[tileid],
 						_tileDanger[tileid],
 						_tiledmgs[tileid]); // Form the tiles for the room.
+				if (_tiles[row][col].isType("ladder")) // Mark if this room has a ladder.
+					_hasLadder = true;
 			}
 		}
 	}
