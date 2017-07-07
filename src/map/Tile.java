@@ -60,6 +60,13 @@ public class Tile {
 		}
 	}
 	
+	public static void replace(Tile t1, Tile t2) {
+		if (t1 == null || t2 == null) return;
+		
+		if (!t1.isType(t2.getType()))
+			t1 = t2;
+	}
+	
 	public void setSolid(boolean s) {
 		_solid = s;
 	}
