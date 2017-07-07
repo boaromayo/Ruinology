@@ -24,77 +24,81 @@ public final class Constants {
 	// FILE PATHS.
 	
 	// TITLE IMAGE.
-	private static final String _titlePath = "../assets/img/title.png";
+	private static final String _titlePath = "/assets/img/title.png";
 	
 	// PAUSE IMAGE.
-	private static final String _pauseTitlePath = "../assets/img/pausetitle.png";
+	private static final String _pauseTitlePath = "/assets/img/pausetitle.png";
 	
 	// VICTORY TITLE IMAGE.
-	private static final String _victoryPath = "../assets/img/victory_title.png";
+	private static final String _victoryPath = "/assets/img/victory_title.png";
 	
 	// GAMEOVER IMAGE.
-	private static final String _gameoverPath = "../assets/img/gameover_title.png";
+	private static final String _gameoverPath = "/assets/img/gameover_title.png";
 	
 	// TEXT.
-	private static final String _fontPath = "../assets/img/font.gif";
+	private static final String _fontPath = "/assets/img/font.gif";
 	
 	// TEXT SMALL.
-	private static final String _fontSmallPath = "../assets/img/font-small.png";
+	private static final String _fontSmallPath = "/assets/img/font-small.png";
 	
 	// CURSOR.
-	private static final String _cursorPath = "../assets/img/cursor.png";
+	private static final String _cursorPath = "/assets/img/cursor.png";
 	
 	// PLAYER FILE.
-	private static final String _playerPath = "../assets/img/player.png";
+	private static final String _playerPath = "/assets/img/player.png";
 	
 	// TIMER.
-	private static final String _timerPath = "../assets/img/timer.png";
+	private static final String _timerPath = "/assets/img/timer.png";
 	
 	// HEALTH.
-	private static final String _heartPath = "../assets/img/heart.gif";
+	private static final String _heartPath = "/assets/img/heart.gif";
 	
 	// HEALTH COUNTER.
-	private static final String _heartCtrGrayPath = "../assets/img/heart_bar_gray.gif";
-	private static final String _heartCtrPath = "../assets/img/heart_bar.gif";
+	private static final String _heartCtrGrayPath = "/assets/img/heart_bar_gray.gif";
+	private static final String _heartCtrPath = "/assets/img/heart_bar.gif";
 	
 	// STAMINA.
-	private static final String _staminaPath = "../assets/img/stamina.gif";
+	private static final String _staminaPath = "/assets/img/stamina.gif";
 	
 	// STAMINA BAR?
-	private static final String _staminaGaugePath = "../assets/img/stamina_gauge.gif";
+	private static final String _staminaGaugePath = "/assets/img/stamina_gauge.gif";
 	
 	// ITEMS.
-	private static final String _hrglassPath = "../assets/img/hourglass.png";
+	private static final String _hrglassPath = "/assets/img/hourglass.png";
 	
 	// ITEMS -> USABLE ITEMS.
-	private static final String _bluePotionPath = "../assets/img/potion_blue.gif";
-	private static final String _greenPotionPath = "../assets/img/potion_green.gif";
+	private static final String _bluePotionPath = "/assets/img/potion_blue.gif";
+	private static final String _greenPotionPath = "/assets/img/potion_green.gif";
 	
 	// ITEMS -> MONEY.
-	private static final String _bronzeCoinPath = "../assets/img/coin_bronze.gif";
-	private static final String _silverCoinPath = "../assets/img/coin_silver.gif";
-	private static final String _goldCoinPath = "../assets/img/coin_gold.gif";
-	private static final String _crystalPath = "../assets/img/crystal.gif";
+	private static final String _bronzeCoinPath = "/assets/img/coin_bronze.gif";
+	private static final String _silverCoinPath = "/assets/img/coin_silver.gif";
+	private static final String _goldCoinPath = "/assets/img/coin_gold.gif";
+	private static final String _crystalPath = "/assets/img/crystal.gif";
 	
 	// TILESET.
-	private static final String _tilesetPath = "../assets/maps/tileset.txt";
+	private static final String _tilesetImgPath = "/assets/img/ruintile.gif";
+	private static final String _tilesetPath = "/assets/maps/tileset.txt";
+	
+	// DEFAULT TILE.
+	private static final String _blankTilePath = "/assets/img/blank.gif";
 	
 	// SOUNDS.
 	
 	// PLAYER SOUNDS.
-	private static final String _drinkPath = "../assets/sfx/bubble.wav";
-	private static final String _harmPath = "../assets/sfx/harm.wav";
+	private static final String _drinkPath = "/assets/sfx/bubble.wav";
+	private static final String _harmPath = "/assets/sfx/harm.wav";
 	
 	// ITEM GET SOUNDS.
-	private static final String _getMoneyPath = "../assets/sfx/clink.wav";
-	private static final String _getItemPath = "../assets/sfx/item.wav";
-	private static final String _getHrglassPath = "../assets/sfx/warp.wav";
+	private static final String _getMoneyPath = "/assets/sfx/clink.wav";
+	private static final String _getItemPath = "/assets/sfx/item.wav";
+	private static final String _getHrglassPath = "/assets/sfx/warp.wav";
 	
 	// MENU SOUNDS.
-	private static final String _cursorAudioPath = "../assets/sfx/cursor.wav";
-	private static final String _selectPath = "../assets/sfx/select.wav";
-	private static final String _cancelPath = "../assets/sfx/cancel.wav";
-	private static final String _buzzerPath = "../assets/sfx/buzzer.wav";
+	private static final String _cursorAudioPath = "/assets/sfx/cursor.wav";
+	private static final String _selectPath = "/assets/sfx/select.wav";
+	private static final String _cancelPath = "/assets/sfx/cancel.wav";
+	private static final String _buzzerPath = "/assets/sfx/buzzer.wav";
 	
 	// IMAGES.
 	public static BufferedImage getImage(String path) { return ImageBank.get().loadImage(path); }
@@ -102,10 +106,10 @@ public final class Constants {
 	public static BufferedImage[][] getImages(String path, int x, int y, int size) { return ImageBank.get().loadImages(path, x, y, size); }
 	
 	// TITLE IMAGE.
-	/*public static BufferedImage getTitle() { return getImage(_titlePath); }
+	public static BufferedImage getTitle() { return getImage(_titlePath); }
 	
 	// PAUSE IMAGE.
-	public static BufferedImage getPauseTitle() { return getImage(_pauseTitlePath); }
+	/*public static BufferedImage getPauseTitle() { return getImage(_pauseTitlePath); }
 	
 	// VICTORY TITLE IMAGE.
 	public static BufferedImage getVictoryTitle() { return getImage(_victoryPath); }
@@ -113,7 +117,7 @@ public final class Constants {
 	// GAMEOVER IMAGE.
 	public static BufferedImage getGameoverTitle() { return getImage(_gameoverPath); }*/
 	
-	// TEXT
+	// TEXT.
 	public static BufferedImage[][] getGameFont() { return getImages(_fontPath, 0, 0, FONT_SIZE); }
 	
 	// CURSOR.
@@ -151,7 +155,16 @@ public final class Constants {
 	public static BufferedImage getCrystalImg() { return getImage(_crystalPath); }
 	
 	// TILESET.
+	public static BufferedImage[][] getTileset() { return getImages(_tilesetImgPath, 0, 0, TILE_SIZE); }
+	public static int getTilesetWidth() { return getImage(_tilesetImgPath).getWidth(); } // Get the tileset's width, not the tile's width.
 	public static String getTilesetPath() { return _tilesetPath; }
+	
+	// DEFAULT TILE.
+	public static BufferedImage getBlankTile() { return getImage(_blankTilePath); }
+	
+	// ROOM SIZE.
+	public static int getRoomWidth() { return Constants.WIDTH / Constants.TILE_SIZE; }
+	public static int getRoomHeight() { return Constants.HEIGHT / Constants.TILE_SIZE; }
 	
 	// SOUNDS.
 	public static Clip getClip(String path) { return AudioBank.get().load(path); }
