@@ -45,7 +45,9 @@ public final class Constants {
 	private static final String _cursorPath = "/assets/img/cursor.png";
 	
 	// PLAYER FILE.
-	private static final String _playerPath = "/assets/img/player.png";
+	private static final String _player1Path = "/assets/img/player-1.png";
+	private static final String _player2Path = "/assets/img/player-2.png";
+	private static final String _player3Path = "/assets/img/player-3.png";
 	
 	// TIMER.
 	private static final String _timerPath = "/assets/img/timer.png";
