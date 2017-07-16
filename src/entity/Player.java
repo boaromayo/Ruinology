@@ -62,7 +62,8 @@ public class Player {
 	private Direction _dir;
 	
 	// STATUS.
-	private int _hp;
+	private int _hp; // This holds the absolute health for the player.
+	private int _currenthp;
 	private int _maxhp;
 	
 	/*private int _sp;
@@ -110,7 +111,7 @@ public class Player {
 		_speed = 2;
 		
 		_maxhp = 10;
-		_hp = _maxhp;
+		_hp = _currenthp = _maxhp;
 		
 		//_maxsp = 15;
 		//_sp = _maxsp;
@@ -246,8 +247,6 @@ public class Player {
 		int basex = 50;
 		int offset = 20;
 		
-		int hppercent = (int)(_hp / _maxhp);
-		
 		/*int heartWidth = heartImg.getWidth();
 		int heartHeight = heartImg.getHeight();
 		
@@ -257,12 +256,25 @@ public class Player {
 			//g.drawImage(barGray, basex + (i * offset), Constants.HEIGHT_FINAL - (basex-offset), barGray.getWidth(), barGray.getHeight(), null);
 		}
 		
-		for (int i = 0; i < _hp; i++) {
-			//g.drawImage(bar, basex + (i * offset), Constants.HEIGHT_FINAL - (basex-offset), bar.getWidth(), bar.getHeight(), null);
-		}
+		/*for (int i = 0; i < _hp; i++) {
+			g.drawImage(bar, basex + (i * offset), Constants.HEIGHT_FINAL - (basex-offset), bar.getWidth(), bar.getHeight(), null);
+		}*/
 		
 		g.setColor(Color.RED);
-		g.fillRect(50, Constants.HEIGHT_FINAL - (basex - offset), hppercent * 100, 8);
+		
+		// Update health here. Keep incrementing or
+		// decrementing by one until absolute health = current health.
+		if (_hp != _currenthp) {
+			int inc = 0;
+			if (_hp > _currenthp) {
+				inc--;
+			} else if (_hp < _currenthp) {
+				inc++;
+			}
+			if (inc != 0)
+				_hp += inc;
+		}
+		g.fillRect(50, Constants.HEIGHT_FINAL - (basex - offset), _hp * 20, 8);
 	}
 	
 	/*private void drawStamina(Graphics g) {
@@ -326,18 +338,17 @@ public class Player {
 	
 	// EFFECTS.
 	public void hit(int dmg) {
-		if (_hp < dmg) {
-			_hp = 0;
-		}
-		
-		_hp -= dmg;
+		if (_currenthp < dmg)
+			_currenthp = 0;
+		else
+			_currenthp -= dmg;
 	}
 	
 	public void heal(int rec) {
-		if (_maxhp < _hp + rec)
-			_hp = _maxhp;
+		if (_maxhp < _currenthp + rec)
+			_currenthp = _maxhp;
 		else
-			_hp += rec;
+			_currenthp += rec;
 	}
 	
 	/*public void healStamina(int rec) {
