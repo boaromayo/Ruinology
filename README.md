@@ -4,13 +4,11 @@ This is a prototype attempt for [Ludum Dare 36][ld36]. Lost in an ancient maze, 
 
 I may not finish within the 72-hour jam and will continue to finish it on my own.
 
-Mechanics
+Gameplay
 ---------
-+ Programming: Java
-
-Documentation
---------
-May plan to put up soon.
++ Programming language: Java
++ 1 player only
++ Use WASD/arrow keys to move
 
 Platform
 --------
