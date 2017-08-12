@@ -110,4 +110,7 @@ public class Money {
 		return _visible;
 	}
 	
+	public boolean isType(String s) {
+		return s.equals(_type.toString());
+	}
 }
