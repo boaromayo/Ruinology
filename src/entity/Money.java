@@ -111,6 +111,6 @@ public class Money {
 	}
 	
 	public boolean isType(String s) {
-		return s.equals(_type.toString());
+		return s.equals(_type.name());
 	}
 }
