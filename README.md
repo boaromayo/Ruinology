@@ -1,8 +1,8 @@
 Ruinology
 ==========
-This is a prototype attempt for [Ludum Dare 36][ld36]. Lost in an ancient maze, get out before it collapses!
+This is a game originally intended as an entry for [Ludum Dare 36][ld36]. 
 
-I may not finish within the 72-hour jam and will continue to finish it on my own.
+Lost in an ancient maze, get out before it collapses!
 
 Gameplay
 ---------
