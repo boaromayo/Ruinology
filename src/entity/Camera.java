@@ -59,13 +59,17 @@ public class Camera {
 	}
 	
 	public void update() {
-		// If player moves out of bounds, have camera move with player to next Room.
-		if (_player.getx() > -_xmin ||
-				_player.getx() < _xmax) {
+		// Have camera move with player to next Room.
+		if (_player.getx() > -_xmin) {
 			//translate();
 		}
-		if (_player.gety() > -_ymin ||
-				_player.gety() < _ymax) {
+		if (_player.getx() < _xmax) {
+			//translate();
+		}
+		if (_player.gety() > -_ymin) {
+			//translate();
+		}
+		if (_player.gety() < _ymax) {
 			//translate();
 		}
 		
@@ -80,15 +84,27 @@ public class Camera {
 		// move camera based on destination
 		if (_x > movex) {
 			_x -= _speed;
+			if (_x < movex) {
+				_x = movex;
+			}
 		} 
 		if (_x < movex) {
 			_x += _speed;
+			if (_x > movex) {
+				_x = movex;
+			}
 		}
 		if (_y > movey) {
 			_y -= _speed;
+			if (_y < movey) {
+				_y = movey;
+			}
 		} 
 		if (_y < movey) {
 			_y += _speed;
+			if (_y > movey) {
+				_y = movey;
+			}
 		}
 		
 		setBounds();
@@ -120,11 +136,15 @@ public class Camera {
 	
 	public void draw(Graphics g) {
 		Room room = _maze.getCurrentRoom();
-		int row, col;
-		Tile currentTile;
+		int row, col; // Init variables to optimize looping.
+		int tx, ty; // Init tile coords.
+		Tile currentTile; // Init a cursor Tile for drawing area.
 		
-		for (row = _y - _OFFSET; row < _y + room.getRows() + _OFFSET; row++) {
-			for (col = _x - _OFFSET; col < _x + room.getCols() + _OFFSET; col++) {
+		tx = _x / Constants.TILE_SIZE;
+		ty = _y / Constants.TILE_SIZE;
+		
+		for (row = ty; row < ty + room.getRows() + _OFFSET; row++) {
+			for (col = tx; col < tx + room.getCols() + _OFFSET; col++) {
 				currentTile = room.getTile(row, col);
 				g.drawImage(currentTile.getImage(), 
 						Constants.TILE_SIZE, 
