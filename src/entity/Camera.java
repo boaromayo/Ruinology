@@ -136,21 +136,16 @@ public class Camera {
 	
 	public void draw(Graphics g) {
 		Room room = _maze.getCurrentRoom();
-		int row, col; // Init variables to optimize looping.
-		int tx, ty; // Init tile coords.
-		Tile currentTile; // Init a cursor Tile for drawing area.
+		
+		/*int row, col; // Init variables to optimize looping.
+		int tx, txmax, ty, tymax; // Init and end tile coords.
 		
 		tx = _x / Constants.TILE_SIZE;
-		ty = _y / Constants.TILE_SIZE;
+		txmax = (_x + room.getCols()) / Constants.TILE_SIZE;
 		
-		for (row = ty; row < ty + room.getRows() + _OFFSET; row++) {
-			for (col = tx; col < tx + room.getCols() + _OFFSET; col++) {
-				currentTile = room.getTile(row, col);
-				g.drawImage(currentTile.getImage(), 
-						Constants.TILE_SIZE, 
-						Constants.TILE_SIZE, 
-						null); // Draw the area.
-			}
-		}
+		ty = _y / Constants.TILE_SIZE;
+		tymax = (_y + room.getRows()) / Constants.TILE_SIZE;*/
+		
+		room.draw(g);
 	}
 }
