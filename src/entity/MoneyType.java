@@ -42,7 +42,7 @@ public enum MoneyType {
 		return _value;
 	}
 	
-	public String name() {
+	public String type() {
 		return _name;	
 	}
 	
