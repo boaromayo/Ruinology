@@ -4,7 +4,7 @@ Usable Items:
 	-Can be carried in player's Bag.
 	-Can be used only once (by using the 'Z' key in the selected slot in the Bag).
 	-They are NOT stackable, meaning the player cannot keep two or more copies of the same item.
-	-The player's Bag can only carry up to three of these items.
+	-The player's Bag can only carry up to three items.
 	-Effects vary from healing to doubling the player's score.
 
 Money:
