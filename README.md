@@ -12,7 +12,7 @@ Gameplay
 
 Platform
 --------
-Compatible with Windows, or Mac OS X.
+Compatible with Windows 7 or higher, or Mac OS X.
 
 Requirements
 -------
@@ -20,7 +20,7 @@ Java version of 6.5 or higher.
 
 Details
 -------
-- Rooms are randomly generated, ranging from an 6x6 to 10x10 set of rooms. For the prototype version, I plan on doing just the default 8x8 sized maze.
+- Rooms are randomly generated, ranging from an 6x6 to 10x10 set of rooms (this may be subject to change). For the prototype version, I plan on doing just the default 8x8 sized maze.
 - Items are also randomly scattered in each room.
 - Starts in a random place on the maze.
 
