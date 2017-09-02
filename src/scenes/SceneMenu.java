@@ -9,7 +9,9 @@ import entity.Cursor;
 public class SceneMenu extends Scene {
 
 	// TITLE SCREEN.
-	private BufferedImage _titleImg;
+	private BufferedImage _titleImg = Constants.getTitle();
+	private int _titlex = 32;
+	private int _titley = 48;
 	
 	// CHOICES.
 	private final int _START = 0;
@@ -66,7 +68,7 @@ public class SceneMenu extends Scene {
 	}
 	
 	private void drawTitle(Graphics g) {
-		//g.drawImage(_titleImg, 30, 50, _titleImg.getWidth(), _titleImg.getHeight(), null);
+		g.drawImage(_titleImg, _titlex, _titley, _titleImg.getWidth(), _titleImg.getHeight(), null);
 	}
 	
 	private void drawCursor(Graphics g) {
