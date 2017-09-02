@@ -23,7 +23,7 @@ public final class Constants {
 	
 	// FILE PATHS.
 	
-	// TITLE IMAGE.
+	// TITLE IMAGE /* TITLE WIDTH: 416, TITLE HEIGHT: 64 */.
 	private static final String _titlePath = "/assets/img/title.png";
 	
 	// PAUSE IMAGE.
