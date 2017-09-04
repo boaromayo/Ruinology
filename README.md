@@ -9,6 +9,8 @@ Gameplay
 + Programming language: Java
 + 1 player only
 + Use WASD/arrow keys to move
++ Use Z button to switch cursor on item bag
++ Press spacebar to use items
 
 Platform
 --------
