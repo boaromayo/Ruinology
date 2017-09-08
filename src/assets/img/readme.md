@@ -1,1 +1,1 @@
-This folder contains all of the images (tileset, HUD, fonts, title screen) for the game.
+This folder contains the images (tileset, HUD, fonts, title screen) for the game.
