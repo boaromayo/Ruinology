@@ -67,8 +67,8 @@ public class Room {
 		_width = Constants.getRoomWidth();
 		_height = Constants.getRoomHeight();
 		
-		_tiles = new Tile[_height][_width];
 		_tileids = new int[_height][_width];
+		_tiles = new Tile[_height][_width];
 		
 		init();
 	}
@@ -78,8 +78,8 @@ public class Room {
 		_width = Constants.getRoomWidth();
 		_height = Constants.getRoomHeight();
 		
-		_tiles = new Tile[_height][_width];
 		_tileids = new int[_height][_width];
+		_tiles = new Tile[_height][_width];
 		
 		try {
 			_file = new File("/assets/maps/" + path);
@@ -97,8 +97,8 @@ public class Room {
 		_width = Constants.getRoomWidth();
 		_height = Constants.getRoomHeight();
 		
-		_tiles = new Tile[_height][_width];
 		_tileids = new int[_height][_width];
+		_tiles = new Tile[_height][_width];
 		
 		for (int row = 0; row < _height; row++)
 			for (int col = 0; col < _width; col++)
