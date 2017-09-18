@@ -67,6 +67,7 @@ public class Room {
 		_width = Constants.getRoomWidth();
 		_height = Constants.getRoomHeight();
 		
+		_tiles = new Tile[_height][_width];
 		_tileids = new int[_height][_width];
 		
 		init();
@@ -77,6 +78,7 @@ public class Room {
 		_width = Constants.getRoomWidth();
 		_height = Constants.getRoomHeight();
 		
+		_tiles = new Tile[_height][_width];
 		_tileids = new int[_height][_width];
 		
 		try {
@@ -95,6 +97,7 @@ public class Room {
 		_width = Constants.getRoomWidth();
 		_height = Constants.getRoomHeight();
 		
+		_tiles = new Tile[_height][_width];
 		_tileids = new int[_height][_width];
 		
 		for (int row = 0; row < _height; row++)
@@ -252,19 +255,36 @@ public class Room {
 			int w = Constants.getRoomWidth();
 			
 			String line;
-			String [] id;
+			String [] ids;
 			
 			BufferedImage[][] tilesetimg = Constants.getTileset();
 			
 			// Get tile ID from the text file containing the map.
-			for (row = 0; row < _tiles.length; row++) {
+			for (row = 0; row < _tiles.length; ) {
 				line = reader.readLine();
-				for (col = 0; col < _tiles[row].length; col++) {
-					id = line.split(delim);
-					_tileids[row][col] = Integer.valueOf(id[col].charAt(0));
+				
+				char digit = line.charAt(0);
+				boolean isnum = (digit >= '0' && digit <= '9');
+				
+				// Check for ID if the first line read is an integer.
+				if (isnum) {
+					ids = line.split(delim);
+					
+					for (col = 0; col < _tiles[row].length; col++) {
+						// Get out of the loop if there is a null string.
+						if (ids[col].equals(null))
+							break;
+						
+						_tileids[row][col] = Integer.valueOf(ids[col]);
+					}
+					
+					// Increment row if row is completely checked.
+					if (col == _tiles[row].length)
+						row++;
 				}
 			}
 			
+			// Now get tile corresponding to tile ID.
 			for (row = 0; row < _tiles.length; row++) {
 				for (col = 0; col < _tiles[row].length; col++) {
 					tile = _tiles[row][col];
