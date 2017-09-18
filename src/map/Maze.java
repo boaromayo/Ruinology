@@ -67,6 +67,9 @@ public class Maze {
 		
 		_rooms = new Room[_mazeSize][_mazeSize]; // Set the number of Rooms in Maze.
 		
+		/* TODO: Find a better way to load maps. */
+		_rooms[0][0] = new Room("/assets/maps/room_sample_2.txt");
+		
 		_roomWidth = _rooms[0][0].getCols();
 		_roomHeight = _rooms[0][0].getRows();
 		
