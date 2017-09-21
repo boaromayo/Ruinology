@@ -10,7 +10,7 @@ Gameplay
 + 1 player only
 + Use WASD/arrow keys to move
 + Use Z button to switch cursor on item bag
-+ Press spacebar to use items
++ Press spacebar/ENTER key to use items
 
 Platform
 --------
@@ -22,7 +22,7 @@ Java version of 6.5 or higher.
 
 Details
 -------
-- Rooms are randomly generated, ranging from an 6x6 to 10x10 set of rooms (this may be subject to change). For the prototype version, I plan on doing just the default 8x8 sized maze.
+- Rooms are randomly generated, ranging from an 4x4 to 8x8 set of rooms (this may be subject to change). For the prototype version, I plan on doing just the default 6x6 sized maze.
 - Items are also randomly scattered in each room.
 - Starts in a random place on the maze.
 
