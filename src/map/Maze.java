@@ -45,6 +45,10 @@ public class Maze {
 	// CURRENT ROOM.
 	private Room _currentRoom;
 	
+	// CURRENT ROOM COORDS.
+	private int _currentRoomX;
+	private int _currentRoomY;
+	
 	public Maze() {
 		this(-1); // Loads an 1x1 maze by default for debug.
 	}
@@ -74,6 +78,8 @@ public class Maze {
 		_roomHeight = _rooms[0][0].getRows();
 		
 		_currentRoom = _rooms[0][0];
+		_currentRoomX = 0;
+		_currentRoomY = 0;
 	}
 	
 	public void loadRooms(Room[][] newRooms) {
@@ -161,6 +167,8 @@ public class Maze {
 		
 		// Set the current Room the player is in.
 		_currentRoom = _rooms[randRow][randCol];
+		_currentRoomX = randCol;
+		_currentRoomY = randRow;
 		
 		// If the picked Room has a ladder, move player to another Room. 
 		// Keep doing this until the player is in a Room
@@ -173,6 +181,8 @@ public class Maze {
 			x = rand.nextInt(_roomWidth);
 			y = rand.nextInt(_roomHeight);
 			_currentRoom = _rooms[randRow][randCol];
+			_currentRoomX = randCol;
+			_currentRoomY = randRow;
 		}
 		
 		// Check if the player location has a solid, or impassable tile. 
@@ -191,5 +201,17 @@ public class Maze {
 	
 	public Room getCurrentRoom() {
 		return _currentRoom;
+	}
+	
+	public Room getRoom(int row, int col) {
+		return _rooms[row][col];
+	}
+	
+	public int getCurrentX() {
+		return _currentRoomX;
+	}
+	
+	public int getCurrentY() {
+		return _currentRoomY;
 	}
 }
