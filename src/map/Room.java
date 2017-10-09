@@ -281,10 +281,6 @@ public class Room {
 					// Increment row if row is completely checked.
 					if (col == _tiles[row].length)
 						row++;
-				} else {
-					// Close reader and throw exception.
-					reader.close();
-					throw new Exception("ERROR: First digit in file not an integer.\n");
 				}
 			}
 			
