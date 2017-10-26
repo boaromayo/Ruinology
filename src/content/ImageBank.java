@@ -46,7 +46,7 @@ public final class ImageBank {
 	public BufferedImage loadImage(String path) {
 		try {
 			System.out.println("Image loading...");
-			BufferedImage bi = ImageIO.read(new File(path));
+			BufferedImage bi = ImageIO.read(getClass().getResourceAsStream(path));
 			BufferedImage img = new BufferedImage( 
 					bi.getWidth(), bi.getHeight(), BufferedImage.TYPE_INT_ARGB);
 			return img;
