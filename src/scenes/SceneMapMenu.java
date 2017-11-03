@@ -20,9 +20,11 @@ public class SceneMapMenu extends Scene {
 	private String [] _choices = { "6x6", "8x8", "10x10", "BACK" };
 	
 	@Override
-	public void init() {
+	public void init(SceneBank sb) {
 		// TODO Auto-generated method stub
 		// Initialize settings
+		_sb = sb;
+		
 		_cursor = new Cursor(240, 150);
 	}
 
@@ -44,7 +46,7 @@ public class SceneMapMenu extends Scene {
 		} else if (InputBank.keyPressed(InputBank._ENTER)) {
 			branchChoices(_cursor.position());
 		} else if (InputBank.keyPressed(InputBank._ESC)) {
-			SceneBank.removeScene();
+			_sb.removeScene();
 		}
 	}
 
@@ -91,7 +93,7 @@ public class SceneMapMenu extends Scene {
 		} else if (choice == _BACK) {
 			// Assume the main menu scene is saved scene
 			// Push current scene to saved scene and remove this scene
-			SceneBank.removeScene();
+			_sb.removeScene();
 		}
 	}
 

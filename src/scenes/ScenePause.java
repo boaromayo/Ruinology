@@ -11,8 +11,9 @@ public class ScenePause extends Scene {
 	private BufferedImage _pauseImg;
 	
 	@Override
-	public void init() {
+	public void init(SceneBank sb) {
 		// TODO Auto-generated method stub
+		_sb = sb;
 		//_pauseImg = Constants._pauseTitle;
 	}
 
@@ -20,12 +21,12 @@ public class ScenePause extends Scene {
 	public void update() {
 		// TODO Auto-generated method stub
 		// Press 'ENTER' to resume, 'ESC' to go to menu.
-		if (InputBank.keyDown(InputBank._ENTER)) {
-			SceneBank.removeScene();
-			SceneBank.setScene(SceneBank.getCurrentScene());
-		} else if (InputBank.keyDown(InputBank._ESC)) {
-			SceneBank.clear();
-			SceneBank.setScene(new SceneMenu());
+		if (InputBank.keyPressed(InputBank._ENTER)) {
+			_sb.removeScene();
+			_sb.setScene(_sb.getCurrentScene());
+		} else if (InputBank.keyPressed(InputBank._ESC)) {
+			_sb.clear();
+			_sb.setScene(new SceneMenu(_sb));
 		}
 	}
 

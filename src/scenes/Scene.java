@@ -1,10 +1,15 @@
+package scenes;
 import java.awt.*;
+
+import content.*;
 
 public abstract class Scene {
 
-	public Scene() { init(); }
+	public Scene() { init(_sb); }
 	
-	public abstract void init();
+	protected SceneBank _sb;
+	
+	public abstract void init(SceneBank sb);
 	
 	public abstract void update();
 	

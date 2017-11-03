@@ -21,12 +21,13 @@ public class SceneEnd extends Scene {
 		_condition = condition;
 		_score = score;
 		
-		init();
+		init(_sb);
 	}
 	
 	@Override
-	public void init() {
+	public void init(SceneBank sb) {
 		// TODO Auto-generated method stub
+		_sb = sb;
 		// branch end conditions depending on victory or gameover
 		if (_condition == 0) {
 			// make victory appear
@@ -42,10 +43,10 @@ public class SceneEnd extends Scene {
 		// TODO Auto-generated method stub
 		
 		// keyboard output here
-		if (InputBank.keyDown(InputBank._ENTER)) {
+		if (InputBank.keyPressed(InputBank._ENTER)) {
 			// go back to title screen
-			SceneBank.clear();
-			SceneBank.setScene(new SceneMenu());
+			_sb.clear();
+			_sb.setScene(new SceneMenu(_sb));
 		}
 	}
 

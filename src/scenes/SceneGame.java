@@ -23,8 +23,10 @@ public class SceneGame extends Scene {
 	ArrayList<Money> _moneys;
 	
 	@Override
-	public void init() {
+	public void init(SceneBank sb) {
 		// TODO Auto-generated method stub
+		_sb = sb;
+		
 		_maze = new Maze(); // Let maze set player's starting room.
 		
 		_player = new Player(); 
@@ -36,7 +38,7 @@ public class SceneGame extends Scene {
 		// Set camera to player's current room location.
 		//int px = _player.getx() / Constants.WIDTH;
 		//int py = _player.gety() / Constants.HEIGHT;
-		//_camera = new Camera(_maze, _player, px * Constants.WIDTH, py * Constants.HEIGHT);
+		//_camera = new Camera(_maze, _player, px, py);
 		
 		_items = new ArrayList<Item>(); // make items into list
 		
@@ -62,7 +64,7 @@ public class SceneGame extends Scene {
 		_player.update();
 		
 		// Set timer on if game scene is the scene being used.
-		if (SceneBank.getCurrentScene().equals(this)) {
+		if (_sb.getCurrentScene().equals(this)) {
 			if (!_player.isTimerActive()) {
 				_player.activateTimer();
 			}
@@ -72,7 +74,7 @@ public class SceneGame extends Scene {
 		
 		// Check game over conditions.
 		if (_player.isDead() || _player.getTimerCount() == 0)
-			SceneBank.setScene(new SceneEnd(1, _player.getScore()));
+			_sb.setScene(new SceneEnd(1, _player.getScore()));
 	
 		// Update items if they are visible.
 		for (Item item : _items) {
@@ -110,8 +112,8 @@ public class SceneGame extends Scene {
 		// Go to pause screen if 'ESC' pressed. Timer stops when not in game scene.
 		if (InputBank.keyPressed(InputBank._ESC)) {
 			_player.deactivateTimer();
-			SceneBank.saveScene();
-			SceneBank.setScene(new ScenePause());
+			_sb.saveScene();
+			_sb.setScene(new ScenePause());
 		}
 	}
 
