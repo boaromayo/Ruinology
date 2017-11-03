@@ -1,4 +1,5 @@
 package content;
+import java.awt.*;
 import java.awt.image.*;
 
 import javax.sound.sampled.*;
@@ -22,6 +23,9 @@ public final class Constants {
 	private static final int FONT_SIZE = 20;
 	
 	// FILE PATHS.
+	
+	// ICON IMAGE /* ICON SIZE: 16 */
+	private static final String _iconPath = "/assets/img/icon.png";
 	
 	// TITLE IMAGE /* TITLE WIDTH: 416, TITLE HEIGHT: 64 */.
 	private static final String _titlePath = "/assets/img/title.png";
@@ -106,6 +110,9 @@ public final class Constants {
 	public static BufferedImage getImage(String path) { return ImageBank.get().loadImage(path); }
 	
 	public static BufferedImage[][] getImages(String path, int x, int y, int size) { return ImageBank.get().loadImages(path, x, y, size); }
+	
+	// ICON IMAGE.
+	public static Image getIcon() { return ImageBank.get().loadImageIcon(_iconPath); }
 	
 	// TITLE IMAGE.
 	public static BufferedImage getTitle() { return getImage(_titlePath); }
