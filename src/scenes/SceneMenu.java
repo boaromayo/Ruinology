@@ -101,13 +101,13 @@ public class SceneMenu extends Scene {
 	private void branchChoices(int choice) {
 		if (choice == _START) {
 			// Start game
-			//SceneBank.setScene(new SceneGame());
+			//_sb.setScene(new SceneGame());
 		} else if (choice == _QUIT) {
 			System.exit(0); // shutdown
 		}/* else if (choice == _MAP) {
 			// Go to map menu scene
-			SceneBank.saveScene();
-			SceneBank.setScene(new SceneMapMenu());
+			_sb.saveScene();
+			_sb.setScene(new SceneMapMenu());
 		} else if (choice == _QUIT) {
 			System.exit(0); // shutdown
 		}*/
