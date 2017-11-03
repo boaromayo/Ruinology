@@ -2,7 +2,7 @@ package main;
 import java.awt.Dialog.*;
 import javax.swing.*;
 
-import content.Constants;
+import content.*;
 
 public class Game {
 	// MAIN FRAME.
@@ -18,7 +18,8 @@ public class Game {
 		// Set up frame.
 		_frame.setTitle("Ruinology");
 		_frame.setSize(Constants.WIDTH, Constants.HEIGHT_FINAL);
-
+		//_frame.setIconImage(Constants.getIcon());
+		
 		_frame.add(_panel);
 		
 		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

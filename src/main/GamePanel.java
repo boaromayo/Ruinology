@@ -10,7 +10,11 @@ public class GamePanel extends JPanel implements Runnable {
 	// MAIN THREAD.
 	private Thread _thread;
 	
+	// SCENE BANK.
+	private SceneBank _sb;
+	
 	public GamePanel() {
+		_sb = SceneBank.get();
 		init();
 	}
 	
@@ -39,7 +43,7 @@ public class GamePanel extends JPanel implements Runnable {
 		
 		setBackground(Color.BLACK);
 		
-		SceneBank.init();
+		_sb.init();
 	}
 	
 	public void run() {
@@ -95,7 +99,7 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	public void update() {
 		// update order is important here!
-		SceneBank.update();
+		_sb.update();
 		InputBank.update();
 	}
 	
@@ -108,6 +112,6 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	
 	public void draw(Graphics g) {
-		SceneBank.draw(g);
+		_sb.draw(g);
 	}
 }
