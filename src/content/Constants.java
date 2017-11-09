@@ -23,88 +23,91 @@ public final class Constants {
 	private static final int FONT_SIZE = 20;
 	
 	// FILE PATHS.
+	private static final String _imgPath = "/assets/img/";
+	private static final String _mapPath = "/assets/maps/";
+	private static final String _sfxPath = "/assets/sfx/";
 	
 	// ICON IMAGE /* ICON SIZE: 16 */
-	private static final String _iconPath = "/assets/img/icon.png";
+	private static final String _iconPath = _imgPath + "icon.png";
 	
 	// TITLE IMAGE /* TITLE WIDTH: 416, TITLE HEIGHT: 64 */.
-	private static final String _titlePath = "/assets/img/title.png";
+	private static final String _titlePath = _imgPath + "title.png";
 	
 	// PAUSE IMAGE.
-	private static final String _pauseTitlePath = "/assets/img/pausetitle.png";
+	private static final String _pauseTitlePath = _imgPath + "pausetitle.png";
 	
 	// VICTORY TITLE IMAGE.
-	private static final String _victoryPath = "/assets/img/victory_title.png";
+	private static final String _victoryPath = _imgPath + "victory_title.png";
 	
 	// GAMEOVER IMAGE.
-	private static final String _gameoverPath = "/assets/img/gameover_title.png";
+	private static final String _gameoverPath = _imgPath + "gameover_title.png";
 	
 	// TEXT.
-	private static final String _fontPath = "/assets/img/font.gif";
+	private static final String _fontPath = _imgPath + "font.gif";
 	
 	// TEXT SMALL.
-	private static final String _fontSmallPath = "/assets/img/font-small.png";
+	private static final String _fontSmallPath = _imgPath + "font-small.png";
 	
 	// CURSOR.
-	private static final String _cursorPath = "/assets/img/cursor.png";
+	private static final String _cursorPath = _imgPath + "cursor.png";
 	
 	// PLAYER FILE.
-	private static final String _player1Path = "/assets/img/player-1.png";
-	private static final String _player2Path = "/assets/img/player-2.png";
-	private static final String _player3Path = "/assets/img/player-3.png";
+	private static final String _player1Path = _imgPath + "player-1.png";
+	private static final String _player2Path = _imgPath + "player-2.png";
+	private static final String _player3Path = _imgPath + "player-3.png";
 	
 	// TIMER.
-	private static final String _timerPath = "/assets/img/timer.png";
+	private static final String _timerPath = _imgPath + "timer.png";
 	
 	// HEALTH.
-	private static final String _heartPath = "/assets/img/heart.gif";
+	private static final String _heartPath = _imgPath + "heart.gif";
 	
 	// HEALTH COUNTER.
-	private static final String _heartCtrGrayPath = "/assets/img/heart_bar_gray.gif";
-	private static final String _heartCtrPath = "/assets/img/heart_bar.gif";
+	private static final String _heartCtrGrayPath = _imgPath + "heart_bar_gray.gif";
+	private static final String _heartCtrPath = _imgPath + "heart_bar.gif";
 	
 	// STAMINA.
-	private static final String _staminaPath = "/assets/img/stamina.gif";
+	//private static final String _staminaPath = _imgPath + "stamina.gif";
 	
 	// STAMINA BAR?
-	private static final String _staminaGaugePath = "/assets/img/stamina_gauge.gif";
+	//private static final String _staminaGaugePath = _imgPath + "stamina_gauge.gif";
 	
 	// ITEMS.
-	private static final String _hrglassPath = "/assets/img/hourglass.png";
+	private static final String _hrglassPath = _imgPath + "hourglass.png";
 	
 	// ITEMS -> USABLE ITEMS.
-	private static final String _bluePotionPath = "/assets/img/potion_blue.gif";
-	private static final String _greenPotionPath = "/assets/img/potion_green.gif";
+	private static final String _bluePotionPath = _imgPath + "potion_blue.gif";
+	private static final String _greenPotionPath = _imgPath + "potion_green.gif";
 	
 	// ITEMS -> MONEY.
-	private static final String _bronzeCoinPath = "/assets/img/coin_bronze.gif";
-	private static final String _silverCoinPath = "/assets/img/coin_silver.gif";
-	private static final String _goldCoinPath = "/assets/img/coin_gold.gif";
-	private static final String _crystalPath = "/assets/img/crystal.gif";
+	private static final String _bronzeCoinPath = _imgPath + "coin_bronze.gif";
+	private static final String _silverCoinPath = _imgPath + "coin_silver.gif";
+	private static final String _goldCoinPath = _imgPath + "coin_gold.gif";
+	private static final String _crystalPath = _imgPath + "crystal.gif";
 	
 	// TILESET.
-	private static final String _tilesetImgPath = "/assets/img/ruintile.gif";
-	private static final String _tilesetPath = "/assets/maps/tileset.txt";
+	private static final String _tilesetImgPath = _imgPath + "ruintile.gif";
+	private static final String _tilesetPath = _mapPath + "tileset.txt";
 	
 	// DEFAULT TILE.
-	private static final String _blankTilePath = "/assets/img/blank.gif";
+	private static final String _blankTilePath = _imgPath + "blank.gif";
 	
 	// SOUNDS.
 	
 	// PLAYER SOUNDS.
-	private static final String _drinkPath = "/assets/sfx/bubble.wav";
-	private static final String _harmPath = "/assets/sfx/harm.wav";
+	private static final String _drinkPath = _sfxPath + "bubble.wav";
+	private static final String _harmPath = _sfxPath + "harm.wav";
 	
 	// ITEM GET SOUNDS.
-	private static final String _getMoneyPath = "/assets/sfx/clink.wav";
-	private static final String _getItemPath = "/assets/sfx/item.wav";
-	private static final String _getHrglassPath = "/assets/sfx/warp.wav";
+	private static final String _getMoneyPath = _sfxPath + "clink.wav";
+	private static final String _getItemPath = _sfxPath + "item.wav";
+	private static final String _getHrglassPath = _sfxPath + "warp.wav";
 	
 	// MENU SOUNDS.
-	private static final String _cursorAudioPath = "/assets/sfx/cursor.wav";
-	private static final String _selectPath = "/assets/sfx/select.wav";
-	private static final String _cancelPath = "/assets/sfx/cancel.wav";
-	private static final String _buzzerPath = "/assets/sfx/buzzer.wav";
+	private static final String _cursorAudioPath = _sfxPath + "cursor.wav";
+	private static final String _selectPath = _sfxPath + "select.wav";
+	private static final String _cancelPath = _sfxPath + "cancel.wav";
+	private static final String _buzzerPath = _sfxPath + "buzzer.wav";
 	
 	// IMAGES.
 	public static BufferedImage getImage(String path) { return ImageBank.get().loadImage(path); }
