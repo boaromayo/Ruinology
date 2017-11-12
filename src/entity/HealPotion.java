@@ -1,11 +1,11 @@
 package entity;
 
-import java.awt.*;
+import content.Constants;
 
 public class HealPotion extends UsableItem {
 	
 	public HealPotion() {
-		// TODO Auto-generated constructor stub
+		_img = Constants.getBluePotionImg();
 		_width = _img.getWidth();
 		_height = _img.getHeight();
 	}

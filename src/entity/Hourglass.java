@@ -1,15 +1,15 @@
 package entity;
-import java.awt.*;
+
+import content.Constants;
 
 public class Hourglass extends Powerup {
-	@Override
-	public void draw(Graphics g) {
-		// TODO Auto-generated method stub
-		int x = (int)_x;
-		int y = (int)_y;
-		g.drawImage(_img, x, y, _width, _height, null);
+	
+	public Hourglass() {
+		_img = Constants.getHrglassImg();
+		_width = _img.getWidth();
+		_height = _img.getHeight();
 	}
-
+	
 	@Override
 	public void effect(Player p) {
 		// play sound here and add 30 more secs.
