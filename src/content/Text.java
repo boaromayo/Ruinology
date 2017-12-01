@@ -18,15 +18,12 @@ public final class Text {
 			int ch = cset[i]; // set char to an int
 			
 			if (ch >= 48 && ch <= 57) {
-				// for numbers
-			}
-			if (ch >= 97 && ch <= 122) {
-				ch -= 32; // convert to uppercase
+				// for numbers, shift ch pos to 
 			}
 			
-			/*int r = ch / 32; // row
+			int r = ch / 32; // row for the text
 			int c = ch % 32; // column for the text
-			g.drawImage(_text[r][c], x, y, null);*/
+			g.drawImage(_text[r][c], x, y, null);
 		}
 	}
 }
