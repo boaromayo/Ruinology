@@ -21,7 +21,7 @@ public class Timer {
 	private boolean _timerOn;
 	
 	public Timer(int sec) {
-		//_timerImg = Constants._timer;
+		//_timerImg = Constants.getTimerImg();
 		
 		_framecount = 0;
 		

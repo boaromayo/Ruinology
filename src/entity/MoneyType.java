@@ -28,7 +28,6 @@ public enum MoneyType {
 	
 	private MoneyType(int v) {
 		_value = v;
-		_name = "coin";
 		_img = null;
 	}
 	
@@ -43,7 +42,7 @@ public enum MoneyType {
 	}
 	
 	public String type() {
-		return _name;	
+		return _name;
 	}
 	
 	public BufferedImage image() {

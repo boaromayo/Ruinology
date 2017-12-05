@@ -2,6 +2,8 @@ package entity;
 import java.awt.*;
 import java.awt.image.*;
 
+import content.Constants;
+
 public class Cursor {
 	
 	// SPRITE.
@@ -22,7 +24,7 @@ public class Cursor {
 		_x = 100;
 		_y = 100;
 		
-		//_cursorImg = Constants._cursor;
+		//_cursorImg = Constants.getCursorImg();
 		
 		_width = _cursorImg.getWidth();
 		_height = _cursorImg.getHeight();
@@ -34,7 +36,7 @@ public class Cursor {
 		_x = x;
 		_y = y;
 		
-		//_cursorImg = Constants._cursor;
+		//_cursorImg = Constants.getCursorImg();
 		
 		//_width = _cursorImg.getWidth();
 		//_height = _cursorImg.getHeight();
