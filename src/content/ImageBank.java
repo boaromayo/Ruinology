@@ -30,6 +30,7 @@ public final class ImageBank {
 		return _ib;
 	}
 	
+	// FOR THE APPLICATION ICON.
 	public Image loadImageIcon(String path) {
 		try {
 			System.out.println("Image loading...");
