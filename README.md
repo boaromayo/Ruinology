@@ -1,6 +1,6 @@
 Ruinology
 ==========
-This is a game originally intended as an entry for [Ludum Dare 36][ld36]. 
+This is a game originally intended as an entry for [Ludum Dare 36][ld36], now an experimental app to test random procedural generation.
 
 Lost in an ancient maze, get out before it collapses!
 
