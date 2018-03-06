@@ -100,9 +100,11 @@ public class Room {
 		_tileids = new int[_height][_width];
 		_tiles = new Tile[_height][_width];
 		
-		for (int row = 0; row < _height; row++)
-			for (int col = 0; col < _width; col++)
-				_tileids[row][col] = ids[row][col];
+		for (int i = 0; i < _height*_width; i++) {
+			int row = i / _width;
+			int col = i % _width;
+			_tileids[row][col] = ids[row][col];
+		}
 		
 		init();
 	}
@@ -221,23 +223,24 @@ public class Room {
 		int w = Constants.getRoomWidth();
 		BufferedImage[][] tilesetimg = Constants.getTileset();
 		
-		for (row = 0; row < _tiles.length; row++) {
-			for (col = 0; col < _tiles[row].length; col++) {
-				tile = _tiles[row][col];
-				tileid = _tileids[row][col];
-				r = tileid / w;
-				c = tileid % w;
-				
-				// TODO: Calculate tileset ID array index from tile ID.
-				tile = new Tile(tilesetimg[r][c], 
-						tileid, 
-						_tiletypes[tileid], 
-						_tileSolid[tileid],
-						_tileDanger[tileid],
-						_tiledmgs[tileid]); // Form the tiles for the room.
-				if (tile.isType("ladder"))
-					_hasLadder = true;
-			}
+		for (int i = 0; i < _height*_width; i++) {
+			row = i / _width;
+			col = i % _width;
+			
+			tile = _tiles[row][col];
+			tileid = _tileids[row][col];
+			r = tileid / w;
+			c = tileid % w;
+			
+			// TODO: Calculate tileset ID array index from tile ID.
+			tile = new Tile(tilesetimg[r][c], 
+					tileid, 
+					_tiletypes[tileid], 
+					_tileSolid[tileid],
+					_tileDanger[tileid],
+					_tiledmgs[tileid]); // Form the tiles for the room.
+			if (tile.isType("ladder"))
+				_hasLadder = true;
 		}
 	}
 	
@@ -246,9 +249,10 @@ public class Room {
 		try {
 			BufferedReader reader = new BufferedReader(
 					new FileReader(file));			
-			String delim = "\\s+"; // Ignore whitespace.
+			String delim = "(,+|\\s+)"; // Ignore commas or whitespace.
 
 			Tile tile;
+			int i;
 			int row, col;
 			int tileid;
 			int r, c;
@@ -260,62 +264,65 @@ public class Room {
 			BufferedImage[][] tilesetimg = Constants.getTileset();
 			
 			// Get tile ID from the text file containing the map.
-			for (row = 0; row < _tiles.length; ) {
+			for (i = 0; i < _height*_width;) {
+				row = i / _width;
+				col = i % _width;
+				
+				// Read newline if on the first column.
 				line = reader.readLine();
 				
-				char digit = line.charAt(0);
-				boolean isnum = (digit >= '0' && digit <= '9');
-				
-				// Check for ID if the first line read is an integer.
-				if (isnum) {
-					ids = line.split(delim);
-					
-					for (col = 0; col < _tiles[row].length; col++) {
-						// Get out of the loop if there is a null string.
-						if (ids[col].equals(null))
-							break;
+				// Split line based on whitespace.
+				ids = line.split(delim);
 						
-						_tileids[row][col] = Integer.valueOf(ids[col]);
-					}
-					
-					// Increment row if row is completely checked.
-					if (col == _tiles[row].length)
-						row++;
+				if (ids.length == _width) {
+					if (ids[col].equals(null))
+						continue;
+						
+					_tileids[row][col] = Integer.valueOf(ids[col]);
+						
+					i++;
 				}
 			}
 			
 			// Now get tile corresponding to tile ID.
-			for (row = 0; row < _tiles.length; row++) {
-				for (col = 0; col < _tiles[row].length; col++) {
-					tile = _tiles[row][col];
-					tileid = _tileids[row][col];
-					r = tileid / w;
-					c = tileid % w;
+			for (i = 0; i < _height*_width; i++) {
+				row = i / _width;
+				col = i % _width;
+				
+				tile = _tiles[row][col];
+				tileid = _tileids[row][col];
+				r = tileid / w;
+				c = tileid % w;
 					
-					// TODO: Calculate tileset ID array index from tile ID.
-					tile = new Tile(tilesetimg[r][c],
-							tileid,
-							_tiletypes[tileid],
-							_tileSolid[tileid],
-							_tileDanger[tileid],
-							_tiledmgs[tileid]); // Form the tiles for the room.
-					if (tile.isType("ladder"))
-						_hasLadder = true;
-				}
+				// TODO: Calculate tileset ID array index from tile ID.
+				tile = new Tile(tilesetimg[r][c],
+						tileid,
+						_tiletypes[tileid],
+						_tileSolid[tileid],
+						_tileDanger[tileid],
+						_tiledmgs[tileid]); // Form the tiles for the room.
+				if (tile.isType("ladder"))
+					_hasLadder = true;
 			}
 					
 			reader.close(); // Close reader.
+		} catch (IOException e) {
+			System.err.println("Error reading file " + _file + ".\n" + 
+					"Reason: " + e.getMessage());
+			e.printStackTrace();
 		} catch (Exception e) {
-			System.err.println("Unable to read file " + _file + "\n" + 
+			System.err.println("Unable to read file " + _file + ".\n" + 
 					"Reason: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
 	
 	public void draw(Graphics g) {
-		for (int row = 0; row < _tiles.length; row++)
-			for (int col = 0; col < _tiles[row].length; col++)
-				_tiles[row][col].draw(g, col, row);
+		for (int i = 0; i < _height*_width; i++) {
+			int row = i / _width;
+			int col = i % _width;
+			_tiles[row][col].draw(g, col, row);
+		}
 	}
 	
 	public boolean hasLadder() {
@@ -353,5 +360,14 @@ public class Room {
 			return new Tile(Constants.getBlankTile(), 0, _tiletypes[0]); // Return a blank tile.
 		
 		return tile;
+	}
+	
+	// Replace tile(row,col) in current room (ie. useful for locking player in room by replacing floor with wall).
+	public void replaceTile(Tile newTile, int row, int col) {
+		Tile tile = _tiles[row][col];
+		if (tile == null || newTile == null) {
+			return;
+		}
+		Tile.replace(tile, newTile);
 	}
 }
