@@ -1,2 +1,4 @@
 # Eclipse
+.projects/**
+.settings
 .classpath
