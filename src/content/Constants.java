@@ -7,8 +7,8 @@ import javax.sound.sampled.*;
 public final class Constants {
 	// PANEL CONSTANTS.
 	public static final int WIDTH = 480;
-	public static final int HEIGHT = 360;
-	public static final int HEIGHT_HUD = 40;
+	public static final int HEIGHT = 320;
+	public static final int HEIGHT_HUD = 80;
 	public static final int HEIGHT_FINAL = HEIGHT + HEIGHT_HUD;
 	public static final int FPS = 60;
 	
@@ -23,9 +23,9 @@ public final class Constants {
 	private static final int FONT_SIZE = 20;
 	
 	// FILE PATHS.
-	private static final String _imgPath = "/assets/img/";
-	private static final String _mapPath = "/assets/maps/";
-	private static final String _sfxPath = "/assets/sfx/";
+	private static final String _imgPath = "assets/img/";
+	private static final String _mapPath = "assets/maps/";
+	private static final String _sfxPath = "assets/sfx/";
 	
 	// ICON IMAGE /* ICON SIZE: 16 */
 	private static final String _iconPath = _imgPath + "icon.png";
@@ -166,10 +166,14 @@ public final class Constants {
 	public static BufferedImage getGoldCoinImg() { return getImage(_goldCoinPath); }
 	public static BufferedImage getCrystalImg() { return getImage(_crystalPath); }
 	
+	// MAP.
+	public static String getMapPath() { return _mapPath; }
+	
 	// TILESET.
 	public static BufferedImage[][] getTileset() { return getImages(_tilesetImgPath, 0, 0, TILE_SIZE); }
 	public static int getTilesetWidth() { return getImage(_tilesetImgPath).getWidth(); } // Get the tileset's width, not the tile's width.
 	public static String getTilesetPath() { return _tilesetPath; }
+	public static int getTileWidth() { return (int)getTilesetWidth() / TILE_SIZE; }
 	
 	// DEFAULT TILE.
 	public static BufferedImage getBlankTile() { return getImage(_blankTilePath); }
