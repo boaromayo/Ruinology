@@ -56,7 +56,7 @@ public class Tile {
 	
 	public void draw(Graphics g, int x, int y) {
 		if (_img != null) {
-			g.drawImage(_img, x*Constants.TILE_SIZE, y*Constants.TILE_SIZE, null);
+			g.drawImage(_img, x, y, null);
 		}
 	}
 	
