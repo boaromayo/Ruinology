@@ -78,11 +78,11 @@ public final class ImageBank {
 			// Put images in
 			BufferedImage[][] newImg = new BufferedImage[row][col];
 			for (int j = 0; j < row; j++) {
-				for (int i = 0; i < col; i++) {
-					newImg[j][i] = img.getSubimage(x, y, w, h);
-					x = i * w;
-				}
 				y = j * h;
+				for (int i = 0; i < col; i++) {
+					x = i * w;
+					newImg[j][i] = img.getSubimage(x, y, w, h);
+				}
 			}
 			return newImg;
 		} catch (Exception e) {
