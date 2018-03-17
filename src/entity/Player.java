@@ -86,7 +86,7 @@ public class Player {
 	private Clip _getMoney;
 	private Clip _harm;
 	
-	public Player() {
+	public Player(Maze maze) {
 		/*_pDownImg = _pImg[0];
 		_pLeftImg = _pImg[1];
 		_pRightImg = _pImg[2];
@@ -96,7 +96,7 @@ public class Player {
 		_pRightMovingImg = _pImg[6]
 		_pDownMovingImg = _pImg[7]*/
 		
-		_room = new Room("room_sample.txt");
+		_room = maze.getCurrentRoom();
 		
 		_width = Constants.PLAYER_SIZE;
 		_height = Constants.PLAYER_SIZE;
@@ -150,7 +150,7 @@ public class Player {
 		}
 		
 		// Animate sprite.
-		animate();
+		//animate();
 	}
 	
 	private void animate() {
@@ -213,10 +213,10 @@ public class Player {
 	private void move() {
 		// Check to see if any tile is solid (collidable)
 		// or dangerous before moving.
-		checkCollisions();
+		//checkCollisions();
 		
 		_x += _dx;
-		_y += _dy;	
+		_y -= _dy;
 	}
 	
 	public void draw(Graphics g) {
@@ -224,19 +224,64 @@ public class Player {
 		int xi = (int) _x;
 		int yi = (int) _y;
 		
-		// placeholder tri
-		/*int[] xp = {xi, xi-5, xi+5};
-		int[] yp = {yi, yi+5, yi+5};
-		g.drawPolygon(xp, yp, 3);*/
+		// get midpoint
+		int mid = (Constants.TILE_SIZE / 3);
+		
+		// placeholder triangle facing based on direction
+		int[] xp = new int[3];
+		int[] yp = new int[3];
+		
+		if (isFacingLeft()) {
+			xp[0] = xi+mid;
+			xp[1] = xi-mid;
+			xp[2] = xi+mid;
+			yp[0] = yi-mid;
+			yp[1] = yi;
+			yp[2] = yi+mid;
+		} else if (isFacingUp()) {
+			xp[0] = xi;
+			xp[1] = xi-mid;
+			xp[2] = xi+mid;
+			yp[0] = yi-mid;
+			yp[1] = yi+mid;
+			yp[2] = yi+mid;
+		} else if (isFacingRight()) {
+			xp[0] = xi-mid;
+			xp[1] = xi+mid;
+			xp[2] = xi-mid;
+			yp[0] = yi+mid;
+			yp[1] = yi;
+			yp[2] = yi-mid;
+		} else if (isFacingDown()) {
+			xp[0] = xi-mid;
+			xp[1] = xi;
+			xp[2] = xi+mid;
+			yp[0] = yi-mid;
+			yp[1] = yi+mid;
+			yp[2] = yi-mid;
+		}
+		
+		//set color based on state of player
+		if (isMoving())
+			g.setColor(Color.YELLOW);
+		else if (isIdle())
+			g.setColor(Color.WHITE);
+		else if (isDead())
+			g.setColor(Color.RED);
+		
+		g.fillPolygon(xp, yp, 3);
 		
 		// draw image based on direction
-		g.drawImage(getCurrentImage(), xi, yi, _width, _height, null);
+		//g.drawImage(getCurrentImage(), xi, yi, _width, _height, null);
+		
+		g.setColor(Color.BLACK);
+		g.fillRect(0, Constants.HEIGHT, Constants.WIDTH, Constants.HEIGHT_HUD);
 		
 		// draw hud
 		drawHealth(g);
 		//drawStamina(g);
 		drawTimer(g);
-		drawBag(g);
+		//drawBag(g);
 	}
 	
 	private void drawHealth(Graphics g) {
@@ -244,8 +289,8 @@ public class Player {
 		//BufferedImage heartImg = Constants.getHeartImg();
 		//BufferedImage bar = Constants.getHealthCtrImg(true);
 		//BufferedImage barGray = Constants.getHealthCtrImg(false);
-		int basex = 50;
-		int offset = 20;
+		int basex = 24;
+		int offset = 24;
 		
 		/*int heartWidth = heartImg.getWidth();
 		int heartHeight = heartImg.getHeight();
@@ -274,7 +319,7 @@ public class Player {
 			if (inc != 0)
 				_hp += inc;
 		}
-		g.fillRect(50, Constants.HEIGHT_FINAL - (basex - offset), _hp * 20, 8);
+		g.fillRect(basex, Constants.HEIGHT_FINAL - basex - offset, _hp * (offset / 2), 8);
 	}
 	
 	/*private void drawStamina(Graphics g) {
@@ -301,7 +346,7 @@ public class Player {
 		// draw hud part for bag
 		g.setColor(Color.GRAY);
 		for (int i = 0; i < _MAX_BAGSIZE; i++) {
-			g.drawRect(180 + (30 * i), Constants.HEIGHT_FINAL - 24, 24, 24);
+			g.drawRect(180 + (30 * i), Constants.HEIGHT_FINAL - 48, 24, 24);
 		}
 		
 		// draw bag cursor
@@ -309,7 +354,7 @@ public class Player {
 		g2.setStroke(new BasicStroke(2));
 		g2.setColor(Color.WHITE);
 		
-		g2.drawRect(180 + (30 * _position), Constants.HEIGHT_FINAL - 24, 24, 24);
+		g2.drawRect(180 + (30 * _position), Constants.HEIGHT_FINAL - 48, 24, 24);
 	}
 	
 	// ITEMS.
@@ -381,8 +426,8 @@ public class Player {
 	
 	// MOVE METHODS.
 	public void setLocation(int x, int y) {
-		_x = x;
-		_y = y;
+		_x = x * _room.getCols();
+		_y = y * _room.getRows();
 	}
 	
 	public void setdx(int x) {
@@ -500,6 +545,10 @@ public class Player {
 				hit(downTile.damage());
 			}
 		}
+	}
+	
+	public Room getRoom() {
+		return _room;
 	}
 	
 	// STATUS METHODS.

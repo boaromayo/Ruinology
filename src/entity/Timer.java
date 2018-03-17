@@ -21,7 +21,7 @@ public class Timer {
 	private boolean _timerOn;
 	
 	public Timer(int sec) {
-		//_timerImg = Constants._timer;
+		//_timerImg = Constants.getTimerImg();
 		
 		_framecount = 0;
 		
@@ -47,9 +47,10 @@ public class Timer {
 		String timeStr = String.format("%02d:%02d", minute, second);
 		
 		// Draw the timer img and clock
-		g.drawImage(_timerImg, Constants.WIDTH - 50, Constants.HEIGHT_FINAL - 10, _timerImg.getWidth(), _timerImg.getHeight(), null);
-		//Text.draw(g, timeStr, Constants.WIDTH - 40, Constants.HEIGHT_FINAL - 10);
-		g.drawString(timeStr, Constants.WIDTH - 40, Constants.HEIGHT_FINAL - 10);
+		g.setColor(Color.DARK_GRAY);
+		//g.drawImage(_timerImg, Constants.WIDTH - 96, Constants.HEIGHT - 10, _timerImg.getWidth(), _timerImg.getHeight(), null);
+		//Text.draw(g, timeStr, Constants.WIDTH - 60, Constants.HEIGHT - 10);
+		g.drawString(timeStr, Constants.WIDTH - 96, Constants.HEIGHT_FINAL - 48);
 	}
 	
 	public void setTime(int sec) {
