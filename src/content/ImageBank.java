@@ -80,7 +80,6 @@ public final class ImageBank {
 			for (int j = 0; j < row; j++) {
 				for (int i = 0; i < col; i++) {
 					newImg[j][i] = img.getSubimage(x, y, w, h);
-					
 					x = i * w;
 				}
 				y = j * h;
