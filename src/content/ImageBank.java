@@ -45,11 +45,16 @@ public final class ImageBank {
 	}
 	
 	public BufferedImage loadImage(String path) {
+		System.out.println("Loading image file...");
+		BufferedImage bi;
 		try {
-			System.out.println("Image loading...");
-			BufferedImage bi = ImageIO.read(getClass().getResourceAsStream(path));
+			System.out.println("Loading images...");
+			bi = ImageIO.read(new File(path));
 			BufferedImage img = new BufferedImage( 
 					bi.getWidth(), bi.getHeight(), BufferedImage.TYPE_INT_ARGB);
+			Graphics g = img.createGraphics();
+			g.drawImage(bi, 0, 0, null);
+			g.dispose();
 			return img;
 		} catch (Exception e) {
 			System.err.println("ERROR: Image failed to load.");
@@ -75,6 +80,7 @@ public final class ImageBank {
 			for (int j = 0; j < row; j++) {
 				for (int i = 0; i < col; i++) {
 					newImg[j][i] = img.getSubimage(x, y, w, h);
+					
 					x = i * w;
 				}
 				y = j * h;
