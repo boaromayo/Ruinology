@@ -144,7 +144,7 @@ public class Player {
 		} else {
 			// Check the input being pressed.
 			updateInput();
-					
+			
 			// Move player.
 			move();
 		}
@@ -168,39 +168,42 @@ public class Player {
 	
 	private void updateInput() {
 		// keyboard output here
-		if (InputBank.keyDown(InputBank._S) || 
-				InputBank.keyDown(InputBank._DOWN)) {
-			setdy(-_speed);
-			setState(State._MOVING);
-			setDirection(Direction._DOWN);
-		} else if (InputBank.keyDown(InputBank._A) ||
-				InputBank.keyDown(InputBank._LEFT)) {
-			setdx(-_speed);
-			setState(State._MOVING);
-			setDirection(Direction._LEFT);
-		} else if (InputBank.keyDown(InputBank._D) ||
-				InputBank.keyDown(InputBank._RIGHT)) {
-			setdx(_speed);
-			setState(State._MOVING);
-			setDirection(Direction._RIGHT);
-		} else if (InputBank.keyDown(InputBank._W) ||
+		if (InputBank.keyDown(InputBank._W) || 
 				InputBank.keyDown(InputBank._UP)) {
-			setdy(_speed);
 			setState(State._MOVING);
 			setDirection(Direction._UP);
+			setdy(-_speed);
+		} else if (InputBank.keyDown(InputBank._A) ||
+				InputBank.keyDown(InputBank._LEFT)) {
+			setState(State._MOVING);
+			setDirection(Direction._LEFT);
+			setdx(-_speed);
+		} else if (InputBank.keyDown(InputBank._D) ||
+				InputBank.keyDown(InputBank._RIGHT)) {
+			setState(State._MOVING);
+			setDirection(Direction._RIGHT);
+			setdx(_speed);
+		} else if (InputBank.keyDown(InputBank._S) ||
+				InputBank.keyDown(InputBank._DOWN)) {
+			setState(State._MOVING);
+			setDirection(Direction._DOWN);
+			setdy(_speed);
 		} else if (InputBank.keyPressed(InputBank._Z)) {
 			// move bag select cursor back
-			if (_position < 0) {
-				setItem(_MAX_BAGSIZE - 1);
+			if (_position > 0) {
+				_position--;
 			} else {
-				setItem(_position--);
+				_position = _MAX_BAGSIZE - 1;
 			}
+			setItem(_position);
 		} else if (InputBank.keyPressed(InputBank._X)) {
 			// move bag select cursor forth
-			if (_position > _MAX_BAGSIZE - 1)
-				setItem(0);
-			else
-				setItem(_position++);
+			if (_position < _MAX_BAGSIZE - 1) {
+				_position++;
+			} else {
+				_position = 0;
+			}
+			setItem(_position);
 		} else if (InputBank.keyPressed(InputBank._ENTER)) {
 			useItem();
 		} else {
@@ -211,12 +214,27 @@ public class Player {
 	}
 	
 	private void move() {
-		// Check to see if any tile is solid (collidable)
-		// or dangerous before moving.
-		//checkCollisions();
+		// Don't move player if vertical and horizontal 
+		// keys are pressed at the same time.
+		if (_dx != 0 && _dy != 0) {
+			return;
+		}
 		
+		// Check to see if any tile is solid (impassable)
+		// or dangerous.
+		checkCollisions();
+		
+		moveX();
+				
+		moveY();
+	}
+	
+	private void moveX() {
 		_x += _dx;
-		_y -= _dy;
+	}
+	
+	private void moveY() {
+		_y += _dy;
 	}
 	
 	public void draw(Graphics g) {
@@ -271,17 +289,32 @@ public class Player {
 		
 		g.fillPolygon(xp, yp, 3);
 		
+		g.setColor(Color.BLACK);
+		g.fillOval(xi, yi, 1, 1);
+		
 		// draw image based on direction
 		//g.drawImage(getCurrentImage(), xi, yi, _width, _height, null);
 		
-		g.setColor(Color.BLACK);
 		g.fillRect(0, Constants.HEIGHT, Constants.WIDTH, Constants.HEIGHT_HUD);
 		
 		// draw hud
 		drawHealth(g);
 		//drawStamina(g);
 		drawTimer(g);
-		//drawBag(g);
+		drawBag(g);
+		
+		// draw bounding box
+		g.setColor(Color.BLACK);
+		g.drawRect(getBoundingBox().x, getBoundingBox().y, getBoundingBox().width, getBoundingBox().height);
+		
+		// draw corresponding tiles.
+		/*int tx = (int)(_x / Constants.TILE_SIZE);
+		int ty = (int)(_y / Constants.TILE_SIZE);
+		
+		g.drawImage(_room.getTile(tx, ty - 1).getImage(), (int)_x, (int)_y - Constants.TILE_SIZE, null);
+		g.drawImage(_room.getTile(tx - 1, ty).getImage(), (int)_x - Constants.TILE_SIZE, (int)_y, null);
+		g.drawImage(_room.getTile(tx + 1, ty).getImage(), (int)_x + Constants.TILE_SIZE, (int)_y, null);
+		g.drawImage(_room.getTile(tx, ty + 1).getImage(), (int)_x, (int)_y + Constants.TILE_SIZE, null);*/
 	}
 	
 	private void drawHealth(Graphics g) {
@@ -344,9 +377,9 @@ public class Player {
 	
 	private void drawBag(Graphics g) {
 		// draw hud part for bag
-		g.setColor(Color.GRAY);
+		g.setColor(Color.LIGHT_GRAY);
 		for (int i = 0; i < _MAX_BAGSIZE; i++) {
-			g.drawRect(180 + (30 * i), Constants.HEIGHT_FINAL - 48, 24, 24);
+			g.drawRect(180 + (48 * i), Constants.HEIGHT_FINAL - 64, 32, 32);
 		}
 		
 		// draw bag cursor
@@ -354,7 +387,7 @@ public class Player {
 		g2.setStroke(new BasicStroke(2));
 		g2.setColor(Color.WHITE);
 		
-		g2.drawRect(180 + (30 * _position), Constants.HEIGHT_FINAL - 48, 24, 24);
+		g2.drawRect(180 + (48 * _position), Constants.HEIGHT_FINAL - 64, 32, 32);
 	}
 	
 	// ITEMS.
@@ -505,44 +538,82 @@ public class Player {
 	}
 	
 	private void checkCollisions() {
-		int rows = _room.getRows();
-		int cols = _room.getCols();
+		// Previous coordinates.
+		float prevx, prevy;
 		
-		int tx = (int)(_x / cols);
-		int ty = (int)(_y / rows);
+		// Corner coordinates.
+		int left = (int)(_x - _width / 2) / Constants.TILE_SIZE;
+		int right = (int)(_x + _width / 2 - 1) / Constants.TILE_SIZE;
+		int up = (int)(_y - _height / 2) / Constants.TILE_SIZE;
+		int down = (int)(_y + _height / 2 - 1) / Constants.TILE_SIZE;
 		
-		Tile upTile = _room.getTile(tx, ty - 1);
-		Tile leftTile = _room.getTile(tx - 1, ty);
-		Tile rightTile = _room.getTile(tx + 1, ty);
-		Tile downTile = _room.getTile(tx, ty + 1);
+		// if tiles chosen are beyond the map, assume any other tiles are solid.
+		Tile topLeft = _room.getTile(left, up);
+		Tile btmLeft = _room.getTile(left, down);
+		Tile topRight = _room.getTile(right, up);
+		Tile btmRight = _room.getTile(right, down);
 		
-		if (isFacingUp()) {
-			if (upTile.isSolid()) {
-				setdy(0);
-				setState(State._IDLE);
-			} else if (upTile.isDangerous()) {
-				hit(upTile.damage());
+		// Detect corners if solid or danger tile.
+		boolean tlCollide = topLeft.isSolid();
+		boolean blCollide = btmLeft.isSolid();
+		boolean trCollide = topRight.isSolid();
+		boolean brCollide = btmRight.isSolid();
+		
+		boolean tlHit = topLeft.isDangerous();
+		boolean blHit = btmLeft.isDangerous();
+		boolean trHit = topRight.isDangerous();
+		boolean brHit = btmRight.isDangerous();
+		
+		// Reaction is to push player back to unsolid or safe tile.
+		if (_dy > 0) {
+			prevy = _y;
+			if (blCollide || brCollide) {
+				setdy(-_speed);
+				_y = prevy;
+			} else if (blHit || brHit) {
+				setdy(-_speed);
+				System.out.println("HIT");
+			} else {
+				setdy(_speed);
 			}
-		} else if (isFacingLeft()) {
-			if (leftTile.isSolid()) {
-				setdx(0);
-				setState(State._IDLE);
-			} else if (leftTile.isDangerous()) {
-				hit(leftTile.damage());
+		}
+		
+		if (_dy < 0) {
+			prevy = _y;
+			if (tlCollide || trCollide) {
+				setdy(_speed);
+				_y = prevy;
+			} else if (tlHit || trHit) {
+				setdy(_speed);
+				System.out.println("HIT");
+			} else {
+				setdy(-_speed);
 			}
-		} else if (isFacingRight()) {
-			if (rightTile.isSolid()) {
-				setdx(0);
-				setState(State._IDLE);
-			} else if (rightTile.isDangerous()) {
-				hit(rightTile.damage());
+		}
+		
+		if (_dx > 0) {
+			prevx = _x;
+			if (trCollide || brCollide) {
+				setdx(-_speed);
+				_x = prevx;
+			} else if (trHit || brHit) {
+				setdy(-_speed);
+				System.out.println("HIT");
+			} else {
+				setdx(_speed);
 			}
-		} else if (isFacingDown()) {
-			if (downTile.isSolid()) {
-				setdy(0);
-				setState(State._IDLE);
-			} else if (downTile.isDangerous()) {
-				hit(downTile.damage());
+		}
+		
+		if (_dx < 0) {
+			prevx = _x;
+			if (tlCollide || blCollide) {
+				setdx(_speed);
+				_x = prevx;
+			} else if (tlHit || blHit) {
+				setdy(_speed);
+				System.out.println("HIT");
+			} else {
+				setdx(-_speed);
 			}
 		}
 	}
