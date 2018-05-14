@@ -106,9 +106,10 @@ public class GamePanel extends JPanel implements Runnable {
 	@Override
 	public void paint(Graphics g) {
 		Image img = createImage(Constants.WIDTH, Constants.HEIGHT_FINAL);
-		Graphics2D g2 = (Graphics2D) img.getGraphics();
+		Graphics g2 = img.getGraphics();
 		draw(g2);
-		g.drawImage(img, 0, 0, Constants.WIDTH, Constants.HEIGHT_FINAL, null);
+		g.drawImage(img, 0, 0, Constants.WIDTH * Constants.SCALE, Constants.HEIGHT_FINAL * Constants.SCALE, null);
+		g2.dispose();
 	}
 	
 	public void draw(Graphics g) {

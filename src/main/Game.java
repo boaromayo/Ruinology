@@ -17,7 +17,7 @@ public class Game {
 		
 		// Set up frame.
 		_frame.setTitle("Ruinology");
-		_frame.setSize(Constants.WIDTH, Constants.HEIGHT_FINAL);
+		_frame.setSize(Constants.WIDTH*Constants.SCALE, Constants.HEIGHT_FINAL*Constants.SCALE);
 		//_frame.setIconImage(Constants.getIcon());
 		
 		_frame.add(_panel);
