@@ -11,6 +11,7 @@ public final class Constants {
 	public static final int HEIGHT_HUD = 80;
 	public static final int HEIGHT_FINAL = HEIGHT + HEIGHT_HUD;
 	public static final int FPS = 60;
+	public static final int SCALE = 2;
 	
 	// PLAYER CONSTANTS.
 	public static final int PLAYER_SIZE = 24;
@@ -28,7 +29,7 @@ public final class Constants {
 	private static final String _sfxPath = "assets/sfx/";
 	
 	// ICON IMAGE /* ICON SIZE: 16 */
-	private static final String _iconPath = _imgPath + "icon.png";
+	private static final String _iconPath = _imgPath + "icon.ico";
 	
 	// TITLE IMAGE /* TITLE WIDTH: 416, TITLE HEIGHT: 64 */.
 	private static final String _titlePath = _imgPath + "title.png";
