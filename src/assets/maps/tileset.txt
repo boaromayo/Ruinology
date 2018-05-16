@@ -1,15 +1,26 @@
-14
-0 blank.gif blank
-1 floor.gif floor
-2 wall-top.gif wall-top true
-3 wall-btm.gif wall-btm true
-4 wall-lt.gif wall-lt true
-5 wall-rt.gif wall-rt true
-6 wall-tl.gif wall-tl true
-7 wall-tr.gif wall-tr true
-8 wall-bl.gif wall-bl true
-9 wall-br.gif wall-br true
-10 block.gif block true
-11 water.gif water true
-12 lava.gif lava false true 2
-13 ladder.gif ladder false
+25
+0 blank 
+1 floor 
+2 wall-tl true
+3 wall-top true
+4 wall-tr true
+5 
+6 
+7 
+8 
+9 
+10 water true
+11 lava false true 2
+12 wall-lt true
+13 block true
+14 wall-rt true
+15 
+16 
+17 
+18 
+19 
+20 ladder false
+21 
+22 wall-bl true
+23 wall-btm true
+24 wall-br true
