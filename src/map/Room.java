@@ -82,7 +82,7 @@ public class Room {
 		_tiles = new Tile[_height][_width];
 		
 		try {
-			_file = new File("/assets/maps/" + path);
+			_file = new File(Constants.getMapPath() + path);
 		} catch (Exception e) {
 			System.err.println("Unable to find or load " + path + "/n" + 
 					"Reason:" + e.getMessage());
@@ -136,7 +136,7 @@ public class Room {
 		try {
 			BufferedReader tablereader = new BufferedReader(
 					new FileReader(tableFile));
-			String delim = "\\s,+"; // Ignore whitespace or commas.
+			String delim = "\\s+"; // Ignore whitespace or commas.
 			
 			// First line read in the tileset file is the number of tiles available in the set.
 			int tableRows = Integer.valueOf(tablereader.readLine());
@@ -152,8 +152,8 @@ public class Room {
 			String line;
 			int strId;
 			String strType;
-			String strSolid;
-			String strDanger;
+			boolean strSolid;
+			boolean strDanger;
 			String strDamage;
 			int damage = 0;
 		
@@ -161,47 +161,60 @@ public class Room {
 			for (int row = 0; row < tableRows; row++) {
 				line = tablereader.readLine();
 				strId = Integer.valueOf(line.split(delim)[0]);
-				strType = line.split(delim)[1];
-				strSolid = line.split(delim)[2];
-				strDanger = line.split(delim)[3];
-				strDamage = line.split(delim)[4];
+				strType = "blank";
+				strSolid = false;
+				strDanger = false;
+				strDamage = "0";
 				
 				// Set default if substring has no
 				// states or has null input. Otherwise, read
 				// in substrings of text file line.
-				if (strType.equals("")) {
+				if (line.split(delim).length == 1) {
+					_tilesetids[row] = strId;
+					_tiletypes[row] = strType;
+					_tileSolid[row] = strSolid;
+					_tileDanger[row] = strDanger;
+					_tiledmgs[row] = damage;
+					continue;
+				}
+				
+				strType = line.split(delim)[1];
+				if (line.split(delim)[1].isEmpty()) {
 					strType = "blank";
-				} else {
-					strType = line.split(delim)[1];
 				}
 				
-				if (strSolid.equals("") || 
-						!(strSolid.equals("true") || strSolid.equals("false")) ||
-						strSolid.isEmpty()) {
-					strSolid = "false";
-				} else {
-					strSolid = line.split(delim)[2];
+				if (line.split(delim).length > 2) {
+					if (line.split(delim)[2].isEmpty() || 
+							!(line.split(delim)[2].equals("true") || line.split(delim)[2].equals("false"))) {
+						strSolid = false;
+					} else {
+						strSolid = true;
+					}
 				}
 				
-				if (strDanger.equals("") || 
-						!(strDanger.equals("true") || strDanger.equals("false")) ||
-						strDanger.isEmpty()) {
-					strDanger = "false";
-				} else {
-					strDanger = line.split(delim)[3];
+				if (line.split(delim).length > 3) {
+					if (line.split(delim)[3].equals("") || 
+							!(line.split(delim)[3].equals("true") || line.split(delim)[3].equals("false"))) {
+						strDanger = false;
+					} else {
+						strDanger = true;
+					}
 				}
 				
-				if (strDamage.equals("")) {
-					damage = 0;
-				} else {
-					damage = Integer.valueOf(strDamage);
+				if (line.split(delim).length > 4) {
+					if (line.split(delim)[4].isEmpty()) {
+						damage = 0;
+					} else {
+						strDamage = line.split(delim)[4];
+						damage = Integer.valueOf(strDamage);
+					}
 				}
 				
 				// load tileset into arrays.
 				_tilesetids[row] = strId;
 				_tiletypes[row] = strType;
-				_tileSolid[row] = Boolean.getBoolean(strSolid);
-				_tileDanger[row] = Boolean.getBoolean(strDanger);
+				_tileSolid[row] = strSolid;
+				_tileDanger[row] = strDanger;
 				_tiledmgs[row] = damage;
 			}
 			
@@ -220,14 +233,13 @@ public class Room {
 		int row, col;
 		int tileid;
 		int r, c;
-		int w = Constants.getRoomWidth();
+		int w = Constants.getTileWidth();
 		BufferedImage[][] tilesetimg = Constants.getTileset();
 		
 		for (int i = 0; i < _height*_width; i++) {
 			row = i / _width;
 			col = i % _width;
 			
-			tile = _tiles[row][col];
 			tileid = _tileids[row][col];
 			r = tileid / w;
 			c = tileid % w;
@@ -241,6 +253,8 @@ public class Room {
 					_tiledmgs[tileid]); // Form the tiles for the room.
 			if (tile.isType("ladder"))
 				_hasLadder = true;
+			
+			_tiles[row][col] = tile;
 		}
 	}
 	
@@ -249,14 +263,14 @@ public class Room {
 		try {
 			BufferedReader reader = new BufferedReader(
 					new FileReader(file));			
-			String delim = "(,+|\\s+)"; // Ignore commas or whitespace.
+			String delim = "\\s+"; // Ignore commas or whitespace.
 
 			Tile tile;
 			int i;
 			int row, col;
 			int tileid;
 			int r, c;
-			int w = Constants.getRoomWidth();
+			int w = Constants.getTileWidth();
 			
 			String line;
 			String [] ids;
@@ -264,10 +278,7 @@ public class Room {
 			BufferedImage[][] tilesetimg = Constants.getTileset();
 			
 			// Get tile ID from the text file containing the map.
-			for (i = 0; i < _height*_width;) {
-				row = i / _width;
-				col = i % _width;
-				
+			for (row = 0; row < _height; row++) {
 				// Read newline if on the first column.
 				line = reader.readLine();
 				
@@ -275,12 +286,13 @@ public class Room {
 				ids = line.split(delim);
 						
 				if (ids.length == _width) {
-					if (ids[col].equals(null))
-						continue;
+					for (col = 0; col < _width; col++) {
 						
-					_tileids[row][col] = Integer.valueOf(ids[col]);
-						
-					i++;
+						if (ids[col].equals(null))
+							continue;
+					
+						_tileids[row][col] = Integer.valueOf(ids[col]);
+					}
 				}
 			}
 			
@@ -289,7 +301,6 @@ public class Room {
 				row = i / _width;
 				col = i % _width;
 				
-				tile = _tiles[row][col];
 				tileid = _tileids[row][col];
 				r = tileid / w;
 				c = tileid % w;
@@ -303,6 +314,8 @@ public class Room {
 						_tiledmgs[tileid]); // Form the tiles for the room.
 				if (tile.isType("ladder"))
 					_hasLadder = true;
+				
+				_tiles[row][col] = tile;
 			}
 					
 			reader.close(); // Close reader.
@@ -318,10 +331,9 @@ public class Room {
 	}
 	
 	public void draw(Graphics g) {
-		for (int i = 0; i < _height*_width; i++) {
-			int row = i / _width;
-			int col = i % _width;
-			_tiles[row][col].draw(g, col, row);
+		for (int row = 0; row < _height; row++) {
+			for (int col = 0; col < _width; col++)
+				_tiles[row][col].draw(g, col*Constants.TILE_SIZE, row*Constants.TILE_SIZE);
 		}
 	}
 	
@@ -349,15 +361,15 @@ public class Room {
 		int col = n % _width;
 		Tile tile = _tiles[row][col];
 		if (tile == null)
-			return new Tile(Constants.getBlankTile(), 0, _tiletypes[0]); // Return a blank tile.
+			return new Tile(_tiles[0][0].getImage(), 0, _tiletypes[0]); // Return a blank tile.
 		
 		return tile;
 	}
 	
-	public Tile getTile(int row, int col) {
+	public Tile getTile(int col, int row) {
 		Tile tile = _tiles[row][col];
 		if (tile == null)
-			return new Tile(Constants.getBlankTile(), 0, _tiletypes[0]); // Return a blank tile.
+			return new Tile(_tiles[0][0].getImage(), 0, _tiletypes[0]); // Return a blank tile.
 		
 		return tile;
 	}

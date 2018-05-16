@@ -72,7 +72,7 @@ public class Maze {
 		_rooms = new Room[_mazeSize][_mazeSize]; // Set the number of Rooms in Maze.
 		
 		/* TODO: Find a better way to load maps. */
-		_rooms[0][0] = new Room("/assets/maps/room_sample_2.txt");
+		_rooms[0][0] = new Room("room_with_passage.txt");
 		
 		_roomWidth = _rooms[0][0].getCols();
 		_roomHeight = _rooms[0][0].getRows();
@@ -162,8 +162,8 @@ public class Maze {
 		int randRow = rand.nextInt(_mazeSize);
 		int randCol = rand.nextInt(_mazeSize);
 		
-		int x = rand.nextInt(_roomWidth);
-		int y = rand.nextInt(_roomHeight);
+		int x = rand.nextInt(_roomWidth-2);
+		int y = rand.nextInt(_roomHeight-2);
 		
 		// Set the current Room the player is in.
 		_currentRoom = _rooms[randRow][randCol];
@@ -188,10 +188,12 @@ public class Maze {
 		// Check if the player location has a solid, or impassable tile. 
 		// If so, relocate player to a passable tile.
 		while (_currentRoom.getTile(x,y).isSolid()) {
-			x = rand.nextInt(_roomWidth);
-			y = rand.nextInt(_roomHeight);
+			System.out.println("START:(" + x*Constants.TILE_SIZE + "," + y*Constants.TILE_SIZE + ")");
+			x = rand.nextInt(_roomWidth-1);
+			y = rand.nextInt(_roomHeight-1);
 		}
 		
+		System.out.println("START:(" + x*Constants.TILE_SIZE + "," + y*Constants.TILE_SIZE + ")");
 		p.setLocation(x,y);
 	}
 	
